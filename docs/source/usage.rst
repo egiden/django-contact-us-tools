@@ -12,7 +12,7 @@ To install contact-us-tools, use pip or an appropriate packaging tool:
 
    (.venv) $ pip install django-contact-us-tools
 
-Otherwise, download the `source distribution <https://pypi.python.org/pypi/django-contact-us-tools>`_ from `PyPI <https://pypi.org/>`_, decompress the file and run ``python setup.py install`` in the unpacked directory.
+Alternatively, download the `source distribution <https://pypi.python.org/pypi/django-contact-us-tools>`_ from `PyPI <https://pypi.org/>`_, decompress the file and run ``python setup.py install`` in the unpacked directory.
 
 Then add ``'contact_us_tools'`` to your ``INSTALLED_APPS`` setting:
 
