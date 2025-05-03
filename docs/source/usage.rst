@@ -37,7 +37,7 @@ Quick start
          'contact_us.apps.ContactUsConfig'
       ]
 
-#. Set up the necessary settings for sending emails as detailed in the `django docs<https://docs.djangoproject.com/en/5.2/topics/email/#email-backends>`_. For example, if gmail is your chosen host:
+#. Set up the necessary settings for sending emails as detailed in the `django docs <https://docs.djangoproject.com/en/5.2/topics/email/#email-backends>`_. For example, if gmail is your chosen host:
 
    .. code-block:: python
 
@@ -52,7 +52,7 @@ Quick start
 
       This step is necessary for the automatic reply email to be sent when the user submits the 'contact us' form.
 
-#. Create a `proxy model<https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for the ``BaseEnquiry`` model in your app's ``models.py`` and override the ``BUSINESS_NAME`` variable:
+#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for the ``BaseEnquiry`` model in your app's ``models.py`` and override the ``BUSINESS_NAME`` variable:
     
    .. code-block:: python
 
@@ -68,7 +68,7 @@ Quick start
 
       * This step is important as this is the name that will be used to introduce yourself or your business in the automatic reply email when the user submits the 'contact us' form.
 
-      * The ``BaseEnquiry`` model can be configure further as detailed in the section :ref:`base_enquiry_model`.
+      * The ``BaseEnquiry`` model can be configure further as detailed in the section :doc:`base_enquiry_model`.
 
 #. Register the proxy model to the admin site in your app's ``admin.py``:
 
@@ -79,7 +79,7 @@ Quick start
 
             admin.site.register(Enquiry)
 
-#. Create a template for the 'contact us' form and add it to your app's `templates directory<https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_:
+#. Create a template for the 'contact us' form and add it to your app's `templates directory <https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_:
 
    .. code-block:: html
 
@@ -105,8 +105,8 @@ Quick start
       
    .. note::
       
-      * The ``BaseContactUsView`` view can be configure further as detailed in the section :ref:`base_contactus_view`.
-      * The ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the detail of which are available in the section :ref:`base_contactus_form`.
+      * The ``BaseContactUsView`` view can be configure further as detailed in the section :doc:`base_contactus_view`.
+      * The ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the detail of which are available in the section :doc:`base_contactus_form`.
 
 #. Create the models:
 
