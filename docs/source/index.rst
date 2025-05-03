@@ -1,5 +1,3 @@
-.. include:: ../../README.rst
-
 Documentation for the "Contact-Us Tools" app
 ============================================
 
