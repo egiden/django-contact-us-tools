@@ -1,2 +1,2 @@
-The automatic reply email
+The automatic-reply email
 =========================

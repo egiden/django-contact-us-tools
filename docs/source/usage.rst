@@ -98,6 +98,9 @@ Quick start
 
    .. code-block:: python
 
+      from django.urls import path
+      from contact_us_tools.view import BaseContactUsView
+
       urlpatterns = [
          # ...,
          path('contact-us', BaseContactUsView.as_view(template_name='template_name')),
@@ -105,7 +108,7 @@ Quick start
       
    .. note::
       
-      The ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the detail of which are available in the section :doc:`base_contactus_form`.
+      The ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are available in the section :doc:`base_contactus_form`.
 
 #. Create the models:
 
