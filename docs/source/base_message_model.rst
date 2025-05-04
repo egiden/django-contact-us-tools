@@ -11,6 +11,8 @@ About the model
 ``BaseMessage`` variables
 -------------------------
 
+:class:`BaseMessage`
+
 .. class:: contact_us_tools.models.BaseMessage
 
     .. varibale:: TICKET_NUM_LEN
