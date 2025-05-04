@@ -10,4 +10,4 @@ class BaseContactUsForm(forms.ModelForm):
 
     class Meta:
         model = BaseMessage
-        fields = ['name', 'email', 'message']
+        fields = ['_type', 'name', 'email', 'message']

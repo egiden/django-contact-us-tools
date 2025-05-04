@@ -16,11 +16,12 @@ About the model
     Asside from the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes discussed in section :doc:`usage`, ``BaseMessage`` offers more attributes to permit further customisation of the automatic-reply email.
 
     .. attribute:: TICKET_NUM_LEN
-        .. Default value: 4
+        *default: 4*
 
         The length of the ticket number assigned to the message.
         
     .. attribute:: TEXT_FILE
+        *default: `'enquiries/email.txt' <google.com>`_*
 
     .. attribute:: HTML_FILE
 
