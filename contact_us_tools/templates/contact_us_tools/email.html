@@ -27,12 +27,16 @@
     <hr>
     <footer>
         E: {{ from_email }}
-        <br>
-        <br>
-        This email has been sent in accordance with the {{ business_name }} Privacy Policy
-        <br>
-        <br>
-        &copy{{ copyright_year }} {{ business_name }}
+        {% if disp_pp_notice %}
+            <br>
+            <br>
+            This email has been sent in accordance with the {{ business_name }} Privacy Policy
+        {% endif %}
+        {% if disp_cpr_notice %}
+            <br>
+            <br>
+            &copy{{ copyright_year }} {{ business_name }}
+        {% endif %}
     </footer>
 </body>
 </html>

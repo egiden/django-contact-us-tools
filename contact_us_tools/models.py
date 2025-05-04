@@ -9,9 +9,12 @@ class BaseEnquiry(models.Model):
     TICKET_NUM_LENGTH = 4
     TEXT_FILE = "enquiries/email.txt"
     HMTL_FILE = "enquiries/email.html"
-    BUSINESS_NAME = "Company"
-    COPYRIGHT_YEAR = 2025
+    BUSINESS_NAME = None
+    COPYRIGHT_YEAR = None
 
+    DISP_PRIVACY_POLICY_NOTICE = True
+    DISP_COPYRIGHT_NOTICE = True
+    
     name=models.CharField(max_length=50)
     email=models.EmailField(max_length=50)
     message=models.TextField()
@@ -43,7 +46,15 @@ class BaseEnquiry(models.Model):
         self.date_closed = None
         self.closed_by = None
 
-    def send_email(self, text_file=None, html_file=None, from_email=None, business_name=None, copyright_year=None):
+    def send_email(self,
+            text_file=None,
+            html_file=None,
+            from_email=None,
+            business_name=None,
+            copyright_year=None,
+            disp_pp_notice=None,
+            disp_cpr_notice=None,
+        ):
         """
         Send an automatic email to the user notifying them that their enquiry has been received.
         
@@ -52,7 +63,12 @@ class BaseEnquiry(models.Model):
         If from_email is None, try using the EMAIL_HOST_USER class variable.
         If business_name is None, use the BUSINESS_NAME class variable.
         If copyright_year is None, use the COPYRIGHT_YEAR class variable.
+        If disp_pp_notice is None, use the DISP_PRIVACY_POLICY_NOTICE class variable.
+        If disp_cpr_notice is None, use the DISP_COPYRIGHT_NOTICE class variable.
         """
+        if not self.pk:
+            raise self.DoesNotExist("The {} object does not exist. Save the object to the database first, and then try sending the email.".format(self.__class__.__name__))
+
         if not from_email:
             try:
                 from_email = settings.EMAIL_HOST_USER
@@ -70,6 +86,12 @@ class BaseEnquiry(models.Model):
 
         if not copyright_year:
             copyright_year = self.COPYRIGHT_YEAR
+
+        if not disp_pp_notice:
+            disp_pp_notice = self.DISP_PRIVACY_POLICY_NOTICE
+
+        if not disp_cpr_notice:
+            disp_cpr_notice = self.DISP_COPYRIGHT_NOTICE
             
         context = {
             'ticket_number': self.ticket_number,
@@ -79,6 +101,8 @@ class BaseEnquiry(models.Model):
             'from_email': from_email,
             'business_name': business_name,
             'copyright_year': copyright_year,
+            'disp_pp_notice': disp_pp_notice,
+            'disp_cpr_notice': disp_cpr_notice,
         }
 
         text_content = render_to_string(text_file, context)
@@ -93,6 +117,29 @@ class BaseEnquiry(models.Model):
 
         msg.attach_alternative(html_content, "text/html")
         msg.send()
+
+    def save(self, *args, **kwargs):
+        self._check_business_name()
+        self._check_copyright_year()
+        return super().save(*args, **kwargs)
+    
+    def _check_business_name(self):
+        """Raise an error if the BUSINESS_NAME variable has not been set."""
+        if self.BUSINESS_NAME is None:
+            raise ValueError(
+                "The BUSINESS_NAME variable for {} has not been set.".format(
+                    self.__class__.__name__
+                )
+            )
+    
+    def _check_copyright_year(self):
+        """Raise an error if the COPYRIGHT_YEAR variable has not been set and DISP_COPYRIGHT_NOTICE is True."""
+        if self.COPYRIGHT_YEAR is None and self.DISP_COPYRIGHT_NOTICE == True:
+            raise ValueError(
+                "The COPYRIGHT_YEAR variable for {} has not been set.".format(
+                    self.__class__.__name__
+                )
+            )
     
     class Meta:
         verbose_name_plural = "Enquiries"

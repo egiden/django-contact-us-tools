@@ -84,7 +84,7 @@ Example Setup
 
       * This step is important as ``BUSINESS_NAME`` is the name that will be used to introduce yourself or your business in the automatic-reply email and ``COPYRIGHT_YEAR`` is the year used for the copyright notice in the email. For more details see the section :doc:`reply_email`.
 
-      * The ``BaseEnquiry`` model can be customised further as detailed in the section :doc:`SECTION!!! <base_enquiry_model>`.
+      * If you do not wish to display a copyright notice on the automatic-reply email, and for further customisation options of ``BaseEnquiry``, see the section :doc:`BaseEnquiry Model <base_enquiry_model>`.
 
 #. Register the proxy model to the admin site in your app's ``admin.py``:
 

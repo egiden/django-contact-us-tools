@@ -1,3 +1,4 @@
+{% load static %}
 Dear {{ name }}
 
 Thank you for contacting us. This is an automated response to confirm that we have received your message.
@@ -9,11 +10,15 @@ Kind regards,
 
 -------------------------------------------------
 {{ name }}, {{ date_created }}
+
+Your Message:
 {{ message }}
 -------------------------------------------------
 
 E: {{ from_email }}
-
+{% if disp_pp_notice %}
 This email has been sent in accordance with the {{ business_name }} Privacy Policy
-
+{% endif %}
+{% if disp_cpr_notice %}
 copyright {{ copyright_year }} {{ business_name }}
+{% endif %}
