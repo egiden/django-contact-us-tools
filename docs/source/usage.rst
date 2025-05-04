@@ -69,7 +69,8 @@ Example Setup
 
 #. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the ``BaseMessage`` model and override the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes:
 
-   .. admonition:: kk
+   .. note::
+      
       * ``BUSINESS_NAME`` is what will be displayed as your business or website name in the :doc:`automatic-reply email <reply_email>`.
       * ``COPYRIGHT_YEAR`` is the year that will be displayed with the copyright notice in the email.
     
