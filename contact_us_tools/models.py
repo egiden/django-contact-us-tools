@@ -79,10 +79,10 @@ class BaseMessage(models.Model):
 
         Parameters:
             text_file (string or None): Directory of the text version of the email template.
-                If None, use TEXT_FILE class variable.
+                If None, use TEXT_FILE class attribute.
 
             html_file (string or None): Directory of the hmtl version of the email template.
-                If None, use HTML_FILE class variable.
+                If None, use HTML_FILE class attribute.
 
             *NOTE: If using custom values for text_file or html_file, the django.template.loader.render_to_string
             function might prove useful.
@@ -93,34 +93,34 @@ class BaseMessage(models.Model):
             from_email (string or None): Sender's email address. If None, try using EMAIL_HOST_USER setting.
 
             business_name (string or None): Name of your business or website to be displayed on the email.
-                If None, use BUSINESS_NAME class variable.
+                If None, use BUSINESS_NAME class attribute.
 
             copyright_year (string or None): Year to be displayed in email's copyright notice.
-                If None, use COPYRIGHT_YEAR class variable.
+                If None, use COPYRIGHT_YEAR class attribute.
 
             disp_cpr_notice (bool or None): Indicates if copyright notice should be displayed on the email.
                 Notice is of the form: "<copyright symbol><copyright_year>, <business_name>" if html_file is used.
                                    Or: "copyright <copyright_year>, <business_name>" if text_file is used.
-                If None, use DISP_COPYRIGHT_NOTICE class variable.
+                If None, use DISP_COPYRIGHT_NOTICE class attribute.
 
             disp_pp_notice (bool or None): Indicates if a privacy policy notice should be displayed in email.
                 Notice is of the form: "This email has been sent in accordance with the <business_name> Privacy Policy".
-                If None, use DISP_PRIVACY_POLICY_NOTICE class variable.
+                If None, use DISP_PRIVACY_POLICY_NOTICE class attribute.
 
-            subject (string or None): Email's subject line. If None, use SUBJECT class variable. But if SUBJECT is None, set
+            subject (string or None): Email's subject line. If None, use SUBJECT class attribute. But if SUBJECT is None, set
                 to string of the form: "Enquiry #<self.ticket_number>".
 
-            salutation (string or None): Email's salutation or greeting. If None, use SALUTATION class variable. But if
+            salutation (string or None): Email's salutation or greeting. If None, use SALUTATION class attribute. But if
                 SALUTATION is None, set to string of the form: "Dear <self.name>".
 
             main_content (string or None): Email's main content or body. i.e., the content between the salutation and closing.
-                If None and MAIN_CONTENT class variable is also None, do nothing. Content in text_file or html_file will be used.
+                If None and MAIN_CONTENT class attribute is also None, do nothing. Content in text_file or html_file will be used.
                 Otherwise, use MAIN_CONTENT.
 
-            closing (string or None): Email's closing line (without the comma). If None and CLOSING class variable is None, use "Kind regards".
+            closing (string or None): Email's closing line (without the comma). If None and CLOSING class attribute is None, use "Kind regards".
                 Other wise, use CLOSING.
 
-            signature (string or None): Email's signature. If None and SIGNATURE class variable is None, use business_name. Otherwise, use SIGNATURE.
+            signature (string or None): Email's signature. If None and SIGNATURE class attribute is None, use business_name. Otherwise, use SIGNATURE.
         """
         # Raise error if the BaseQuery object has not been created and saved
         if not self.pk:
