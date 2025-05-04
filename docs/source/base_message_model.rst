@@ -13,7 +13,7 @@ About the model
 
 .. class:: contact_us_tools.models.BaseMessage
 
-    Asside from the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes discussed in section :doc:`usage`, ``BaseMessage`` offers more attributes to permit further customisation of the automatic-reply email.
+    Asside from the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes discussed in section :doc:`usage`, ``BaseMessage`` offers more attributes to permit further customisation of the automatic-reply email. With the exception of ``BUSINESS_NAME``, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
 
     .. attribute:: TICKET_NUM_LEN
 
@@ -75,6 +75,12 @@ About the model
         
         The email's main content or body. i.e., the content between the salutation and closing.
 
+    .. attribute:: MAIN_CONTENT_FBK
+
+        *default: "Thank you very much for your feedback. It is much appreciated."*
+        
+        The email's main content or body for the case when a user submits feedback.
+
     .. attribute:: CLOSING
 
         *default: None*
@@ -95,11 +101,9 @@ About the model
 
 .. function:: BaseMessage.mark_closed(closed_by)
 
-    Marks the matter of the message as resolved. i.e., closed.
-
     :closed_by: (a django user object) The user that closed the message/ticket
 
-.. autofunction:: contact_us_tools.models.BaseMessage.mark_closed
+    Marks the matter of the message as resolved. i.e., closed.
 
     
 

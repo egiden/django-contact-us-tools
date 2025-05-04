@@ -6,7 +6,6 @@ from django.template.loader import render_to_string
 import warnings
 
 class BaseMessage(models.Model):
-    """Represents a user's message."""
     TICKET_NUM_LENGTH = 4
     TEXT_FILE = "contact_us_tools/email.txt"
     HMTL_FILE = "contact_us_tools/email.html"
@@ -16,6 +15,7 @@ class BaseMessage(models.Model):
     SUBJECT = None
     SALUTATION = None,
     MAIN_CONTENT = None,
+    MAIN_CONTENT_FBK = "Thank you very much for your feedback. It is much appreciated."
     CLOSING = None,
     SIGNATURE = None,
 
@@ -108,7 +108,7 @@ class BaseMessage(models.Model):
                 If None, use DISP_PRIVACY_POLICY_NOTICE class attribute.
 
             subject (string or None): Email's subject line. If None, use SUBJECT class attribute. But if SUBJECT is None, set
-                to string of the form: "Enquiry #<self.ticket_number>".
+                to string of the form: "Message Received #<self.ticket_number>: <self._type>".
 
             salutation (string or None): Email's salutation or greeting. If None, use SALUTATION class attribute. But if
                 SALUTATION is None, set to string of the form: "Dear <self.name>".
@@ -160,7 +160,7 @@ class BaseMessage(models.Model):
         # Make sure the subject variable is properly set
         if not subject:
             if not self.SUBEJCT:
-                subject = f"Enquiry #{self.ticket_number}"
+                subject = f"Message Received #{self.ticket_number}: {self._type}"
             else:
                 subject = self.SUBJECT
         
@@ -210,9 +210,11 @@ class BaseMessage(models.Model):
 
         # Make sure the main_content variable is properly set and update context where appropriate
         if not main_content:
-            if self.MAIN_CONTENT:
+            context.update({'is_main_content_provided': True})
+            if not self.MAIN_CONTENT and self._type == self.Type.FEEDBACK:
+                main_content = self.MAIN_CONTENT_FBK
+            elif self.MAIN_CONTENT:
                 main_content = self.MAIN_CONTENT
-                context.update({'is_main_content_provided': True})
         else:
             context.update({'is_main_content_provided': True})
 
