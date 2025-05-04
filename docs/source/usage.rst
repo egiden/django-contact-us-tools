@@ -4,7 +4,7 @@ Usage
 How it works
 ------------
 
-The basic workflow of how a user would use the **django-contact-us-tools** is as follows.
+The basic workflow of how a user would use **django-contact-us-tools** is as follows.
 
 #. The user visits the page where the 'contact us' form is rendered.
 
@@ -19,7 +19,7 @@ The basic workflow of how a user would use the **django-contact-us-tools** is as
 Installation
 ------------
 
-To install contact-us-tools, use pip or an appropriate packaging tool:
+To install **django-contact-us-tools**, use pip or an appropriate packaging tool:
 
 .. code-block:: console
 
@@ -65,15 +65,15 @@ Example Setup
 
    .. note::
 
-      This step is necessary for the automatic-reply email to be sent when the user submits the 'contact us' form.
+      This step is necessary for the automatic-reply email to be sent.
 
-#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the ``BaseEnquiry`` model and override the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` variables:
+#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the ``BaseMessage`` model and override the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` variables:
     
    .. code-block:: python
 
-      from contact_us_tools.models import BaseEnquiry
+      from contact_us_tools.models import BaseMessage
 
-      class Enquiry(BaseEnquiry):
+      class Enquiry(BaseMessage):
          BUSINESS_NAME = "My Business Name"
          COPYRIGHT_YEAR = 2025
 
@@ -84,7 +84,7 @@ Example Setup
 
       * This step is important as ``BUSINESS_NAME`` is the name that will be used to introduce yourself or your business in the automatic-reply email and ``COPYRIGHT_YEAR`` is the year used for the copyright notice in the email. For more details see the section :doc:`reply_email`.
 
-      * If you do not wish to display a copyright notice on the automatic-reply email, and for further customisation options of ``BaseEnquiry``, see the section :doc:`BaseEnquiry Model <base_enquiry_model>`.
+      * If you do not wish to display a copyright notice on the automatic-reply email, and for further customisation options of ``BaseMessage``, see the section :doc:`BaseMessage Model <base_message_model>`.
 
 #. Register the proxy model to the admin site in your app's ``admin.py``:
 
@@ -122,7 +122,7 @@ Example Setup
          path('contact-us', BaseContactUsView.as_view(template_name='template_name', success_url='success_url')),
       ]
 
-   Or alternatively, supply the name for the 'success url':
+   Alternatively, supply the name of the 'success url':
 
    .. code-block:: python
 
@@ -136,7 +136,7 @@ Example Setup
          
    .. note::
       
-      The ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are available in the section :doc:`base_contactus_form`.
+      ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are available in the section :doc:`base_contactus_form`.
 
 #. Create the models:
 

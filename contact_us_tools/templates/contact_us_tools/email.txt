@@ -14,6 +14,7 @@ Your enquiry has been received and assigned the ticket number #{{ ticket_number 
 {{ name }}, {{ date_created }}
 
 Your Message:
+Type: {{ type }}
 {{ message }}
 -------------------------------------------------
 

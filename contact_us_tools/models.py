@@ -5,7 +5,8 @@ from django.core import mail
 from django.template.loader import render_to_string
 import warnings
 
-class BaseEnquiry(models.Model):
+class BaseMessage(models.Model):
+    """Represents a user's message."""
     TICKET_NUM_LENGTH = 4
     TEXT_FILE = "enquiries/email.txt"
     HMTL_FILE = "enquiries/email.html"
@@ -21,8 +22,14 @@ class BaseEnquiry(models.Model):
     DISP_PRIVACY_POLICY_NOTICE = True
     DISP_COPYRIGHT_NOTICE = True
     
-    name=models.CharField(max_length=50)
-    email=models.EmailField(max_length=50)
+    class Type(models.TextChoices):
+        ENQUIRY = 'ENQUIRY', 'Enquiry'
+        FEEDBACK = 'FEEDBACK', 'Female'
+        OTHER = 'OTHER', 'Other/Misc'
+
+    _type = models.CharField("type", max_length=8, choices=Type.choices)
+    name=models.CharField(max_length=50, help_text="Name of sender")
+    email=models.EmailField(max_length=50, help_text="Email address of sender")
     message=models.TextField()
     date_created = models.DateField(default=timezone.now)
     is_closed = models.BooleanField(default=False)
@@ -55,6 +62,7 @@ class BaseEnquiry(models.Model):
     def send_email(self,
             text_file=None,
             html_file=None,
+            more_context=None,
             from_email=None,
             business_name=None,
             copyright_year=None,
@@ -78,6 +86,9 @@ class BaseEnquiry(models.Model):
 
             *NOTE: If using custom values for text_file or html_file, the django.template.loader.render_to_string
             function might prove useful.
+
+            more_context (dict or None): Dictionary of more items to add to the context to be used when rendering
+                the email template. If None, do nothing.
 
             from_email (string or None): Sender's email address. If None, try using EMAIL_HOST_USER setting.
 
@@ -177,6 +188,7 @@ class BaseEnquiry(models.Model):
         # Initialise the context for rendering the email template
         context = {
             'ticket_number': self.ticket_number,
+            'type': self._type,
             'name': self.name,
             'message': self.message,
             'date_created': self.date_created,
@@ -191,6 +203,10 @@ class BaseEnquiry(models.Model):
             'closing': closing,
             'signature': signature,
         }
+
+        # Update context with more_context
+        if more_context:
+            context.update(more_context)
 
         # Make sure the main_content variable is properly set and update context where appropriate
         if not main_content:

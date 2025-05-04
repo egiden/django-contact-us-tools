@@ -31,16 +31,16 @@ Quick start
 
     See the django documentation https://docs.djangoproject.com/en/5.2/topics/email/#email-backends
 
-3. Extend the ``BaseEnquiry`` model from the ``contact_us_tools.models`` module and set the ``BUSINESS_NAME`` variable like so:
+3. Extend the ``BaseMessage`` model from the ``contact_us_tools.models`` module and set the ``BUSINESS_NAME`` variable like so:
     
     .. code:: python
 
-        class Enquiry(BaseEnquiry):
+        class Enquiry(BaseMessage):
             BUSINESS_NAME = "My Business Name"
     
     This is the name that will be used to introduce yourself or your business in the automatic reply email when the user submits the 'contact us' form.
 
-    The ``BaseEnquiry`` model can be configure further. See the docs for details.
+    The ``BaseMessage`` model can be configure further. See the docs for details.
 
 4. Register the extended model class ``Enquiry`` from the previous step to the admin site like so:
 
