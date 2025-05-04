@@ -1,6 +1,19 @@
 Usage
 =====
 
+How it works
+------------
+
+The basic workflow of how a user would use the **django-contact-us-tools** is as follows.
+
+#. The user visits the page where the 'contact us' form is rendered.
+
+#. The user enters their name, email and message and submits the form.
+
+#. The app sends an automatic-reply email to the user and redirects to a provided page.
+
+#. The user receives the email.
+
 .. _installation:
 
 Installation
@@ -23,8 +36,8 @@ Then add ``'contact_us_tools'`` to your ``INSTALLED_APPS`` setting:
       'contact_us_tools',
    ]
 
-Quick start
------------
+Example Setup
+-------------
 
 #. If not using a pre-existing app in your project to handle your website's 'contact us' functionality, create a new app and add it to your ``INSTALLED_APPS`` setting:
 
@@ -68,7 +81,7 @@ Quick start
    
    .. note::
 
-      * This step is important as ``BUSINESS_NAME``` is the name that will be used to introduce yourself or your business in the automatic-reply email when the user submits the 'contact us' form.
+      * This step is important as ``BUSINESS_NAME`` is the name that will be used to introduce yourself or your business in the automatic-reply email when the user submits the 'contact us' form.
 
       * The ``BaseEnquiry`` model can be customised further as detailed in the section :doc:`base_enquiry_model`.
 
@@ -81,7 +94,7 @@ Quick start
 
             admin.site.register(Enquiry)
 
-#. Create a template for the 'contact us' form and add it to your app's `templates directory <https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_:
+#. Create a template for the 'contact us' form and add it to your app's `templates directory <https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_. Here's a minimal example:
 
    .. code-block:: html
 
@@ -96,7 +109,7 @@ Quick start
          <button type="submit">Submit</button>
       </form>
 
-#. Add the ``BaseContactUsView`` view to your project's ``urls.py`` making sure to supply the template's name:
+#. Use the ``BaseContactUsView`` vew and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the template's name and a 'success url':
 
    .. code-block:: python
 
@@ -105,9 +118,21 @@ Quick start
 
       urlpatterns = [
          # ...,
-         path('contact-us', BaseContactUsView.as_view(template_name='template_name')),
+         path('contact-us', BaseContactUsView.as_view(template_name='template_name', success_url='success_url')),
       ]
-      
+
+   Or alternatively:
+
+   .. code-block:: python
+
+      # ...
+      from django.urls import reverse
+
+      urlpatterns = [
+         # ...,
+         path('contact-us', BaseContactUsView.as_view(template_name='template_name', success_url=reverse('success_url_name'))),
+      ]
+         
    .. note::
       
       The ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are available in the section :doc:`base_contactus_form`.
