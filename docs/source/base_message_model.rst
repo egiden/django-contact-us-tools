@@ -46,8 +46,12 @@ About the model
 
 .. function:: BaseMessage.mark_closed(closed_by)
 
+    Marks the matter of the message as resolved. i.e., closed.
+
     :closed_by: (a django user object) The user that closed the message/ticket
 
-    Marks the matter of the message as resolved. i.e., closed.
+.. autofunction:: contact_us_tools.models.BaseMessage.mark_closed
+
+    
 
     
