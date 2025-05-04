@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <header>Dear {{ name }}</header>
+    <header>{{ salutation }}</header>
     <main>
-        <p>Thank you for contacting us. This is an automated response to confirm that we have received your message.</p>
+        {% if is_main_content_provided %}
+            {{ main_content }}
+        {% else %}
+            <p>Thank you for contacting us. This is an automated response to confirm that we have received your message.</p>
+            <p>
+                Your enquiry has been received and assigned the ticket number #{{ ticket_number }}. We will review your enquiry and respond as soon as we can.
+            </p>
+            <p>For further questions or assistance, or if you wish to add details or comments to your enquiry, please reply to this email.</p>
+        {% endif %}
         <p>
-            Your enquiry has been received and assigned the ticket number #{{ ticket_number }}. We will review your enquiry and respond as soon as we can.
-        </p>
-        <p>For further questions or assistance, or if you wish to add details or comments to your enquiry, please reply to this email.</p>
-        <p>
-            Kind regards,
+            {{ closing }},
             <br>
-            {{ business_name }}
+            {{ signature }}
         </p>
     </main>
     <hr>
@@ -35,7 +39,7 @@
         {% if disp_cpr_notice %}
             <br>
             <br>
-            &copy{{ copyright_year }} {{ business_name }}
+            &copy{{ copyright_year }}, {{ business_name }}
         {% endif %}
     </footer>
 </body>

@@ -12,6 +12,12 @@ class BaseEnquiry(models.Model):
     BUSINESS_NAME = None
     COPYRIGHT_YEAR = None
 
+    SUBJECT = None
+    SALUTATION = None,
+    MAIN_CONTENT = None,
+    CLOSING = None,
+    SIGNATURE = None,
+
     DISP_PRIVACY_POLICY_NOTICE = True
     DISP_COPYRIGHT_NOTICE = True
     
@@ -52,47 +58,123 @@ class BaseEnquiry(models.Model):
             from_email=None,
             business_name=None,
             copyright_year=None,
-            disp_pp_notice=None,
             disp_cpr_notice=None,
+            disp_pp_notice=None,
+            subject=None,
+            salutation=None,
+            main_content=None,
+            closing=None,
+            signature=None,
         ):
         """
-        Send an automatic email to the user notifying them that their enquiry has been received.
-        
-        If text_file is None, use TEXT_FILE class variable
-        If html_file is None, use HTML_FILE class variable
-        If from_email is None, try using the EMAIL_HOST_USER class variable.
-        If business_name is None, use the BUSINESS_NAME class variable.
-        If copyright_year is None, use the COPYRIGHT_YEAR class variable.
-        If disp_pp_notice is None, use the DISP_PRIVACY_POLICY_NOTICE class variable.
-        If disp_cpr_notice is None, use the DISP_COPYRIGHT_NOTICE class variable.
+        Send an automatic-reply email to the user notifying them that their enquiry has been received.
+
+        Parameters:
+            text_file (string or None): Directory of the text version of the email template.
+                If None, use TEXT_FILE class variable.
+
+            html_file (string or None): Directory of the hmtl version of the email template.
+                If None, use HTML_FILE class variable.
+
+            *NOTE: If using custom values for text_file or html_file, the django.template.loader.render_to_string
+            function might prove useful.
+
+            from_email (string or None): Sender's email address. If None, try using EMAIL_HOST_USER setting.
+
+            business_name (string or None): Name of your business or website to be displayed on the email.
+                If None, use BUSINESS_NAME class variable.
+
+            copyright_year (string or None): Year to be displayed in email's copyright notice.
+                If None, use COPYRIGHT_YEAR class variable.
+
+            disp_cpr_notice (bool or None): Indicates if copyright notice should be displayed on the email.
+                Notice is of the form: "<copyright symbol><copyright_year>, <business_name>" if html_file is used.
+                                   Or: "copyright <copyright_year>, <business_name>" if text_file is used.
+                If None, use DISP_COPYRIGHT_NOTICE class variable.
+
+            disp_pp_notice (bool or None): Indicates if a privacy policy notice should be displayed in email.
+                Notice is of the form: "This email has been sent in accordance with the <business_name> Privacy Policy".
+                If None, use DISP_PRIVACY_POLICY_NOTICE class variable.
+
+            subject (string or None): Email's subject line. If None, use SUBJECT class variable. But if SUBJECT is None, set
+                to string of the form: "Enquiry #<self.ticket_number>".
+
+            salutation (string or None): Email's salutation or greeting. If None, use SALUTATION class variable. But if
+                SALUTATION is None, set to string of the form: "Dear <self.name>".
+
+            main_content (string or None): Email's main content or body. i.e., the content between the salutation and closing.
+                If None and MAIN_CONTENT class variable is also None, do nothing. Content in text_file or html_file will be used.
+                Otherwise, use MAIN_CONTENT.
+
+            closing (string or None): Email's closing line (without the comma). If None and CLOSING class variable is None, use "Kind regards".
+                Other wise, use CLOSING.
+
+            signature (string or None): Email's signature. If None and SIGNATURE class variable is None, use business_name. Otherwise, use SIGNATURE.
         """
+        # Raise error if the BaseQuery object has not been created and saved
         if not self.pk:
             raise self.DoesNotExist("The {} object does not exist. Save the object to the database first, and then try sending the email.".format(self.__class__.__name__))
 
+        # Make sure the from_email variable is properly set
         if not from_email:
             try:
                 from_email = settings.EMAIL_HOST_USER
             except:
                 raise ValueError("Set the EMAIL_HOST_USER setting or input a value for from_email.")
-        
+            
+        # Make sure the text_file variable is properly set
         if not text_file:
             text_file = self.TEXT_FILE
         
+        # Make sure the html_file variable is properly set
         if not html_file:
             html_file = self.HMTL_FILE
 
+        # Make sure the business_name variable is properly set
         if not business_name:
             business_name = self.BUSINESS_NAME
 
+        # Make sure the copyright_year variable is properly set
         if not copyright_year:
             copyright_year = self.COPYRIGHT_YEAR
 
+        # Make sure the disp_cpr_notice variable is properly set
+        if not disp_cpr_notice:
+            disp_cpr_notice = self.DISP_COPYRIGHT_NOTICE
+
+        # Make sure the disp_pp_notice variable is properly set
         if not disp_pp_notice:
             disp_pp_notice = self.DISP_PRIVACY_POLICY_NOTICE
 
-        if not disp_cpr_notice:
-            disp_cpr_notice = self.DISP_COPYRIGHT_NOTICE
-            
+        # Make sure the subject variable is properly set
+        if not subject:
+            if not self.SUBEJCT:
+                subject = f"Enquiry #{self.ticket_number}"
+            else:
+                subject = self.SUBJECT
+        
+        # Make sure the salutation variable is properly set
+        if not salutation:
+            if not self.SALUTATION:
+                salutation = f"Dear {self.name}"
+            else:
+                salutation = self.SALUTATION
+
+        # Make sure the closing variable is properly set
+        if not closing:
+            if not self.CLOSING:
+                closing = "Kind regards"
+            else:
+                closing = self.CLOSING
+
+        # Make sure the signature variable is properly set
+        if not signature:
+            if not self.SIGNATURE:
+                signature = business_name
+            else:
+                signature = self.SIGNATURE
+
+        # Initialise the context for rendering the email template
         context = {
             'ticket_number': self.ticket_number,
             'name': self.name,
@@ -103,13 +185,30 @@ class BaseEnquiry(models.Model):
             'copyright_year': copyright_year,
             'disp_pp_notice': disp_pp_notice,
             'disp_cpr_notice': disp_cpr_notice,
+            'is_main_content_provided': False,
+            'salutation': salutation,
+            'main_content': '',
+            'closing': closing,
+            'signature': signature,
         }
 
+        # Make sure the main_content variable is properly set and update context where appropriate
+        if not main_content:
+            if self.MAIN_CONTENT:
+                main_content = self.MAIN_CONTENT
+                context.update({'is_main_content_provided': True})
+        else:
+            context.update({'is_main_content_provided': True})
+
+        context.update({'main_content': main_content})
+
+        # Create the body text for the email
         text_content = render_to_string(text_file, context)
         html_content = render_to_string(html_file, context)
-        
+
+        # Create and send the email message
         msg = mail.EmailMultiAlternatives(
-            subject=f"Enquiry #{self.ticket_number}",
+            subject=subject,
             body=text_content,
             from_email=from_email,
             to=[self.email],

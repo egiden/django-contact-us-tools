@@ -110,7 +110,7 @@ Example Setup
          <button type="submit">Submit</button>
       </form>
 
-#. Use the ``BaseContactUsView`` vew and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the template's name and a 'success url':
+#. Use the ``BaseContactUsView`` view and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the template's name and a 'success url':
 
    .. code-block:: python
 
@@ -122,7 +122,7 @@ Example Setup
          path('contact-us', BaseContactUsView.as_view(template_name='template_name', success_url='success_url')),
       ]
 
-   Or alternatively:
+   Or alternatively, supply the name for the 'success url':
 
    .. code-block:: python
 
