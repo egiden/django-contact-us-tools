@@ -8,8 +8,8 @@ import warnings
 class BaseMessage(models.Model):
     """Represents a user's message."""
     TICKET_NUM_LENGTH = 4
-    TEXT_FILE = "enquiries/email.txt"
-    HMTL_FILE = "enquiries/email.html"
+    TEXT_FILE = "contact_us_tools/email.txt"
+    HMTL_FILE = "contact_us_tools/email.html"
     BUSINESS_NAME = None
     COPYRIGHT_YEAR = None
 
