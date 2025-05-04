@@ -80,19 +80,15 @@ Example Setup
          class Meta:
             proxy = True
    
+   .. warning::
+
+      ``BUSINESS_NAME`` must be set or else a ``ValueError`` will be raised. It is the same with ``COPYRIGHT_YEAR`` for the default configuration of ``BaseMessage``.
+   
    .. note::
 
       * This step is important as ``BUSINESS_NAME`` is the name that will be used to introduce yourself or your business in the :doc:`automatic-reply email <reply_email>` and ``COPYRIGHT_YEAR`` is the year used for the copyright notice in the email.
 
-      * If you do not wish to display a copyright notice on the automatic-reply email, and for further customisation options of ``BaseMessage``, see the section :doc:`BaseMessage Model <base_message_model>`.
-
-   .. warning::
-
-      ``BUSINESS_NAME`` must be set or else a ``ValueError`` will be raised.
-
-   .. tip::
-
-      This is a tip
+      * If you do not wish to display a copyright notice, and for further customisation options, see the section :doc:`BaseMessage Model <base_message_model>`.
 
 #. Register the proxy model to the admin site in your app's ``admin.py``:
 

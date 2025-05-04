@@ -19,6 +19,10 @@ About the model
 
         *default: 4*
 
+        :py:type: True
+
+        :py:type: bool
+
         The length of the ticket number assigned to the message.
         
     .. attribute:: TEXT_FILE
