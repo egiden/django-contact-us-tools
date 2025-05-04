@@ -41,8 +41,7 @@ Then add ``'contact_us_tools'`` to your ``INSTALLED_APPS`` setting:
 Example Setup
 -------------
 
-#. If not using a pre-existing app in your project to handle your website's 'contact us'
-   functionality, create a new app and add it to your ``INSTALLED_APPS`` setting:
+#. If not using a pre-existing app in your project to handle your website's 'contact us' functionality, create a new app and add it to your ``INSTALLED_APPS`` setting:
 
    .. code-block:: console
 
@@ -55,9 +54,7 @@ Example Setup
          'contact_us.apps.ContactUsConfig',
       ]
 
-#. Set up the necessary settings for sending emails as detailed in the
-`django docs <https://docs.djangoproject.com/en/5.2/topics/email/#email-backends>`_. For example,
-if gmail is your chosen host:
+#. Set up the necessary settings for sending emails as detailed in the `django docs <https://docs.djangoproject.com/en/5.2/topics/email/#email-backends>`_. For example, if gmail is your chosen host:
 
    .. code-block:: python
 
@@ -72,11 +69,7 @@ if gmail is your chosen host:
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_
-in your app's ``models.py`` for the ``BaseMessage`` model and override the ``BUSINESS_NAME`` and
-``COPYRIGHT_YEAR`` attributes. ``BUSINESS_NAME`` is your business or website name to be displayed
-in the :doc:`automatic-reply email <reply_email>` and ``COPYRIGHT_YEAR`` is the year to be displayed
-with the copyright notice in the email.
+#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the ``BaseMessage`` model and override the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes. ``BUSINESS_NAME`` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and ``COPYRIGHT_YEAR`` is the year to be displayed with the copyright notice in the email.
     
    .. code-block:: python
 
@@ -91,13 +84,11 @@ with the copyright notice in the email.
    
    .. warning::
 
-      ``BUSINESS_NAME`` must be set or else a :py:exc:`ValueError` will be raised. It is the same
-      with ``COPYRIGHT_YEAR`` for the default configuration of ``BaseMessage``.
+      ``BUSINESS_NAME`` must be set or else a :py:exc:`ValueError` will be raised. It is the same with ``COPYRIGHT_YEAR`` for the default configuration of ``BaseMessage``.
    
    .. note::
 
-      If you do not wish to display a copyright notice, and for further customisation options, see
-      the section :doc:`BaseMessage Model <base_message_model>`.
+      If you do not wish to display a copyright notice, and for further customisation options, see the section :doc:`BaseMessage Model <base_message_model>`.
 
 #. Register the proxy model to the admin site in your app's ``admin.py``:
 
@@ -108,9 +99,7 @@ with the copyright notice in the email.
 
             admin.site.register(Enquiry)
 
-#. Create a template for the 'contact us' form and add it to your app's
-`templates directory <https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_.
-Here's a minimal example:
+#. Create a template for the 'contact us' form and add it to your app's `templates directory <https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_. Here's a minimal example:
 
    .. code-block:: html
 
@@ -125,10 +114,7 @@ Here's a minimal example:
          <button type="submit">Submit</button>
       </form>
 
-#. Use the ``BaseContactUsView`` view and create a
-`URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle
-the rendering of the form and add it to your project's ``urls.py``, making sure to supply the
-template's name and a 'success url':
+#. Use the ``BaseContactUsView`` view and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the template's name and a 'success url':
 
    .. code-block:: python
 
@@ -154,8 +140,7 @@ template's name and a 'success url':
          
    .. note::
       
-      ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are
-      available in the section :doc:`base_contactus_form`.
+      ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are available in the section :doc:`base_contactus_form`.
 
 #. Create the models:
 
