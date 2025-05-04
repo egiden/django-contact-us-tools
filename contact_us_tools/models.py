@@ -10,6 +10,7 @@ class BaseEnquiry(models.Model):
     TEXT_FILE = "enquiries/email.txt"
     HMTL_FILE = "enquiries/email.html"
     BUSINESS_NAME = "Company"
+    COPYRIGHT_YEAR = 2025
 
     name=models.CharField(max_length=50)
     email=models.EmailField(max_length=50)
@@ -42,13 +43,15 @@ class BaseEnquiry(models.Model):
         self.date_closed = None
         self.closed_by = None
 
-    def send_email(self, text_file=None, html_file=None, from_email=None):
+    def send_email(self, text_file=None, html_file=None, from_email=None, business_name=None, copyright_year=None):
         """
         Send an automatic email to the user notifying them that their enquiry has been received.
         
         If text_file is None, use TEXT_FILE class variable
         If html_file is None, use HTML_FILE class variable
-        If from_email is None, try using the EMAIL_HOST_USER setting.
+        If from_email is None, try using the EMAIL_HOST_USER class variable.
+        If business_name is None, use the BUSINESS_NAME class variable.
+        If copyright_year is None, use the COPYRIGHT_YEAR class variable.
         """
         if not from_email:
             try:
@@ -61,6 +64,12 @@ class BaseEnquiry(models.Model):
         
         if not html_file:
             html_file = self.HMTL_FILE
+
+        if not business_name:
+            business_name = self.BUSINESS_NAME
+
+        if not copyright_year:
+            copyright_year = self.COPYRIGHT_YEAR
             
         context = {
             'ticket_number': self.ticket_number,
@@ -68,7 +77,8 @@ class BaseEnquiry(models.Model):
             'message': self.message,
             'date_created': self.date_created,
             'from_email': from_email,
-            'business_name': self.BUSINESS_NAME,
+            'business_name': business_name,
+            'copyright_year': copyright_year,
         }
 
         text_content = render_to_string(text_file, context)

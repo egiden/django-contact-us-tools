@@ -67,7 +67,7 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent when the user submits the 'contact us' form.
 
-#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the ``BaseEnquiry`` model and override the ``BUSINESS_NAME`` variable:
+#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the ``BaseEnquiry`` model and override the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` variables:
     
    .. code-block:: python
 
@@ -75,15 +75,16 @@ Example Setup
 
       class Enquiry(BaseEnquiry):
          BUSINESS_NAME = "My Business Name"
+         COPYRIGHT_YEAR = 2025
 
          class Meta:
             proxy = True
    
    .. note::
 
-      * This step is important as ``BUSINESS_NAME`` is the name that will be used to introduce yourself or your business in the automatic-reply email when the user submits the 'contact us' form.
+      * This step is important as ``BUSINESS_NAME`` is the name that will be used to introduce yourself or your business in the automatic-reply email and ``COPYRIGHT_YEAR`` is the year used for the copyright notice in the email. For more details see the section :doc:`reply_email`.
 
-      * The ``BaseEnquiry`` model can be customised further as detailed in the section :doc:`base_enquiry_model`.
+      * The ``BaseEnquiry`` model can be customised further as detailed in the section :doc:`SECTION!!! <base_enquiry_model>`.
 
 #. Register the proxy model to the admin site in your app's ``admin.py``:
 
