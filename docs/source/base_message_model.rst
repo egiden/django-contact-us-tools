@@ -24,8 +24,11 @@ def my_function(my_arg, my_other_arg):
 
 ``True``
 
-.. function:: foo(x)
+.. function:: print(*args)
 
+.. function:: print(*args)
+
+    :returns: Stuff.
 :func"`print`
 
 .. attribute: `PRINT_ONLY`
