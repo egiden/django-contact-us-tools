@@ -11,30 +11,9 @@ About the model
 ``BaseMessage`` variables
 -------------------------
 
-def my_function(my_arg, my_other_arg):
-    """A function just for me.
-
-    :param my_arg: The first of my arguments.
-    :param my_other_arg: The second of my arguments.
-
-    :returns: A message (just for me, of course).
-    """
-
-*arg*
-
-``True``
-
-.. function:: print(*args)
-
-.. function:: print(*args)
-
-    :returns: Stuff.
-:func"`print`
-
-.. attribute: `PRINT_ONLY`
-.. a comment
-:role:`role`
-
 .. class:: contact_us_tools.models.BaseMessage
 
-    .. varibale:: TICKET_NUM_LEN
+    .. attribute:: TICKET_NUM_LEN
+
+        The length of the ticket number assigned to the message.
+        Default value: 4
