@@ -42,7 +42,7 @@ Example Setup
 -------------
 
 #. If not using a pre-existing app in your project to handle your website's 'contact us'
-functionality, create a new app and add it to your ``INSTALLED_APPS`` setting:
+   functionality, create a new app and add it to your ``INSTALLED_APPS`` setting:
 
    .. code-block:: console
 
