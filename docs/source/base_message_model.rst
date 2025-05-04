@@ -25,14 +25,6 @@ def my_function(my_arg, my_other_arg):
 ``True``
 
 .. function:: foo(x)
-              foo(y, z)
-   :bar: no
-
-   Return a line of text input from the user.
-
-.. function:: print(*args)
-              """Print args."""
-    :returns: None
 
 :func"`print`
 
