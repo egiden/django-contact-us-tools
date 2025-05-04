@@ -37,13 +37,25 @@ About the model
 
         *default: True*
         
-        Indicates if privacy policy notice should be included in the email.
+        Indicates if a privacy policy notice should be included in the email.
 
     .. attribute:: DISP_COPYRIGHT_NOTICE
 
         *default: True*
         
         Indicates if copyright notice should be included in the email.
+
+    .. attribute:: COPYRIGHT_YEAR
+
+        *default: None*
+        
+        The year displayed on the email's copyright notice.
+
+    .. attribute:: BUSINESS_NAME
+
+        *default: None*
+        
+        The business or website name to be displayed on the email.
 
     .. attribute:: SUBJECT
 
