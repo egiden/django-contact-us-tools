@@ -8,31 +8,18 @@ About the model
 
     An object representing a user's message which can be either feedback, an enquiry or other.
 
-``BaseMessage`` variables
--------------------------
-
-TICKET_NUM_LENGTH = 4
-    TEXT_FILE = "enquiries/email.txt"
-    HMTL_FILE = "enquiries/email.html"
-    BUSINESS_NAME = None
-    COPYRIGHT_YEAR = None
-
-    SUBJECT = None
-    SALUTATION = None,
-    MAIN_CONTENT = None,
-    CLOSING = None,
-    SIGNATURE = None,
-
-    DISP_PRIVACY_POLICY_NOTICE = True
-    DISP_COPYRIGHT_NOTICE = True
+``BaseMessage`` attributes
+--------------------------
 
 .. class:: contact_us_tools.models.BaseMessage
 
-    .. attribute:: TICKET_NUM_LEN = "mokm"
+    Asside from the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes discussed in section :doc:`usage`, ``BaseMessage`` offers more attributes to permit further customisation of the automatic-reply email.
+
+    .. attribute:: TICKET_NUM_LEN
+        .. Default value: 4
 
         The length of the ticket number assigned to the message.
-        Default value: 4
-
+        
     .. attribute:: TEXT_FILE
 
     .. attribute:: HTML_FILE
@@ -40,10 +27,6 @@ TICKET_NUM_LENGTH = 4
     .. attribute:: DISP_PRIVACY_POLICY_NOTICE
 
     .. attribute:: DISP_COPYRIGHT_NOTICE
-
-    .. attribute:: COPYRIGHT_YEAR
-
-    .. attribute:: BUSINESS_NAME
 
     .. attribute:: SUBJECT
 
@@ -54,4 +37,17 @@ TICKET_NUM_LENGTH = 4
     .. attribute:: CLOSING
 
     .. attribute:: SIGNATURE
+
+``BaseMessage`` methods
+-----------------------
+.. class:: contact_us_tools.models.BaseMessage
+
+    ``BaseMessage`` has three main methods for controlling the model.
+
+.. function:: BaseMessage.mark_closed(closed_by)
+
+    :closed_by: (a django user object) The user that closed the message/ticket
+
+    Marks the matter of the message as resolved. i.e., closed.
+
     
