@@ -20,8 +20,19 @@ def my_function(my_arg, my_other_arg):
     :returns: A message (just for me, of course).
     """
 
-:fieldname:Name
-:fieldname:`Name`
+*arg*
+
+``True``
+
+.. function:: print(*args)
+    """Print args."""
+    :returns: None
+
+:func"`print`
+
+.. attribute: `PRINT_ONLY`
+.. a comment
+:role:`role`
 
 .. class:: contact_us_tools.models.BaseMessage
 
