@@ -119,7 +119,7 @@ About the model
 
     :closed_by: stuff
 
-    :closedby: stuff
+    :x: stuff
 
     :closed__by: stuff
 
