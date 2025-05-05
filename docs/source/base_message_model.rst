@@ -116,8 +116,14 @@ About the model
 .. function:: foo(x)
     
     foo(y, z)
-    
+
     :bar: no
+
+    :closed_by: stuff
+
+    :closedby: stuff
+
+    :closed__by: stuff
 
    Return a line of text input from the user.
 
