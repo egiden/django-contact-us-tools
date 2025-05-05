@@ -113,7 +113,7 @@ About the model
 
     Send email
 
-.. function:: foo(x)
+.. function:: BaseMessage.mark_closed(closed_by)
 
     :bar: no
 
