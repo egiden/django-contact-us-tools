@@ -23,7 +23,7 @@ About the model
         
     .. attribute:: TEXT_FILE
 
-        *default: "contact_us_tools/email.txt"* `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
+        *default: "contact_us_tools/email.txt"* :source:`https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt`
         
         The path of the text version of the email template.
 
@@ -101,6 +101,20 @@ About the model
 
 .. function:: BaseMessage.mark_closed(closed_by)
 
+    :closed_by: (a django user object) The user that closed the message/ticket
+
+    Marks the matter of the message as resolved. i.e., closed.
+
+.. function:: BaseMessage.reopen()
+
+    Reopen's the matter of the message.
+
+.. function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,closing=None,signature=None,)
+
+    Send email
+
+.. function:: BaseMessage.mark_closed(closed_by)
+
     :bar: (no)
 
     :closed_by: stuff
@@ -110,14 +124,6 @@ About the model
     :closed__by: stuff
     
     Return a line of text input from the user.
-
-.. function:: BaseMessage.reopen()
-
-    Reopen's the matter of the message.
-
-.. function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,closing=None,signature=None,)
-
-    Send email
 
 .. function:: spam(eggs)
               ham(eggs)
