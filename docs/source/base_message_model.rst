@@ -23,9 +23,7 @@ About the model
         
     .. attribute:: TEXT_FILE
 
-        *default: "contact_us_tools/email.txt"*
-        
-        :source:`https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt`
+        *default: "contact_us_tools/email.txt"* `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
         
         The path of the text version of the email template.
 
