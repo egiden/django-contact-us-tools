@@ -113,6 +113,12 @@ About the model
 
     Send email
 
+.. function:: foo(x)
+              foo(y, z)
+   :bar: no
+
+   Return a line of text input from the user.
+
     
 
     
