@@ -105,6 +105,14 @@ About the model
 
     Marks the matter of the message as resolved. i.e., closed.
 
+.. function:: BaseMessage.reopen()
+
+    Reopen's the matter of the message.
+
+.. function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,closing=None,signature=None,)
+
+    Send email
+
     
 
     
