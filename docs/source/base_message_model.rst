@@ -125,11 +125,25 @@ About the model
     
     Return a line of text input from the user.
 
+.. impl-detail::
+
+    This describes some implementation detail.
+
+    More explanation.
+
 .. function:: spam(eggs)
               ham(eggs)
    :noindex:
 
+   .. impl-detail::
+    
+    This describes some implementation detail.
+
+    More explanation.
+
    Spam or ham the foo.
+
+
 
     
 
