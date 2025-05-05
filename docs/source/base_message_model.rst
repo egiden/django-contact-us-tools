@@ -115,7 +115,7 @@ About the model
 
 .. function:: BaseMessage.mark_closed(closed_by)
 
-    :bar: no
+    :bar: (no)
 
     :closed_by: stuff
 
