@@ -101,9 +101,15 @@ About the model
 
 .. function:: BaseMessage.mark_closed(closed_by)
 
-    :closed_by: (a django user object) The user that closed the message/ticket
+    :bar: (no)
 
-    Marks the matter of the message as resolved. i.e., closed.
+    :closed_by: stuff
+
+    :x: stuff
+
+    :closed__by: stuff
+    
+    Return a line of text input from the user.
 
 .. function:: BaseMessage.reopen()
 
@@ -112,18 +118,6 @@ About the model
 .. function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,closing=None,signature=None,)
 
     Send email
-
-.. function:: BaseMessage.mark_closed(closed_by)
-
-    :bar: (no)
-
-    :closed_by: stuff
-
-    :x: stuff
-
-    :closed__by: stuff
-
-   Return a line of text input from the user.
 
 .. function:: spam(eggs)
               ham(eggs)
