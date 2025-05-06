@@ -2,7 +2,6 @@ The ``BaseMessage`` model
 =========================
 
 .. module:: contact_us_tools.models
-    :synopsis: Represents a user's message which can be either feedback, an enquiry or other.
 
 .. class:: BaseMessage
 
@@ -13,7 +12,7 @@ The ``BaseMessage`` model
 ``BaseMessage`` attributes
 --------------------------
 
-Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of ``BUSINESS_NAME``, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
+Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
 
 .. attention::
 
@@ -33,7 +32,7 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
 .. attribute:: HTML_FILE
 
-    *default:* ``"contact_us_tools/email.html"`` `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
+    *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
     
     The path of the html version of the email template.
 
@@ -99,12 +98,12 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
 .. tip::
 
-    If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for ``BaseMessage`` as seen in the :doc:`usage <usage>` section.
+    If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
 
 ``BaseMessage`` methods
 -----------------------
 
-``BaseMessage`` has three main methods for controlling the model.
+:py:class:`BaseMessage` has three main methods for controlling the model.
 
 .. function:: BaseMessage.mark_closed(closed_by)
 
@@ -120,7 +119,7 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
     Sends the user's message as an email.
     
-    With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the ``BaseMessage`` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
+    With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the :py:class:`BaseMessage` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
 
     **text_file** :py:obj:`string` or :py:obj:`None`: Hates dogs
 
