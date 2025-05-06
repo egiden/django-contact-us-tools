@@ -1,7 +1,7 @@
 The ``BaseMessage`` model
 =========================
 
-.. class:: contact_us_tools.models.BaseMessage
+.. class:: BaseMessage
 
     Represents a user's message which can be either feedback, an enquiry or other.
 
@@ -30,7 +30,7 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
 .. attribute:: HTML_FILE
 
-    *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
+    *default:* ``"contact_us_tools/email.html"`` `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
     
     The path of the html version of the email template.
 

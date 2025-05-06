@@ -29,7 +29,7 @@ Alternatively, download the `PyPI <https://pypi.org/>`_ source distribution from
 `here <https://pypi.python.org/pypi/django-contact-us-tools>`_, decompress the file and run
 ``python setup.py install`` in the unpacked directory.
 
-Then add ``'contact_us_tools'`` to your :setting:`INSTALLED_APPS` setting:
+Then add ``'contact_us_tools'`` to your ``INSTALLED_APPS`` setting:
 
 .. code-block:: python
 
