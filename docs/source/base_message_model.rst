@@ -105,7 +105,7 @@ About the model
 
     ``BaseMessage`` has three main methods for controlling the model.
 
-    .. method:: send_email(*args)
+    .. classmethod:: send_email(*args)
 
         This is a description
 
