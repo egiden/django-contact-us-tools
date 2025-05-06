@@ -69,7 +69,7 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the :py:class:`base_message_model.BaseMessage` model and override the :py:attr:`~BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes. :py:attr:`BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :py:attr:`COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email.
+#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the :py:class:`contact_us_tools.models.BaseMessage` model and override the :py:attr:`~BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes. :py:attr:`BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :py:attr:`COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email.
     
    .. code-block:: python
 
