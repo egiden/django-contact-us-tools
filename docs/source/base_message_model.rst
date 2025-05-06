@@ -18,79 +18,79 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
 .. attribute:: TICKET_NUM_LEN
 
-    *default: 4*
+    *default:* 4
 
     The length of the ticket number assigned to the message.
     
 .. attribute:: TEXT_FILE
 
-    *default: "contact_us_tools/email.txt"* `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
+    *default:* `"contact_us_tools/email.txt" <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
     
     The path of the text version of the email template.
 
 .. attribute:: HTML_FILE
 
-    *default: "contact_us_tools/email.html"* `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
+    *default:* `"contact_us_tools/email.html" <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
     
     The path of the html version of the email template.
 
 .. attribute:: DISP_PRIVACY_POLICY_NOTICE
 
-    *default: True*
+    *default:* :py:obj:`True`
     
     Indicates if a privacy policy notice should be included in the email.
 
 .. attribute:: DISP_COPYRIGHT_NOTICE
 
-    *default: True*
+    *default:* :py:obj:`True`
     
     Indicates if copyright notice should be included in the email.
 
 .. attribute:: COPYRIGHT_YEAR
 
-    *default: None*
+    *default:* :py:obj:`None`
     
     The year displayed on the email's copyright notice.
 
 .. attribute:: BUSINESS_NAME
 
-    *default: None*
+    *default:* :py:obj:`None`
     
     The business or website name to be displayed on the email.
 
 .. attribute:: SUBJECT
 
-    *default: None*
+    *default:* :py:obj:`None`
     
     The email's subject line.
 
 .. attribute:: SALUTATION
 
-    *default: None*
+    *default:* :py:obj:`None`
     
     The email's subject salutation.
 
 .. attribute:: MAIN_CONTENT
 
-    *default: None*
+    *default:* :py:obj:`None`
     
     The email's main content or body. i.e., the content between the salutation and closing.
 
 .. attribute:: MAIN_CONTENT_FBK
 
-    *default: "Thank you very much for your feedback. It is much appreciated."*
+    *default:* "Thank you very much for your feedback. It is much appreciated."
     
     The email's main content or body for the case when a user submits feedback.
 
 .. attribute:: CLOSING
 
-    *default: None*
+    *default:* :py:obj:`None`
     
     The email's closing line (without comma).
 
 .. attribute:: SIGNATURE
     
-    *default: None*
+    *default:* :py:obj:`None`
     
     The email's signature.
 

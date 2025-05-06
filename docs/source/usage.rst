@@ -156,3 +156,5 @@ Example Setup
       (.venv) $ python manage.py runserver
 
 #. Visit the admin site to view the resulting addition to the relevant database table.
+
+:py:attr:`TEXT_FILE`
