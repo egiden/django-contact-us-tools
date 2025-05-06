@@ -105,6 +105,10 @@ About the model
 
     ``BaseMessage`` has three main methods for controlling the model.
 
+    .. method:: send_email(*args)
+
+        This is a description
+
 .. function:: BaseMessage.mark_closed(closed_by)
 
     Marks the matter of the message as resolved. i.e., closed.
