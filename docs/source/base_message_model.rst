@@ -125,8 +125,8 @@ About the model
     
     With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the ``BaseMessage`` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of ``None``.
 
-    :`Mr. Miller`:c:func::    Hates dogs
-    :`Mrs. Johnson`:c:func::  Love Cats
+    :`Mr. Miller`:    Hates dogs
+    :`Mrs. Johnson`:  Love Cats
 
     
 
