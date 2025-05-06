@@ -19,7 +19,7 @@ About the model
 
     .. warning::
 
-        With the exception of ``TICKET_NUM_LEN``,  all the following attributes have corressponding input arguments for the ``BaseMessage.send_email`` method.
+        With the exception of :code:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the ``BaseMessage.send_email`` method.
 
     .. attribute:: TICKET_NUM_LEN
 
@@ -104,10 +104,6 @@ About the model
 .. class:: contact_us_tools.models.BaseMessage
 
     ``BaseMessage`` has three main methods for controlling the model.
-
-    .. function:: send_email(*args)
-
-        This is a description
 
 .. function:: BaseMessage.mark_closed(closed_by)
 
