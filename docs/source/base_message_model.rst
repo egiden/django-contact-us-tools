@@ -101,7 +101,7 @@ About the model
 
     .. tip::
 
-        If you do not require any extra data fields, then it is recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ the ``BaseMessage`` as seen in the :doc:`usage <usage>` section.
+        If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for ``BaseMessage`` as seen in the :doc:`usage <usage>` section.
 
 ``BaseMessage`` methods
 -----------------------
@@ -125,12 +125,15 @@ About the model
     
     With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the ``BaseMessage`` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of ``None``.
 
-    .. class:: borderless
+    .. class:: field-indent-8em
 
-        ============  ==========
-        Mr Miller:    Hates dogs
-        Mrs Johnson:  Love Cats
-        ============  ==========
+        :Mr. Miller:    Hates dogs
+        :Mrs. Johnson:  Love Cats
+
+    .. class:: field-indent-8em
+
+    :`Mr. Miller`:c:func::    Hates dogs
+    :`Mrs. Johnson`:c:func::  Love Cats
 
     
 
