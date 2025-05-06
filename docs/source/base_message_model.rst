@@ -1,6 +1,9 @@
 The ``BaseMessage`` model
 =========================
 
+.. module:: contact_us_tools.models
+    :synopsis: Represents a user's message which can be either feedback, an enquiry or other.
+
 .. class:: BaseMessage
 
     Represents a user's message which can be either feedback, an enquiry or other.
