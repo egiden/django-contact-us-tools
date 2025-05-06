@@ -113,7 +113,7 @@ About the model
 
     Marks the matter of the message as resolved. i.e., closed.
 
-    **closed_by:**  (a django user object) The user that closed the message/ticket.
+    :`closed_by`:  (a django user object) The user that closed the message/ticket.
 
 .. function:: BaseMessage.reopen()
 
@@ -125,8 +125,9 @@ About the model
     
     With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the ``BaseMessage`` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of ``None``.
 
-    :`Mr. Miller`:    Hates dogs
-    :`Mrs. Johnson`:  Love Cats
+    :`text_file (string or None)`:  Hates dogs
+    :`html_file (string or None)`:  Love Cats
+    :`more_context`:                De sjnk
 
     
 
