@@ -71,6 +71,7 @@ class BaseMessage(models.Model):
             subject=None,
             salutation=None,
             main_content=None,
+            main_content_fbk=None,
             closing=None,
             signature=None,
         ):
@@ -116,6 +117,8 @@ class BaseMessage(models.Model):
             main_content (string or None): Email's main content or body. i.e., the content between the salutation and closing.
                 If None and MAIN_CONTENT class attribute is also None, do nothing. Content in text_file or html_file will be used.
                 Otherwise, use MAIN_CONTENT.
+
+            main_content_fbk (string or None): Email's main content or body; like main_conent, but only if the message type is FEEDBACK.
 
             closing (string or None): Email's closing line (without the comma). If None and CLOSING class attribute is None, use "Kind regards".
                 Other wise, use CLOSING.
@@ -209,10 +212,13 @@ class BaseMessage(models.Model):
             context.update(more_context)
 
         # Make sure the main_content variable is properly set and update context where appropriate
+        if not main_content_fbk:
+            main_content_fbk = self.MAIN_CONTENT_FBK
+
         if not main_content:
             context.update({'is_main_content_provided': True})
             if not self.MAIN_CONTENT and self._type == self.Type.FEEDBACK:
-                main_content = self.MAIN_CONTENT_FBK
+                main_content = main_content_fbk
             elif self.MAIN_CONTENT:
                 main_content = self.MAIN_CONTENT
         else:

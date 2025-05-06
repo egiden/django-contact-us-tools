@@ -8,12 +8,18 @@ About the model
 
     An object representing a user's message which can be either feedback, an enquiry or other.
 
+.. _base_message_attr:
+
 ``BaseMessage`` attributes
 --------------------------
 
 .. class:: contact_us_tools.models.BaseMessage
 
     Asside from the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes discussed in section :doc:`usage`, ``BaseMessage`` offers more attributes to permit further customisation of the automatic-reply email. With the exception of ``BUSINESS_NAME``, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
+
+    .. warning::
+
+        With the exception of ``TICKET_NUM_LEN``,  all the following attributes have corressponding input arguments for the ``BaseMessage.send_email`` method.
 
     .. attribute:: TICKET_NUM_LEN
 
@@ -103,17 +109,19 @@ About the model
 
     Marks the matter of the message as resolved. i.e., closed.
 
-    **closed_by** (a django user object) The user that closed the message/ticket
+    **closed_by:**  (a django user object) The user that closed the message/ticket
 
-    closed_by:: Aoij sdpo ksd
+    - closed_by: Aoij sdpo ksd
 
 .. function:: BaseMessage.reopen()
 
     Reopen's the matter of the message.
 
-.. function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,closing=None,signature=None,)
+.. function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
 
-    Sends the user's message as an email. With the exception of **more_context**, each input 
+    Sends the user's message as an email.
+    
+    With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the ``BaseMessage`` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of ``None``. :py:type:`None`.
 
 
     
