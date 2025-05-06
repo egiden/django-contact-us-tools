@@ -1,7 +1,7 @@
 The ``BaseMessage`` model
 =========================
 
-.. module:: contact_us_tools.models
+.. module:: contact_us_tools.models.BaseMessage
 
 .. class:: BaseMessage
 
@@ -18,79 +18,79 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
     With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute.
 
-.. attribute:: BaseMessage.TICKET_NUM_LEN
+.. attribute:: TICKET_NUM_LEN
 
     *default:* 4
 
     The length of the ticket number assigned to the message.
     
-.. attribute:: BaseMessage.TEXT_FILE
+.. attribute:: TEXT_FILE
 
     *default:* "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
     
     The path of the text version of the email template.
 
-.. attribute:: BaseMessage.HTML_FILE
+.. attribute:: HTML_FILE
 
     *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
     
     The path of the html version of the email template.
 
-.. attribute:: BaseMessage.DISP_PRIVACY_POLICY_NOTICE
+.. attribute:: DISP_PRIVACY_POLICY_NOTICE
 
     *default:* :py:obj:`True`
     
     Indicates if a privacy policy notice should be included in the email.
 
-.. attribute:: BaseMessage.DISP_COPYRIGHT_NOTICE
+.. attribute:: DISP_COPYRIGHT_NOTICE
 
     *default:* :py:obj:`True`
     
     Indicates if copyright notice should be included in the email.
 
-.. attribute:: BaseMessage.COPYRIGHT_YEAR
+.. attribute:: COPYRIGHT_YEAR
 
     *default:* :py:obj:`None`
     
     The year displayed on the email's copyright notice.
 
-.. attribute:: BaseMessage.BUSINESS_NAME
+.. attribute:: BUSINESS_NAME
 
     *default:* :py:obj:`None`
     
     The business or website name to be displayed on the email.
 
-.. attribute:: BaseMessage.SUBJECT
+.. attribute:: SUBJECT
 
     *default:* :py:obj:`None`
     
     The email's subject line.
 
-.. attribute:: BaseMessage.SALUTATION
+.. attribute:: SALUTATION
 
     *default:* :py:obj:`None`
     
     The email's subject salutation.
 
-.. attribute:: BaseMessage.MAIN_CONTENT
+.. attribute:: MAIN_CONTENT
 
     *default:* :py:obj:`None`
     
     The email's main content or body. i.e., the content between the salutation and closing.
 
-.. attribute:: BaseMessage.MAIN_CONTENT_FBK
+.. attribute:: MAIN_CONTENT_FBK
 
     *default:* "Thank you very much for your feedback. It is much appreciated."
     
     The email's main content or body for the case when a user submits feedback.
 
-.. attribute:: BaseMessage.CLOSING
+.. attribute:: CLOSING
 
     *default:* :py:obj:`None`
     
     The email's closing line (without comma).
 
-.. attribute:: BaseMessage.SIGNATURE
+.. attribute:: SIGNATURE
     
     *default:* :py:obj:`None`
     
