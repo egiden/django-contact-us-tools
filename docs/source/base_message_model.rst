@@ -24,13 +24,13 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
     
 .. attribute:: TEXT_FILE
 
-    *default:* `"contact_us_tools/email.txt" <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
+    *default:* "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
     
     The path of the text version of the email template.
 
 .. attribute:: HTML_FILE
 
-    *default:* `"contact_us_tools/email.html" <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
+    *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
     
     The path of the html version of the email template.
 
