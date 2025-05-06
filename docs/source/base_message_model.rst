@@ -99,6 +99,10 @@ About the model
         
         The email's signature.
 
+    .. tip::
+
+        If you do not require any extra data fields, then it is recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ the ``BaseMessage`` as seen in the :doc:`usage <usage>` section.
+
 ``BaseMessage`` methods
 -----------------------
 .. class:: contact_us_tools.models.BaseMessage
@@ -121,15 +125,12 @@ About the model
     
     With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the ``BaseMessage`` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of ``None``.
 
-    Parameters::
+    .. class:: borderless
 
-        text_file:  smdsm
-        html_file:  cmk sdk
-
-    .. Parameters::
-        
-        text_file:  smdsm
-        html_file:  cmk sdk
+        ============  ==========
+        Mr Miller:    Hates dogs
+        Mrs Johnson:  Love Cats
+        ============  ==========
 
     
 
