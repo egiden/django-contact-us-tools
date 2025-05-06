@@ -139,6 +139,8 @@ About the model
 
     :py:class:`dict` :py:class:`None`
 
+    :py:exec:`ValueError`
+
     :py:meth:`dict` :py:meth:`None`
 
     :py:attr:`dict` :py:attr:`None`
