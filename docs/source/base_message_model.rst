@@ -125,13 +125,13 @@ About the model
     
     With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the ``BaseMessage`` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of ``None``.
 
-    **text_file** (:py:obj:`string` or :py:obj:`None``): Hates dogs
+    **text_file** :py:obj:`string` or :py:obj:`None`: Hates dogs
 
-    **html_file** *(string or None)*:   Love Cats
+    **html_file** :py:obj:`string` or :py:obj:`None`:   Love Cats
 
-    **more_context** *(dict or None)*:  De sjnk
+    **more_context** :py:obj:`dict` or :py:obj:`None`:  De sjnk
 
-    :py:meth:`contact_us_tools.models.BaseMessage.send_email`
+    :py:class:`contact_us_tools.models.BaseMessage`
 
     :py:meth:`BaseMessage.send_email`
 
