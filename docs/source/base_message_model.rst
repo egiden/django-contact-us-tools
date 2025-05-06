@@ -1,111 +1,102 @@
 The ``BaseMessage`` model
 =========================
 
-About ``BaseMessage``
----------------------
+.. class:: contact_us_tools.models.BaseMessage
 
-``BaseMessage`` represents a user's message which can be either feedback, an enquiry or other.
+    Represents a user's message which can be either feedback, an enquiry or other.
 
 .. _base_message_attr:
 
 ``BaseMessage`` attributes
 --------------------------
 
+Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of ``BUSINESS_NAME``, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
+
+.. attention::
+
+    With the exception of ``TICKET_NUM_LEN``,  all the following attributes have corressponding input arguments for the ``BaseMessage.send_email`` method. I if any of said arguments are given a value either than their default of ``None`` when calling ``BaseMessage.send_email``, they will take precedence over their corressponding ``BaseMessage`` attribute.
+
 .. attribute:: TICKET_NUM_LEN
 
     *default: 4*
 
     The length of the ticket number assigned to the message.
+    
+.. attribute:: TEXT_FILE
 
-.. class:: contact_us_tools.models.BaseMessage
+    *default: "contact_us_tools/email.txt"* `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
+    
+    The path of the text version of the email template.
 
-    Asside from the :py:attr:`BUSINESS_NAME` and ``COPYRIGHT_YEAR`` attributes discussed in section :doc:`usage`, ``BaseMessage`` offers more attributes to permit further customisation of the automatic-reply email. With the exception of ``BUSINESS_NAME``, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
+.. attribute:: HTML_FILE
 
-    .. attention::
+    *default: "contact_us_tools/email.html"* `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
+    
+    The path of the html version of the email template.
 
-        With the exception of ``TICKET_NUM_LEN``,  all the following attributes have corressponding input arguments for the ``BaseMessage.send_email`` method. I if any of said arguments are given a value either than their default of ``None`` when calling ``BaseMessage.send_email``, they will take precedence over their corressponding ``BaseMessage`` attribute.
+.. attribute:: DISP_PRIVACY_POLICY_NOTICE
 
-    .. attribute:: TICKET_NUM_LEN
+    *default: True*
+    
+    Indicates if a privacy policy notice should be included in the email.
 
-        *default: 4*
+.. attribute:: DISP_COPYRIGHT_NOTICE
 
-        The length of the ticket number assigned to the message.
-        
-    .. attribute:: TEXT_FILE
+    *default: True*
+    
+    Indicates if copyright notice should be included in the email.
 
-        *default: "contact_us_tools/email.txt"* `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
-        
-        The path of the text version of the email template.
+.. attribute:: COPYRIGHT_YEAR
 
-    .. attribute:: HTML_FILE
+    *default: None*
+    
+    The year displayed on the email's copyright notice.
 
-        *default: "contact_us_tools/email.html"* `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
-        
-        The path of the html version of the email template.
+.. attribute:: BUSINESS_NAME
 
-    .. attribute:: DISP_PRIVACY_POLICY_NOTICE
+    *default: None*
+    
+    The business or website name to be displayed on the email.
 
-        *default: True*
-        
-        Indicates if a privacy policy notice should be included in the email.
+.. attribute:: SUBJECT
 
-    .. attribute:: DISP_COPYRIGHT_NOTICE
+    *default: None*
+    
+    The email's subject line.
 
-        *default: True*
-        
-        Indicates if copyright notice should be included in the email.
+.. attribute:: SALUTATION
 
-    .. attribute:: COPYRIGHT_YEAR
+    *default: None*
+    
+    The email's subject salutation.
 
-        *default: None*
-        
-        The year displayed on the email's copyright notice.
+.. attribute:: MAIN_CONTENT
 
-    .. attribute:: BUSINESS_NAME
+    *default: None*
+    
+    The email's main content or body. i.e., the content between the salutation and closing.
 
-        *default: None*
-        
-        The business or website name to be displayed on the email.
+.. attribute:: MAIN_CONTENT_FBK
 
-    .. attribute:: SUBJECT
+    *default: "Thank you very much for your feedback. It is much appreciated."*
+    
+    The email's main content or body for the case when a user submits feedback.
 
-        *default: None*
-        
-        The email's subject line.
+.. attribute:: CLOSING
 
-    .. attribute:: SALUTATION
+    *default: None*
+    
+    The email's closing line (without comma).
 
-        *default: None*
-        
-        The email's subject salutation.
+.. attribute:: SIGNATURE
+    
+    *default: None*
+    
+    The email's signature.
 
-    .. attribute:: MAIN_CONTENT
+.. tip::
 
-        *default: None*
-        
-        The email's main content or body. i.e., the content between the salutation and closing.
-
-    .. attribute:: MAIN_CONTENT_FBK
-
-        *default: "Thank you very much for your feedback. It is much appreciated."*
-        
-        The email's main content or body for the case when a user submits feedback.
-
-    .. attribute:: CLOSING
-
-        *default: None*
-        
-        The email's closing line (without comma).
-
-    .. attribute:: SIGNATURE
-        
-        *default: None*
-        
-        The email's signature.
-
-    .. tip::
-
-        If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for ``BaseMessage`` as seen in the :doc:`usage <usage>` section.
+    If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for ``BaseMessage`` as seen in the :doc:`usage <usage>` section.
 
 ``BaseMessage`` methods
 -----------------------
