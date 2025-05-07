@@ -20,9 +20,9 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
 .. py:attribute:: TICKET_NUM_LEN
 
-    :value:`TICKET_NUM_LEN`
+    :value: TICKET_NUM_LEN
     
-    :canonical:`BaseMessage.TICKET_NUM_LEN`
+    :canonical: BaseMessage.TICKET_NUM_LEN
 
     *default:* 4
 
