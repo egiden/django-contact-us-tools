@@ -15,4 +15,4 @@ About the view
    Represent a 64-bit positive integer.
 
 
-:py:type:`UInt64`
+:py:type:`str`
