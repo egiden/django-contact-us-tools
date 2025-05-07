@@ -18,7 +18,7 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
     With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute.
 
-.. py:attribute:: BaseMessage.TICKET_NUM_LEN
+.. attribute:: BaseMessage.TICKET_NUM_LEN
 
     *default:* 4
 
