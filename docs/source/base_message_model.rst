@@ -3,8 +3,6 @@ The ``BaseMessage`` model
 
 .. module:: contact_us_tools.models
 
-.. module:: BaseMessage
-
 .. class:: BaseMessage
 
     Represents a user's message which can be either feedback, an enquiry or other.
@@ -13,6 +11,8 @@ The ``BaseMessage`` model
 
 ``BaseMessage`` attributes
 --------------------------
+
+.. module:: BaseMessage
 
 Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
 
