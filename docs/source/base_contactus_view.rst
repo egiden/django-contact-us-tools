@@ -4,8 +4,6 @@ The ``BaseContactUsView`` view
 About the view
 --------------
 
-.. py:type:: StrPattern
-    
-    :canonical: str | re.Pattern[str]
+.. py:type:: UInt64
 
-    Represent a regular expression or a compiled pattern.
+   Represent a 64-bit positive integer.
