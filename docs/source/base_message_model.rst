@@ -12,11 +12,6 @@ The ``BaseMessage`` model
 ``BaseMessage`` attributes
 --------------------------
 
-.. py:type:: StrPattern
-   :canonical: str | re.Pattern[str]
-
-   Represent a regular expression or a compiled pattern.
-
 Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
 
 .. attention::
