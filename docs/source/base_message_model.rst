@@ -13,6 +13,7 @@ Fields
     .. attribute:: BaseMessage._type
         :type: str
         :value: Cars
+        :canonical: Elephant
 
 
 .. _base_message_attr:
