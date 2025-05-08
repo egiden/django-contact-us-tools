@@ -113,8 +113,8 @@ The ``BaseMessage`` model
 
     Reopen's the matter of the message.
 
-.. :py:function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
-
+.. py:function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
+    
     Sends automatic-reply email to user supplied email.
     
     With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the :py:class:`BaseMessage` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
@@ -123,21 +123,6 @@ The ``BaseMessage`` model
     :type text_file: str or None
     :param html_file: Directory of the html version of the automatic-reply email template.
     :type html_file: str or None
-
-
-.. :py:function:: send_message(sender, recipient, message_body, [priority=1])
-
-   Send a message to a recipient
-
-   :param str sender: The person sending the message
-   :param str recipient: The recipient of the message
-   :param str message_body: The body of the message
-   :param priority: The priority of the message, can be a number 1-5
-   :type priority: int or None
-   :return: the message id
-   :rtype: int
-   :raises ValueError: if the message_body exceeds 160 characters
-   :raises TypeError: if the message_body is not a basestring
 
     
 
