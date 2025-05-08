@@ -11,44 +11,44 @@ Fields
     :class:`BaseMessage` objects have the following fields.
 
     .. attribute:: BaseMessage._type
-        :type: :setting:`CharField`
+        :type: CharField
 
         The type of message. It could be either feedback, and enquiry or other/miscilleneous.
 
     .. attribute:: BaseMessage.name
-        :type: :setting:`CharField`
+        :type: CharField
 
         Name of the sender.
 
     .. attribute:: BaseMessage.email
-        :type: :setting:`EmailField`
+        :type: EmailField
 
         Email of the sender
 
     .. attribute:: BaseMessage.message
-        :type: :setting:`TextField`
+        :type: TextField
 
         The sender's message.
 
     .. attribute:: BaseMessage.date_created
-        :type: :setting:`DateTimeField`
-        :value: :setting:`timezone.now`
+        :type: DateTimeField
+        :value: timezone.now
 
         The date the object was created.
 
     .. attribute:: BaseMessage.is_closed
-        :type: :setting:`CharField`
+        :type: CharField
         :value: False
 
         Indicates if the matter of the message is resolved.
 
     .. attribute:: BaseMessage.date_closed
-        :type: :setting:`DateTimeField`
+        :type: DateTimeField
 
         The date the matter of the message was resolved.
 
     .. attribute:: BaseMessage.closed_by
-        :type: :setting:`User`
+        :type: User
 
         The user that marked the matter of the message as being resolved/closed.
 
@@ -85,85 +85,89 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
     
 .. attribute:: BaseMessage.TEXT_FILE
     :type: str
-    :value: "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
+    :value: "contact_us_tools/email.txt"
+
+    `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
     
     The path of the text version of the email template.
 
 .. attribute:: BaseMessage.HTML_FILE
-
-    *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
+    :type: str
+    :value: "contact_us_tools/email.html"
+    
+    `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
     
     The path of the html version of the email template.
 
 .. attribute:: BaseMessage.BUSINESS_NAME
-
-    *default:* :py:obj:`None`
+    :type: str or None
+    :value: None
     
     The business or website name to be displayed on the email.
 
 .. attribute:: BaseMessage.COPYRIGHT_YEAR
-
-    *default:* :py:obj:`None`
+    :type: str or None
+    :value: None
     
     The year displayed on the email's copyright notice.
 
 .. attribute:: BaseMessage.SUBJECT
-
-    *default:* :py:obj:`None`
+    :type: str or None
+    :value: None
     
     The email's subject line.
 
 .. attribute:: BaseMessage.SALUTATION
-
-    *default:* :py:obj:`None`
+    :type: str or None
+    :value: None
     
     The email's subject salutation.
 
 .. attribute:: BaseMessage.MAIN_CONTENT
-
-    *default:* :py:obj:`None`
+    :type: str or None
+    :value: None
     
     The email's main content or body. i.e., the content between the salutation and closing.
 
 .. attribute:: BaseMessage.MAIN_CONTENT_FBK
-
-    *default:* "Thank you very much for your feedback. It is much appreciated."
+    :type: str
+    :value: "Thank you very much for your feedback. It is much appreciated."
     
     The email's main content or body for the case when a user submits feedback.
 
 .. attribute:: BaseMessage.CLOSING
-
-    *default:* :py:obj:`None`
+    :type: str or None
+    :value: None
     
     The email's closing line (without comma).
 
 .. attribute:: BaseMessage.SIGNATURE
-    
-    *default:* :py:obj:`None`
+    :type: str or None
+    :value: None
     
     The email's signature.
 
 .. attribute:: BaseMessage.REVIEW_LINK
-
-    *default:* :py:obj:`None`
+    :type: str or None
+    :value: None
 
     Link where user can submit a review.
 
 .. attribute:: BaseMessage.DISP_PRIVACY_POLICY_NOTICE
-
-    *default:* :py:obj:`True`
+    :type: bool
+    :value: True
     
     Indicates if a privacy policy notice should be displayed in the email.
 
 .. attribute:: BaseMessage.DISP_COPYRIGHT_NOTICE
-
-    *default:* :py:obj:`True`
+    :type: bool
+    :value: True
     
     Indicates if copyright notice should be displayed in the email.
 
 .. attribute:: BaseMessage.DISP_REVIEW_LINK
-
-    *default:* :py:obj:`True`
+    :type: bool
+    :value: True
     
     Indicates if :py:attr:`~BaseMessage.REVIEW_LINK` should be displayed in the email.
 
