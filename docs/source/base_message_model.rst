@@ -211,4 +211,6 @@ If you desire a custom ticket numbering system, then simply override the ``BaseM
             # my logic
             # return my_ticket_number
     
-:attr:`BaseMessage.SUBJECT`
+:attr:`~BaseMessage.SUBJECT`
+
+INJK ASOM
