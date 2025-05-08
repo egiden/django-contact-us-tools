@@ -7,7 +7,7 @@ class BaseContactUsView(FormView):
     form_class = BaseContactUsForm
     send_email_kwargs = {}
     success_message = 'Your form has been successfully submitted. We will be in contact with you as soon as we can.'
-    include_success_msg = True
+    disp_success_msg = True
 
     def send_email(self, form):
         """Send an automatic-reply email to user."""
@@ -22,6 +22,6 @@ class BaseContactUsView(FormView):
 
     def form_valid(self, form):
         self.send_email(form)
-        if self.include_success_msg:
+        if self.disp_success_msg:
             messages.success(self.request, self.success_message)
         return super().form_valid(form)

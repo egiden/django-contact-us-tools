@@ -3,36 +3,73 @@ The ``BaseContactUsView`` view
 
 .. module:: contact_us_tools.views
 
+.. class:: BaseContactUsView
+
+   A basic view which facilitates the rendering of :py:class:`BaseContactUsForm` and the sending of the automatic-reply email.
+
 Attributes
 ----------
 
-.. class:: BaseContactUsView
+.. attribute:: BaseContactUsView.send_email_kwargs
+   :type: dict
+   :value: {}
 
-   .. attribute:: send_email_kwargs
-      :type: dict
-      :value: {}
+   Keyword arguments to pass into the :attr:`BaseMessage.send_email` method when it is called. See :ref:`sending_email`.
 
-      Keyword arguments to pass into the :attr:`BaseMessage.send_email` method.
+   How it works is, if one were to extend :py:class:`BaseContactUsView` with a non-empty :py:attr:`BaseContactUsView.send_email_kwargs` like so.
 
-   .. attribute:: success_message
-      :type: str
-      :value: 'Your form has been successfully submitted. We will be in contact with you as soon as we can.'
+   .. code-block:: python
 
-      Message to display upon successful submission of form.
+      class ContactUsView(BaseContactUsView):
+         send_email_kwargs = {"closing": "Yours sincerely", "subject": "Message Received!"}
 
-   .. attribute:: include_success_msg
-      :type: bool
-      :value: True
+   Then, when :py:class:`BaseContactUsView` calls :attr:`BaseMessage.send_email`, it would be equivalent to the following.
 
-      Indicates if success message should be displayed.
+   .. code-block:: python
 
-Methods
--------
+      BaseMessage.send_email(closing="Yours sincerely", subject="Message Received!")
+
+   For further details, see See :ref:`sending_email`.
+
+.. attribute:: BaseContactUsView.success_message
+   :type: str
+   :value: 'Your form has been successfully submitted. We will be in contact with you as soon as we can.'
+
+   Message to display upon successful submission of form.
+
+.. attribute:: BaseContactUsView.disp_success_msg
+   :type: bool
+   :value: True
+
+   Indicates if success message should be displayed.
+
+.. _sending_email:
+
+Sending the automatic-reply email
+---------------------------------
 
 .. function:: BaseContactUsView.send_email(form)
 
-   Send automatic-reply email to user.
+   Send automatic-reply email to user by calling :py:func:`BaseMessage.send_email` with :py:attr:`BaseContactUsView.send_email_kwargs` as input arguments.
 
    :param form: The form.
    :type form: BaseContactUsForm
 
+   :raises ValueError: If any key in :py:attr:`BaseContactUsView.send_email_kwargs` is not a valid input into :py:func:`BaseMessage.send_email`.
+
+:py:func:`BaseContactUsView.send_email` is called when the form used by :py:class:`BaseContactUsView` is validated. For further understanding, consider the following simplified implementation of :py:class:`BaseContactUsView`.
+
+.. code-block:: python
+
+   class BaseContactUsView:
+      
+         def send_email(self, form):
+            # 1. Check that the keys in the send_email_kwargs attribute are valid.
+            # 2. Send the email
+            form.save()
+            form.instance.send_email(**self.send_email_kwargs)
+
+         def form_valid(self, form):
+            self.send_email(form)
+            # display success message
+            return super().form_valid(form)

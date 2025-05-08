@@ -48,7 +48,7 @@ Fields
         The date the matter of the message was resolved.
 
     .. attribute:: BaseMessage.closed_by
-        :type: User
+        :type: User object
 
         The user that marked the matter of the message as being resolved/closed.
 
