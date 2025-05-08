@@ -86,7 +86,7 @@ Example Setup
    
    .. warning::
 
-      ``BUSINESS_NAME`` must be set or else a :py:exc:`ValueError` will be raised. It is the same with ``COPYRIGHT_YEAR`` for the default configuration of :py:class:`~BaseMessage`.
+      :attr:`BUSINESS_NAME` must be set or else a :py:exc:`ValueError` will be raised. It is the same with ``COPYRIGHT_YEAR`` for the default configuration of :py:class:`~BaseMessage`.
    
    .. note::
 

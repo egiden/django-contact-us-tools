@@ -13,11 +13,11 @@ Fields
 Attributes
 ----------
 
-Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into :py:meth:`BaseMessage.send_email`. It is recommended that they be changed directly.
+Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~BaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into :py:meth:`BaseMessage.send_email`. It is recommended that they be changed directly.
 
 .. attention::
 
-    With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute. Consider, for example, the following case.
+    With the exception of :py:attr:`~BaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`~BaseMessage.BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute. Consider, for example, the following case.
 
     .. code-block:: python
         
@@ -30,7 +30,7 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
         Message.send_email(closing="Thank you")
 
-    The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
+    The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`~BaseMessage.CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
 
 .. attribute:: BaseMessage.TICKET_NUM_LEN
 
@@ -120,7 +120,7 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
     *default:* :py:obj:`True`
     
-    Indicates if :py:attr:`REVIEW_LINK` should be displayed in the email.
+    Indicates if :py:attr:`~BaseMessage.REVIEW_LINK` should be displayed in the email.
 
 .. tip::
 
@@ -147,10 +147,10 @@ Methods
     
     With the exception of **extra_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the :py:class:`BaseMessage` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
 
-    :param text_file: Directory of the text version of the email template. If :py:obj:`None`, use :py:attr:`TEXT_FILE`. 
+    :param text_file: Directory of the text version of the email template. If :py:obj:`None`, use :py:attr:`~BaseMessage.TEXT_FILE`. 
     :type text_file: str or None
 
-    :param html_file: Directory of the html version of the email template. If :py:obj:`None`, use :py:attr:`HTML_FILE`.
+    :param html_file: Directory of the html version of the email template. If :py:obj:`None`, use :py:attr:`~BaseMessage.HTML_FILE`.
     :type html_file: str or None
 
     :param extra_context: Items to add to the context to be used when rendering the email template.
@@ -159,40 +159,40 @@ Methods
     :param form_email: Sender's email address. If :py:obj:`None`, use :setting:`EMAIL_HOST_USER`.
     :type from_email: str or None
 
-    :param disp_cpr_notice: Indicates if copyright notice should be displayed in email. If :py:obj:`None`, use :py:attr:`DISP_COPYRIGHT_NOTICE`.
+    :param disp_cpr_notice: Indicates if copyright notice should be displayed in email. If :py:obj:`None`, use :py:attr:`~BaseMessage.DISP_COPYRIGHT_NOTICE`.
     :type disp_cpr_notice: bool or None
 
-    :param disp_pp_notice: Indicates if privacy policy notice should be displayed in email. If :py:obj:`None`, use :py:attr:`DISP_PRIVACY_POLICY_NOTICE`.
+    :param disp_pp_notice: Indicates if privacy policy notice should be displayed in email. If :py:obj:`None`, use :py:attr:`~BaseMessage.DISP_PRIVACY_POLICY_NOTICE`.
     :type disp_pp_notice: bool or None
 
-    :param disp_review_link: Indicates if **review_link** should be displayed in email. If :py:obj:`None`, use :py:attr:`DISP_REVIEW_LINK`.
+    :param disp_review_link: Indicates if **review_link** should be displayed in email. If :py:obj:`None`, use :py:attr:`~BaseMessage.DISP_REVIEW_LINK`.
     :type disp_review_link: bool or None
 
-    :param copyright_year: Year to be displayed in email's copyright notice. If :py:obj:`None`, use :py:attr:`COPYRIGHT_YEAR`.
+    :param copyright_year: Year to be displayed in email's copyright notice. If :py:obj:`None`, use :py:attr:`~BaseMessage.COPYRIGHT_YEAR`.
     :type copyright_year: int or None
 
-    :param business_name: Name of business or website to display in email. If :py:obj:`None`, use :py:attr:`BUSINESS_NAME`.
+    :param business_name: Name of business or website to display in email. If :py:obj:`None`, use :py:attr:`~BaseMessage.BUSINESS_NAME`.
     :type business_name: str or None
 
-    :param review_link: Link where user can submit a review. If :py:obj:`None`, use :py:attr:`REVIEW_LINK`.
+    :param review_link: Link where user can submit a review. If :py:obj:`None`, use :py:attr:`~BaseMessage.REVIEW_LINK`.
     :type review_link: str or None
 
-    :param subject: Email's subject line. If :py:obj:`None`, use :py:attr:`SUBJECT`.
+    :param subject: Email's subject line. If :py:obj:`None`, use :py:attr:`~BaseMessage.SUBJECT`.
     :type subject: str or None
 
-    :param salutation: Email's salutation or greeting. If :py:obj:`None` and :py:attr:`SALUTATION` is :py:obj:`None`, use "Dear <self.name>". If :py:attr:`SALUTATION` is not :py:obj:`None`, use :py:attr:`SALUTATION`.
+    :param salutation: Email's salutation or greeting. If :py:obj:`None` and :py:attr:`~BaseMessage.SALUTATION` is :py:obj:`None`, use "Dear <self.name>". If :py:attr:`~BaseMessage.SALUTATION` is not :py:obj:`None`, use :py:attr:`~BaseMessage.SALUTATION`.
     :type salutation: str or None
 
-    :param main_content: Email's main content or body. i.e., the content between the **salutation** and **closing**. If :py:obj:`None`, use :py:attr:`MAIN_CONTENT`.
+    :param main_content: Email's main content or body. i.e., the content between the **salutation** and **closing**. If :py:obj:`None`, use :py:attr:`~BaseMessage.MAIN_CONTENT`.
     :type main_content: str or None
 
-    :param main_content_fbk: Like **main_content**, but only if the message type is FEEDBACK. If :py:obj:`None`, use :py:attr:`MAIN_CONTENT_FBK`.
+    :param main_content_fbk: Like **main_content**, but only if the message type is FEEDBACK. If :py:obj:`None`, use :py:attr:`~BaseMessage.MAIN_CONTENT_FBK`.
     :type main_content_fbk: str or None
 
-    :param closing: Email's closing line (without comma). If :py:obj:`None` and :py:attr:`CLOSING` is :py:obj:`None`, use "Kind regards". If :py:attr:`CLOSING` is not :py:obj:`None`, use :py:attr:`CLOSING`
+    :param closing: Email's closing line (without comma). If :py:obj:`None` and :py:attr:`~BaseMessage.CLOSING` is :py:obj:`None`, use "Kind regards". If :py:attr:`~BaseMessage.CLOSING` is not :py:obj:`None`, use :py:attr:`~BaseMessage.CLOSING`
     :type closing: str or None
 
-    :param signature: Email's signature. If :py:obj:`None` and :py:attr:`SIGNATURE` is :py:obj:`None`, use **business_name**. If :py:attr:`SIGNATURE` is not :py:obj:`None`, use :py:attr:`SIGNATURE`.
+    :param signature: Email's signature. If :py:obj:`None` and :py:attr:`~BaseMessage.SIGNATURE` is :py:obj:`None`, use **business_name**. If :py:attr:`~BaseMessage.SIGNATURE` is not :py:obj:`None`, use :py:attr:`~BaseMessage.SIGNATURE`.
     :type signature: str or None
 
 Custom ticket numbers
@@ -210,7 +210,3 @@ If you desire a custom ticket numbering system, then simply override the ``BaseM
         def ticket_number(self):
             # my logic
             # return my_ticket_number
-    
-:attr:`~BaseMessage.SUBJECT`
-
-INJK ASOM
