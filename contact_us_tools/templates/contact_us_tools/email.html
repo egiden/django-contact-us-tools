@@ -33,6 +33,11 @@
     <hr>
     <footer>
         E: {{ from_email }}
+        {% if disp_review_link %}
+            <br>
+            <br>
+            We would love to hear your feedback. Please leave us a review at {{ review_link }}.
+        {% endif %}
         {% if disp_pp_notice %}
             <br>
             <br>

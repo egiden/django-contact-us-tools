@@ -10,10 +10,12 @@ send_email_arg_names = [
     "html_file",
     "extra_context",
     "from_email",
-    "business_name",
-    "copyright_year",
     "disp_cpr_notice",
     "disp_pp_notice",
+    "disp_review_link",
+    "copyright_year",
+    "business_name",
+    "review_link",
     "subject",
     "salutation",
     "main_content",
@@ -30,14 +32,17 @@ class BaseMessage(models.Model):
     COPYRIGHT_YEAR = None
 
     SUBJECT = None
-    SALUTATION = None,
-    MAIN_CONTENT = None,
+    SALUTATION = None
+    MAIN_CONTENT = None
     MAIN_CONTENT_FBK = "Thank you very much for your feedback. It is much appreciated."
-    CLOSING = None,
-    SIGNATURE = None,
+    CLOSING = None
+    SIGNATURE = None
+
+    REVIEW_LINK = None
 
     DISP_PRIVACY_POLICY_NOTICE = True
     DISP_COPYRIGHT_NOTICE = True
+    DISP_REVIEW_LINK = True
     
     class Type(models.TextChoices):
         ENQUIRY = 'ENQUIRY', 'Enquiry'
@@ -81,10 +86,12 @@ class BaseMessage(models.Model):
             html_file=None,
             extra_context=None,
             from_email=None,
-            business_name=None,
-            copyright_year=None,
             disp_cpr_notice=None,
             disp_pp_notice=None,
+            disp_review_link=None,
+            copyright_year=None,
+            business_name=None,
+            review_link=None,
             subject=None,
             salutation=None,
             main_content=None,
@@ -110,12 +117,6 @@ class BaseMessage(models.Model):
 
             from_email (string or None): Sender's email address. If None, try using EMAIL_HOST_USER setting.
 
-            business_name (string or None): Name of business or website to display in the email.
-                If None, use BUSINESS_NAME class attribute.
-
-            copyright_year (int or None): Year to be displayed in email's copyright notice.
-                If None, use COPYRIGHT_YEAR class attribute.
-
             disp_cpr_notice (bool or None): Indicates if copyright notice should be displayed on the email.
                 Notice is of the form: "<copyright symbol><copyright_year>, <business_name>" if html_file is used.
                                    Or: "copyright <copyright_year>, <business_name>" if text_file is used.
@@ -124,6 +125,19 @@ class BaseMessage(models.Model):
             disp_pp_notice (bool or None): Indicates if a privacy policy notice should be displayed in email.
                 Notice is of the form: "This email has been sent in accordance with the <business_name> Privacy Policy".
                 If None, use DISP_PRIVACY_POLICY_NOTICE class attribute.
+
+            disp_review_link (bool or None): Indicates if link to submit a review should be displayed in email.
+                Link displayed like so: "We would love to hear your feedback. Please leave us a review at <review_link>."
+                If None, use DISP_REVIEW_LINK class attribute.
+
+            copyright_year (int or None): Year to be displayed in email's copyright notice.
+                If None, use COPYRIGHT_YEAR class attribute.
+
+            business_name (string or None): Name of business or website to display in the email.
+                If None, use BUSINESS_NAME class attribute.
+
+            review_link (str or None): Link where use can submit a review.
+                If None, use REVIEW_LINK class attribute.
 
             subject (string or None): Email's subject line. If None, use SUBJECT class attribute. But if SUBJECT is None, set
                 to string of the form: "Message Received #<self.ticket_number>: <self._type>".
@@ -161,14 +175,6 @@ class BaseMessage(models.Model):
         if not html_file:
             html_file = self.HMTL_FILE
 
-        # Make sure the business_name variable is properly set
-        if not business_name:
-            business_name = self.BUSINESS_NAME
-
-        # Make sure the copyright_year variable is properly set
-        if not copyright_year:
-            copyright_year = self.COPYRIGHT_YEAR
-
         # Make sure the disp_cpr_notice variable is properly set
         if not disp_cpr_notice:
             disp_cpr_notice = self.DISP_COPYRIGHT_NOTICE
@@ -176,6 +182,22 @@ class BaseMessage(models.Model):
         # Make sure the disp_pp_notice variable is properly set
         if not disp_pp_notice:
             disp_pp_notice = self.DISP_PRIVACY_POLICY_NOTICE
+
+        # Make sure the disp_review_link variable is properly set
+        if not disp_review_link:
+            disp_review_link = self.DISP_REVIEW_LINK
+
+        # Make sure the copyright_year variable is properly set
+        if not copyright_year:
+            copyright_year = self.COPYRIGHT_YEAR
+
+        # Make sure the business_name variable is properly set
+        if not business_name:
+            business_name = self.BUSINESS_NAME
+
+        # Make sure the review_link variable is properly set
+        if not review_link:
+            review_link = self.REVIEW_LINK
 
         # Make sure the subject variable is properly set
         if not subject:
@@ -213,10 +235,12 @@ class BaseMessage(models.Model):
             'message': self.message,
             'date_created': self.date_created,
             'from_email': from_email,
-            'business_name': business_name,
-            'copyright_year': copyright_year,
             'disp_pp_notice': disp_pp_notice,
             'disp_cpr_notice': disp_cpr_notice,
+            'disp_review_link': disp_review_link,
+            'copyright_year': copyright_year,
+            'business_name': business_name,
+            'review_link': review_link,
             'is_main_content_provided': False,
             'salutation': salutation,
             'main_content': '',

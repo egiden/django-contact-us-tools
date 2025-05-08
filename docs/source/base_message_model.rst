@@ -27,7 +27,7 @@ The ``BaseMessage`` model
 
             Message.send_email(closing="Thank you")
 
-        The email would feature a closing that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding attribute in the proxy of :py:class:`~BaseMessage`.
+        The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first.*
 
     .. attribute:: TICKET_NUM_LEN
 
@@ -47,29 +47,17 @@ The ``BaseMessage`` model
         
         The path of the html version of the email template.
 
-    .. attribute:: DISP_PRIVACY_POLICY_NOTICE
+    .. attribute:: BUSINESS_NAME
 
-        *default:* :py:obj:`True`
+        *default:* :py:obj:`None`
         
-        Indicates if a privacy policy notice should be included in the email.
-
-    .. attribute:: DISP_COPYRIGHT_NOTICE
-
-        *default:* :py:obj:`True`
-        
-        Indicates if copyright notice should be included in the email.
+        The business or website name to be displayed on the email.
 
     .. attribute:: COPYRIGHT_YEAR
 
         *default:* :py:obj:`None`
         
         The year displayed on the email's copyright notice.
-
-    .. attribute:: BUSINESS_NAME
-
-        *default:* :py:obj:`None`
-        
-        The business or website name to be displayed on the email.
 
     .. attribute:: SUBJECT
 
@@ -107,6 +95,30 @@ The ``BaseMessage`` model
         
         The email's signature.
 
+    .. attribute::  REVIEW_LINK
+
+        *default:* :py:obj:`None`
+
+        Link where user can submit a review.
+
+    .. attribute:: DISP_PRIVACY_POLICY_NOTICE
+
+        *default:* :py:obj:`True`
+        
+        Indicates if a privacy policy notice should be displayed in the email.
+
+    .. attribute:: DISP_COPYRIGHT_NOTICE
+
+        *default:* :py:obj:`True`
+        
+        Indicates if copyright notice should be displayed in the email.
+
+    .. attribute:: DISP_REVIEW_LINK
+
+        *default:* :py:obj:`True`
+        
+        Indicates if :py:attr:`REVIEW_LINK` should be displayed in the email.
+
     .. tip::
 
         If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
@@ -126,7 +138,7 @@ The ``BaseMessage`` model
 
     Reopen's the matter of the message.
 
-.. py:function:: BaseMessage.send_email(text_file=None,html_file=None,extra_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
+.. py:function:: BaseMessage.send_email(text_file=None,html_file=None,extra_context=None,from_email=None,disp_cpr_notice=None,disp_pp_notice=None,disp_review_link=None,copyright_year=None,business_name=None,review_link=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
 
     Sends automatic-reply email to user supplied email.
     
@@ -144,17 +156,23 @@ The ``BaseMessage`` model
     :param form_email: Sender's email address. If :py:obj:`None`, use :setting:`EMAIL_HOST_USER`.
     :type from_email: str or None
 
-    :param business_name: Name of business or website to display in email. If :py:obj:`None`, use :py:attr:`BUSINESS_NAME`.
-    :type business_name: str or None
-
-    :param copyright_year: Year to be displayed in email's copyright notice. If :py:obj:`None`, use :py:attr:`COPYRIGHT_YEAR`.
-    :type copyright_year: int or None
-
     :param disp_cpr_notice: Indicates if copyright notice should be displayed in email. If :py:obj:`None`, use :py:attr:`DISP_COPYRIGHT_NOTICE`.
     :type disp_cpr_notice: bool or None
 
     :param disp_pp_notice: Indicates if privacy policy notice should be displayed in email. If :py:obj:`None`, use :py:attr:`DISP_PRIVACY_POLICY_NOTICE`.
     :type disp_pp_notice: bool or None
+
+    :param disp_review_link: Indicates if **review_link** should be displayed in email. If :py:obj:`None`, use :py:attr:`DISP_REVIEW_LINK`.
+    :type disp_review_link: bool or None
+
+    :param copyright_year: Year to be displayed in email's copyright notice. If :py:obj:`None`, use :py:attr:`COPYRIGHT_YEAR`.
+    :type copyright_year: int or None
+
+    :param business_name: Name of business or website to display in email. If :py:obj:`None`, use :py:attr:`BUSINESS_NAME`.
+    :type business_name: str or None
+
+    :param review_link: Link where user can submit a review. If :py:obj:`None`, use :py:attr:`REVIEW_LINK`.
+    :type review_link: str or None
 
     :param subject: Email's subject line. If :py:obj:`None`, use :py:attr:`SUBJECT`.
     :type subject: str or None

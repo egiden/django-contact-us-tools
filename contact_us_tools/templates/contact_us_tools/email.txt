@@ -19,6 +19,9 @@ Type: {{ type }}
 -------------------------------------------------
 
 E: {{ from_email }}
+{% if disp_review_link %}
+We would love to hear your feedback. Please leave us a review at {{ review_link }}.
+{% endif %}
 {% if disp_pp_notice %}
 This email has been sent in accordance with the {{ business_name }} Privacy Policy
 {% endif %}
