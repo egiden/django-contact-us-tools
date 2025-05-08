@@ -20,6 +20,7 @@ The ``BaseMessage`` model
             
             class Message(BaseMessage):
                 CLOSING = "Yours sincerely"
+                COPYRIGHT_YEAR = 2025
 
                 class Meta:
                     proxy = True

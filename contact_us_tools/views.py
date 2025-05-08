@@ -1,12 +1,26 @@
 from .forms import BaseContactUsForm
+from .models import send_email_arg_names
 from django.contrib import messages
 from django.views.generic import FormView
     
 class BaseContactUsView(FormView):
     form_class = BaseContactUsForm
+    send_email_kwargs = {}
+    include_success_msg = True
+
+    def send_email(self, form):
+        """Send an automatic-reply email to user."""
+        # Check that the keys in the send_email_kwargs attribute are valid.
+        if len(self.send_email_kwargs) > 0:
+            for keyword in self.send_email_kwargs.keys():
+                if keyword not in send_email_arg_names:
+                    raise ValueError("Invalid keyword entered for send_email_kwargs attribute of {}. Check documentation for BaseMessage.send_email for valid keywords.".format(self.__class__.__name__))
+        # Send the email
+        form.save()
+        form.instance.send_email(**self.send_email_kwargs)
 
     def form_valid(self, form):
-        form.save()
-        form.instance.send_email()
-        messages.success(self.request, f'Your form has been successfully submitted. We will be in contact with you as soon as we can.')
+        self.send_email(form)
+        if self.include_success_msg:
+            messages.success(self.request, f'Your form has been successfully submitted. We will be in contact with you as soon as we can.')
         return super().form_valid(form)

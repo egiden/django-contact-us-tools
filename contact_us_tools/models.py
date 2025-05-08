@@ -5,6 +5,23 @@ from django.core import mail
 from django.template.loader import render_to_string
 import warnings
 
+send_email_arg_names = [
+    "text_file",
+    "html_file",
+    "extra_context",
+    "from_email",
+    "business_name",
+    "copyright_year",
+    "disp_cpr_notice",
+    "disp_pp_notice",
+    "subject",
+    "salutation",
+    "main_content",
+    "main_content_fbk",
+    "closing",
+    "signature",
+]
+
 class BaseMessage(models.Model):
     TICKET_NUM_LENGTH = 4
     TEXT_FILE = "contact_us_tools/email.txt"
