@@ -15,6 +15,8 @@ Fields
         :value: Cars
         :canonical: Elephant
 
+    .. py:property:: Prop
+
 
 .. _base_message_attr:
 
