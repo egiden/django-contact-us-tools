@@ -27,7 +27,7 @@ The ``BaseMessage`` model
 
             Message.send_email(closing="Thank you")
 
-        The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section.
+        The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
 
     .. attribute:: TICKET_NUM_LEN
 
@@ -192,4 +192,19 @@ The ``BaseMessage`` model
     :param signature: Email's signature. If :py:obj:`None` and :py:attr:`SIGNATURE` is :py:obj:`None`, use **business_name**. If :py:attr:`SIGNATURE` is not :py:obj:`None`, use :py:attr:`SIGNATURE`.
     :type signature: str or None
 
+Customising ticket numbers
+--------------------------
+
+If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` property, making sure to include the :py:decorator:`property` decorator.
+
+.. code-block:: python
+
+    class Message(BaseMessage):
+        class Meta:
+            proxy = True
+        
+        @property
+        def ticket_number(self):
+            # my logic
+            # return my_ticket_number
     
