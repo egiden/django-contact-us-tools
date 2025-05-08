@@ -3,125 +3,128 @@ The ``BaseMessage`` model
 
 .. module:: contact_us_tools.models
 
+Fields
+------
+
+.. class:: BaseMessage
+
 .. _base_message_attr:
 
 Attributes
 ----------
 
-.. class:: BaseMessage
+Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into :py:meth:`BaseMessage.send_email`. It is recommended that they be changed directly.
 
-    Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into :py:meth:`BaseMessage.send_email`. It is recommended that they be changed directly.
+.. attention::
 
-    .. attention::
+    With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute. Consider, for example, the following case.
 
-        With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute. Consider, for example, the following case.
-
-        .. code-block:: python
-            
-            class Message(BaseMessage):
-                CLOSING = "Yours sincerely"
-                COPYRIGHT_YEAR = 2025
-
-                class Meta:
-                    proxy = True
-
-            Message.send_email(closing="Thank you")
-
-        The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
-
-    .. attribute:: TICKET_NUM_LEN
-
-        *default:* 4
-
-        The length of the ticket number assigned to the message.
+    .. code-block:: python
         
-    .. attribute:: TEXT_FILE
+        class Message(BaseMessage):
+            CLOSING = "Yours sincerely"
+            COPYRIGHT_YEAR = 2025
 
-        *default:* "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
-        
-        The path of the text version of the email template.
+            class Meta:
+                proxy = True
 
-    .. attribute:: HTML_FILE
+        Message.send_email(closing="Thank you")
 
-        *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
-        
-        The path of the html version of the email template.
+    The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
 
-    .. attribute:: BUSINESS_NAME
+.. attribute:: TICKET_NUM_LEN
 
-        *default:* :py:obj:`None`
-        
-        The business or website name to be displayed on the email.
+    *default:* 4
 
-    .. attribute:: COPYRIGHT_YEAR
+    The length of the ticket number assigned to the message.
+    
+.. attribute:: TEXT_FILE
 
-        *default:* :py:obj:`None`
-        
-        The year displayed on the email's copyright notice.
+    *default:* "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
+    
+    The path of the text version of the email template.
 
-    .. attribute:: SUBJECT
+.. attribute:: HTML_FILE
 
-        *default:* :py:obj:`None`
-        
-        The email's subject line.
+    *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
+    
+    The path of the html version of the email template.
 
-    .. attribute:: SALUTATION
+.. attribute:: BUSINESS_NAME
 
-        *default:* :py:obj:`None`
-        
-        The email's subject salutation.
+    *default:* :py:obj:`None`
+    
+    The business or website name to be displayed on the email.
 
-    .. attribute:: MAIN_CONTENT
+.. attribute:: COPYRIGHT_YEAR
 
-        *default:* :py:obj:`None`
-        
-        The email's main content or body. i.e., the content between the salutation and closing.
+    *default:* :py:obj:`None`
+    
+    The year displayed on the email's copyright notice.
 
-    .. attribute:: MAIN_CONTENT_FBK
+.. attribute:: SUBJECT
 
-        *default:* "Thank you very much for your feedback. It is much appreciated."
-        
-        The email's main content or body for the case when a user submits feedback.
+    *default:* :py:obj:`None`
+    
+    The email's subject line.
 
-    .. attribute:: CLOSING
+.. attribute:: SALUTATION
 
-        *default:* :py:obj:`None`
-        
-        The email's closing line (without comma).
+    *default:* :py:obj:`None`
+    
+    The email's subject salutation.
 
-    .. attribute:: SIGNATURE
-        
-        *default:* :py:obj:`None`
-        
-        The email's signature.
+.. attribute:: MAIN_CONTENT
 
-    .. attribute::  REVIEW_LINK
+    *default:* :py:obj:`None`
+    
+    The email's main content or body. i.e., the content between the salutation and closing.
 
-        *default:* :py:obj:`None`
+.. attribute:: MAIN_CONTENT_FBK
 
-        Link where user can submit a review.
+    *default:* "Thank you very much for your feedback. It is much appreciated."
+    
+    The email's main content or body for the case when a user submits feedback.
 
-    .. attribute:: DISP_PRIVACY_POLICY_NOTICE
+.. attribute:: CLOSING
 
-        *default:* :py:obj:`True`
-        
-        Indicates if a privacy policy notice should be displayed in the email.
+    *default:* :py:obj:`None`
+    
+    The email's closing line (without comma).
 
-    .. attribute:: DISP_COPYRIGHT_NOTICE
+.. attribute:: SIGNATURE
+    
+    *default:* :py:obj:`None`
+    
+    The email's signature.
 
-        *default:* :py:obj:`True`
-        
-        Indicates if copyright notice should be displayed in the email.
+.. attribute::  REVIEW_LINK
 
-    .. attribute:: DISP_REVIEW_LINK
+    *default:* :py:obj:`None`
 
-        *default:* :py:obj:`True`
-        
-        Indicates if :py:attr:`REVIEW_LINK` should be displayed in the email.
+    Link where user can submit a review.
 
-    .. tip::
+.. attribute:: DISP_PRIVACY_POLICY_NOTICE
 
-        If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
+    *default:* :py:obj:`True`
+    
+    Indicates if a privacy policy notice should be displayed in the email.
+
+.. attribute:: DISP_COPYRIGHT_NOTICE
+
+    *default:* :py:obj:`True`
+    
+    Indicates if copyright notice should be displayed in the email.
+
+.. attribute:: DISP_REVIEW_LINK
+
+    *default:* :py:obj:`True`
+    
+    Indicates if :py:attr:`REVIEW_LINK` should be displayed in the email.
+
+.. tip::
+
+    If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
 
 Methods
 -------
@@ -192,10 +195,10 @@ Methods
     :param signature: Email's signature. If :py:obj:`None` and :py:attr:`SIGNATURE` is :py:obj:`None`, use **business_name**. If :py:attr:`SIGNATURE` is not :py:obj:`None`, use :py:attr:`SIGNATURE`.
     :type signature: str or None
 
-Customising ticket numbers
---------------------------
+Custom ticket numbers
+---------------------
 
-If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` property, making sure to include the ``@property`` decorator.
+If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` method, making sure to include the ``@property`` decorator.
 
 .. code-block:: python
 
