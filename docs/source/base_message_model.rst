@@ -10,11 +10,23 @@ The ``BaseMessage`` model
 
 .. class:: BaseMessage
 
-    Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
+    Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into :py:meth:`BaseMessage.send_email`. It is recommended that they be changed directly.
 
     .. attention::
 
-        With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute.
+        With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute. Consider, for example, the following case.
+
+        .. code-block:: python
+            
+            class Message(BaseMessage):
+                CLOSING = "Yours sincerely"
+
+                class Meta:
+                    proxy = True
+
+            Message.send_email(closing="Thank you")
+
+        The email would feature a closing that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding attribute in the proxy of :py:class:`~BaseMessage`.
 
     .. attribute:: TICKET_NUM_LEN
 

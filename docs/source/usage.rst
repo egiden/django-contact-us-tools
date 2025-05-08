@@ -77,7 +77,7 @@ Example Setup
 
       from contact_us_tools.models import BaseMessage
 
-      class Enquiry(BaseMessage):
+      class Message(BaseMessage):
          BUSINESS_NAME = "My Business Name"
          COPYRIGHT_YEAR = 2025
 
@@ -97,9 +97,9 @@ Example Setup
     .. code-block:: python
     
             from django.contrib import admin
-            from .models import Enquiry
+            from .models import Message
 
-            admin.site.register(Enquiry)
+            admin.site.register(Message)
 
 #. Create a template for the 'contact us' form and add it to your app's `templates directory <https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_. Here's a minimal example:
 
