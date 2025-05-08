@@ -125,7 +125,7 @@ The ``BaseMessage`` model
     :type html_file: str or None
 
 
-.. py:function:: send_message(sender, recipient, message_body, [priority=1])
+.. :py:function:: send_message(sender, recipient, message_body, [priority=1])
 
    Send a message to a recipient
 
