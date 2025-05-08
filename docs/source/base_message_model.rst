@@ -121,10 +121,13 @@ The ``BaseMessage`` model
 
     :param text_file: Directory of the text version of the automatic-reply email template. If :py:obj:`None`, use :py:attr:`TEXT_FILE`. 
     :type text_file: str or None
+    
     :param html_file: Directory of the html version of the automatic-reply email template. If :py:obj:`None`, use :py:attr:`HTML_FILE`.
     :type html_file: str or None
+
     :param more_context: Items to add to the context to be used when rendering the email template.
     :type more_context: dict or None
+
     :param form_email: Sender's email address. If :py:obj:`None`, use :setting:`EMAIL_HOST_USER`.
     :type from_email: str or None
     
