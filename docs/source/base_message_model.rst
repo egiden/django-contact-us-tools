@@ -8,12 +8,10 @@ Fields
 
 .. class:: BaseMessage
 
-    :class:`BaseMessage` objects have the following fields::
+    :class:`BaseMessage` objects have the following fields.
 
     .. attribute:: BaseMessage._type
-
         :type: str
-
         :value: Cars
 
 
