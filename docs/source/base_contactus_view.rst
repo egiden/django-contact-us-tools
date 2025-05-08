@@ -1,19 +1,38 @@
 The ``BaseContactUsView`` view
 ==============================
 
-About the view
---------------
+.. module:: contact_us_tools.views
 
-.. py:function:: send_message(sender, recipient, message_body, [priority=1])
+Attributes
+----------
 
-   Send a message to a recipient
+.. class:: BaseContactUsView
 
-   :param str sender: The person sending the message
-   :param str recipient: The recipient of the message
-   :param str message_body: The body of the message
-   :param priority: The priority of the message, can be a number 1-5
-   :type priority: int or None
-   :return: the message id
-   :rtype: int
-   :raises ValueError: if the message_body exceeds 160 characters
-   :raises TypeError: if the message_body is not a basestring
+   .. attribute:: send_email_kwargs
+      :type: dict
+      :value: {}
+
+      Keyword arguments to pass into the :attr:`BaseMessage.send_email` method.
+
+   .. attribute:: success_message
+      :type: str
+      :value: 'Your form has been successfully submitted. We will be in contact with you as soon as we can.'
+
+      Message to display upon successful submission of form.
+
+   .. attribute:: include_success_msg
+      :type: bool
+      :value: True
+
+      Indicates if success message should be displayed.
+
+Methods
+-------
+
+.. function:: BaseContactUsView.send_email(form)
+
+   Send automatic-reply email to user.
+
+   :param form: The form.
+   :type form: BaseContactUsForm
+

@@ -6,6 +6,7 @@ from django.views.generic import FormView
 class BaseContactUsView(FormView):
     form_class = BaseContactUsForm
     send_email_kwargs = {}
+    success_message = 'Your form has been successfully submitted. We will be in contact with you as soon as we can.'
     include_success_msg = True
 
     def send_email(self, form):
@@ -22,5 +23,5 @@ class BaseContactUsView(FormView):
     def form_valid(self, form):
         self.send_email(form)
         if self.include_success_msg:
-            messages.success(self.request, f'Your form has been successfully submitted. We will be in contact with you as soon as we can.')
+            messages.success(self.request, self.success_message)
         return super().form_valid(form)

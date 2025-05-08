@@ -13,7 +13,7 @@ Fields
     .. attribute:: BaseMessage._type
         :type: CharField
 
-        The type of message. It could be either feedback, and enquiry or other/miscilleneous.
+        The type of message. It could be either feedback, an enquiry or other/miscilleneous.
 
     .. attribute:: BaseMessage.name
         :type: CharField
@@ -184,7 +184,8 @@ Methods
 
     Marks the matter of the message as resolved. i.e., closed.
 
-    :`closed_by`:  (a django user object) The user that closed the message/ticket.
+    :param closed_by:  The user that closed the message/ticket.
+    :type closed_by: a django user object
 
 .. function:: BaseMessage.reopen()
 
