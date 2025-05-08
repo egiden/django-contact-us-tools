@@ -32,91 +32,91 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
     The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
 
-.. attribute:: TICKET_NUM_LEN
+.. attribute:: BaseMessage.TICKET_NUM_LEN
 
     *default:* 4
 
     The length of the ticket number assigned to the message.
     
-.. attribute:: TEXT_FILE
+.. attribute:: BaseMessage.TEXT_FILE
 
     *default:* "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
     
     The path of the text version of the email template.
 
-.. attribute:: HTML_FILE
+.. attribute:: BaseMessage.HTML_FILE
 
     *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
     
     The path of the html version of the email template.
 
-.. attribute:: BUSINESS_NAME
+.. attribute:: BaseMessage.BUSINESS_NAME
 
     *default:* :py:obj:`None`
     
     The business or website name to be displayed on the email.
 
-.. attribute:: COPYRIGHT_YEAR
+.. attribute:: BaseMessage.COPYRIGHT_YEAR
 
     *default:* :py:obj:`None`
     
     The year displayed on the email's copyright notice.
 
-.. attribute:: SUBJECT
+.. attribute:: BaseMessage.SUBJECT
 
     *default:* :py:obj:`None`
     
     The email's subject line.
 
-.. attribute:: SALUTATION
+.. attribute:: BaseMessage.SALUTATION
 
     *default:* :py:obj:`None`
     
     The email's subject salutation.
 
-.. attribute:: MAIN_CONTENT
+.. attribute:: BaseMessage.MAIN_CONTENT
 
     *default:* :py:obj:`None`
     
     The email's main content or body. i.e., the content between the salutation and closing.
 
-.. attribute:: MAIN_CONTENT_FBK
+.. attribute:: BaseMessage.MAIN_CONTENT_FBK
 
     *default:* "Thank you very much for your feedback. It is much appreciated."
     
     The email's main content or body for the case when a user submits feedback.
 
-.. attribute:: CLOSING
+.. attribute:: BaseMessage.CLOSING
 
     *default:* :py:obj:`None`
     
     The email's closing line (without comma).
 
-.. attribute:: SIGNATURE
+.. attribute:: BaseMessage.SIGNATURE
     
     *default:* :py:obj:`None`
     
     The email's signature.
 
-.. attribute::  REVIEW_LINK
+.. attribute:: BaseMessage. REVIEW_LINK
 
     *default:* :py:obj:`None`
 
     Link where user can submit a review.
 
-.. attribute:: DISP_PRIVACY_POLICY_NOTICE
+.. attribute:: BaseMessage.DISP_PRIVACY_POLICY_NOTICE
 
     *default:* :py:obj:`True`
     
     Indicates if a privacy policy notice should be displayed in the email.
 
-.. attribute:: DISP_COPYRIGHT_NOTICE
+.. attribute:: BaseMessage.DISP_COPYRIGHT_NOTICE
 
     *default:* :py:obj:`True`
     
     Indicates if copyright notice should be displayed in the email.
 
-.. attribute:: DISP_REVIEW_LINK
+.. attribute:: BaseMessage.DISP_REVIEW_LINK
 
     *default:* :py:obj:`True`
     
@@ -211,3 +211,4 @@ If you desire a custom ticket numbering system, then simply override the ``BaseM
             # my logic
             # return my_ticket_number
     
+:attr:`BaseMessage.SUBJECT`

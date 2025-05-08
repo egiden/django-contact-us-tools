@@ -71,7 +71,7 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the :py:class:`~BaseMessage` model and override the :py:attr:`BaseMessage.BUSINESS_NAME` and :py:attr:`BaseMessage.COPYRIGHT_YEAR` attributes. :py:attr:`BaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :py:attr:`BaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email.
+#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the :py:class:`~BaseMessage` model and override the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes. ``BUSINESS_NAME`` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and ``COPYRIGHT_YEAR`` is the year to be displayed with the copyright notice in the email.
     
    .. code-block:: python
 
@@ -86,7 +86,7 @@ Example Setup
    
    .. warning::
 
-      :py:attr:`~BaseMessage.BUSINESS_NAME` must be set or else a :py:exc:`ValueError` will be raised. It is the same with :py:attr:`~BaseMessage.COPYRIGHT_YEAR` for the default configuration of :py:class:`~BaseMessage`.
+      ``BUSINESS_NAME`` must be set or else a :py:exc:`ValueError` will be raised. It is the same with ``COPYRIGHT_YEAR`` for the default configuration of :py:class:`~BaseMessage`.
    
    .. note::
 
