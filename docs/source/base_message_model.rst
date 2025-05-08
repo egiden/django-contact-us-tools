@@ -5,8 +5,8 @@ The ``BaseMessage`` model
 
 .. _base_message_attr:
 
-``BaseMessage`` attributes
---------------------------
+Attributes
+----------
 
 .. class:: BaseMessage
 
@@ -123,8 +123,8 @@ The ``BaseMessage`` model
 
         If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
 
-``BaseMessage`` methods
------------------------
+Methods
+-------
 
 :py:class:`BaseMessage` has three main methods for controlling the model.
 
@@ -195,7 +195,7 @@ The ``BaseMessage`` model
 Customising ticket numbers
 --------------------------
 
-If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` property, making sure to include the :py:deco:`property` decorator.
+If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` property, making sure to include the ``@property`` decorator.
 
 .. code-block:: python
 
