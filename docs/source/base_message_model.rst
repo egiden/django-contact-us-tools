@@ -3,104 +3,100 @@ The ``BaseMessage`` model
 
 .. module:: contact_us_tools.models
 
-.. class:: BaseMessage
-
-    Represents a user's message which can be either feedback, an enquiry or other.
-
 .. _base_message_attr:
 
 ``BaseMessage`` attributes
 --------------------------
 
-.. module:: BaseMessage
+.. class:: BaseMessage
 
-Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
+    Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be changed here directly, or passed as inputs into the send_email method. It is recommended that they be changed directly.
 
-.. attention::
+    .. attention::
 
-    With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute.
+        With the exception of :py:attr:`TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute.
 
-.. attribute:: TICKET_NUM_LEN
+    .. attribute:: TICKET_NUM_LEN
 
-    *default:* 4
+        *default:* 4
 
-    The length of the ticket number assigned to the message.
-    
-.. attribute:: TEXT_FILE
+        The length of the ticket number assigned to the message.
+        
+    .. attribute:: TEXT_FILE
 
-    *default:* "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
-    
-    The path of the text version of the email template.
+        *default:* "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
+        
+        The path of the text version of the email template.
 
-.. attribute:: HTML_FILE
+    .. attribute:: HTML_FILE
 
-    *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
-    
-    The path of the html version of the email template.
+        *default:* "contact_us_tools/email.html" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.html>`_
+        
+        The path of the html version of the email template.
 
-.. attribute:: DISP_PRIVACY_POLICY_NOTICE
+    .. attribute:: DISP_PRIVACY_POLICY_NOTICE
 
-    *default:* :py:obj:`True`
-    
-    Indicates if a privacy policy notice should be included in the email.
+        *default:* :py:obj:`True`
+        
+        Indicates if a privacy policy notice should be included in the email.
 
-.. attribute:: DISP_COPYRIGHT_NOTICE
+    .. attribute:: DISP_COPYRIGHT_NOTICE
 
-    *default:* :py:obj:`True`
-    
-    Indicates if copyright notice should be included in the email.
+        *default:* :py:obj:`True`
+        
+        Indicates if copyright notice should be included in the email.
 
-.. attribute:: COPYRIGHT_YEAR
+    .. attribute:: COPYRIGHT_YEAR
 
-    *default:* :py:obj:`None`
-    
-    The year displayed on the email's copyright notice.
+        *default:* :py:obj:`None`
+        
+        The year displayed on the email's copyright notice.
 
-.. attribute:: BUSINESS_NAME
+    .. attribute:: BUSINESS_NAME
 
-    *default:* :py:obj:`None`
-    
-    The business or website name to be displayed on the email.
+        *default:* :py:obj:`None`
+        
+        The business or website name to be displayed on the email.
 
-.. attribute:: SUBJECT
+    .. attribute:: SUBJECT
 
-    *default:* :py:obj:`None`
-    
-    The email's subject line.
+        *default:* :py:obj:`None`
+        
+        The email's subject line.
 
-.. attribute:: SALUTATION
+    .. attribute:: SALUTATION
 
-    *default:* :py:obj:`None`
-    
-    The email's subject salutation.
+        *default:* :py:obj:`None`
+        
+        The email's subject salutation.
 
-.. attribute:: MAIN_CONTENT
+    .. attribute:: MAIN_CONTENT
 
-    *default:* :py:obj:`None`
-    
-    The email's main content or body. i.e., the content between the salutation and closing.
+        *default:* :py:obj:`None`
+        
+        The email's main content or body. i.e., the content between the salutation and closing.
 
-.. attribute:: MAIN_CONTENT_FBK
+    .. attribute:: MAIN_CONTENT_FBK
 
-    *default:* "Thank you very much for your feedback. It is much appreciated."
-    
-    The email's main content or body for the case when a user submits feedback.
+        *default:* "Thank you very much for your feedback. It is much appreciated."
+        
+        The email's main content or body for the case when a user submits feedback.
 
-.. attribute:: CLOSING
+    .. attribute:: CLOSING
 
-    *default:* :py:obj:`None`
-    
-    The email's closing line (without comma).
+        *default:* :py:obj:`None`
+        
+        The email's closing line (without comma).
 
-.. attribute:: SIGNATURE
-    
-    *default:* :py:obj:`None`
-    
-    The email's signature.
+    .. attribute:: SIGNATURE
+        
+        *default:* :py:obj:`None`
+        
+        The email's signature.
 
-.. tip::
+    .. tip::
 
-    If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
+        If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
 
 ``BaseMessage`` methods
 -----------------------
@@ -117,21 +113,31 @@ Asside from the :py:attr:`BUSINESS_NAME` and :py:attr:`COPYRIGHT_YEAR` attribute
 
     Reopen's the matter of the message.
 
-.. function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
+.. :py:function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
 
-    Sends the user's message as an email.
+    Sends automatic-reply email to user supplied email.
     
     With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the :py:class:`BaseMessage` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
 
-    **text_file** :py:obj:`string` or :py:obj:`None`: Hates dogs
+    :param text_file: Directory of the text version of the automatic-reply email template.
+    :type text_file: str or None
+    :param html_file: Directory of the html version of the automatic-reply email template.
+    :type html_file: str or None
 
-    **html_file** :py:obj:`string` or :py:obj:`None`:   Love Cats
 
-    **more_context** :py:obj:`dict` or :py:obj:`None`:  De sjnk
+.. py:function:: send_message(sender, recipient, message_body, [priority=1])
 
-    :py:class:`contact_us_tools.models.BaseMessage`
+   Send a message to a recipient
 
-    :py:meth:`BaseMessage.send_email`
+   :param str sender: The person sending the message
+   :param str recipient: The recipient of the message
+   :param str message_body: The body of the message
+   :param priority: The priority of the message, can be a number 1-5
+   :type priority: int or None
+   :return: the message id
+   :rtype: int
+   :raises ValueError: if the message_body exceeds 160 characters
+   :raises TypeError: if the message_body is not a basestring
 
     
 
