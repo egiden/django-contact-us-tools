@@ -62,7 +62,7 @@ class BaseMessage(models.Model):
     def send_email(self,
             text_file=None,
             html_file=None,
-            more_context=None,
+            extra_context=None,
             from_email=None,
             business_name=None,
             copyright_year=None,
@@ -88,15 +88,15 @@ class BaseMessage(models.Model):
             *NOTE: If using custom values for text_file or html_file, the django.template.loader.render_to_string
             function might prove useful.
 
-            more_context (dict or None): Dictionary of more items to add to the context to be used when rendering
+            extra_context (dict or None): Items to add to the context to be used when rendering
                 the email template. If None, do nothing.
 
             from_email (string or None): Sender's email address. If None, try using EMAIL_HOST_USER setting.
 
-            business_name (string or None): Name of your business or website to be displayed on the email.
+            business_name (string or None): Name of business or website to display in the email.
                 If None, use BUSINESS_NAME class attribute.
 
-            copyright_year (string or None): Year to be displayed in email's copyright notice.
+            copyright_year (int or None): Year to be displayed in email's copyright notice.
                 If None, use COPYRIGHT_YEAR class attribute.
 
             disp_cpr_notice (bool or None): Indicates if copyright notice should be displayed on the email.
@@ -207,9 +207,9 @@ class BaseMessage(models.Model):
             'signature': signature,
         }
 
-        # Update context with more_context
-        if more_context:
-            context.update(more_context)
+        # Update context with extra_context
+        if extra_context:
+            context.update(extra_context)
 
         # Make sure the main_content variable is properly set and update context where appropriate
         if not main_content_fbk:

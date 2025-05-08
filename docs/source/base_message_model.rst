@@ -113,23 +113,52 @@ The ``BaseMessage`` model
 
     Reopen's the matter of the message.
 
-.. py:function:: BaseMessage.send_email(text_file=None,html_file=None,more_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
+.. py:function:: BaseMessage.send_email(text_file=None,html_file=None,extra_context=None,from_email=None,business_name=None,copyright_year=None,disp_cpr_notice=None,disp_pp_notice=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
 
     Sends automatic-reply email to user supplied email.
     
-    With the exception of **more_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the :py:class:`BaseMessage` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
+    With the exception of **extra_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the :py:class:`BaseMessage` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
 
-    :param text_file: Directory of the text version of the automatic-reply email template. If :py:obj:`None`, use :py:attr:`TEXT_FILE`. 
+    :param text_file: Directory of the text version of the email template. If :py:obj:`None`, use :py:attr:`TEXT_FILE`. 
     :type text_file: str or None
-    
-    :param html_file: Directory of the html version of the automatic-reply email template. If :py:obj:`None`, use :py:attr:`HTML_FILE`.
+
+    :param html_file: Directory of the html version of the email template. If :py:obj:`None`, use :py:attr:`HTML_FILE`.
     :type html_file: str or None
 
-    :param more_context: Items to add to the context to be used when rendering the email template.
-    :type more_context: dict or None
+    :param extra_context: Items to add to the context to be used when rendering the email template.
+    :type extra_context: dict or None
 
     :param form_email: Sender's email address. If :py:obj:`None`, use :setting:`EMAIL_HOST_USER`.
     :type from_email: str or None
-    
+
+    :param business_name: Name of business or website to display in email. If :py:obj:`None`, use :py:attr:`BUSINESS_NAME`.
+    :type from_email: str or None
+
+    :param copyright_year: Year to be displayed in email's copyright notice. If :py:obj:`None`, use :py:attr:`COPYRIGHT_YEAR`.
+    :type from_email: int or None
+
+    :param disp_cpr_notice: Indicates if copyright notice should be displayed in email. If :py:obj:`None`, use :py:attr:`DISP_COPYRIGHT_NOTICE`.
+    :type from_email: bool or None
+
+    :param disp_pp_notice: Indicates if privacy policy notice should be displayed in email. If :py:obj:`None`, use :py:attr:`DISP_PRIVACY_POLICY_NOTICE`.
+    :type from_email: bool or None
+
+    :param subject: Email's subject line. If :py:obj:`None`, use :py:attr:`SUBJECT`.
+    :type from_email: str or None
+
+    :param salutation: Email's salutation or greeting. If :py:obj:`None` and :py:attr:`SALUTATION` is :py:obj:`None`, use "Dear <self.name>". if :py:attr:`SALUTATION` is not :py:obj:`None`, use :py:attr:`SALUTATION`.
+    :type from_email: str or None
+
+    :param main_content: Email's main content or body. i.e., the content between the salutation and closing. If :py:obj:`None`, :py:attr:`MAIN_CONTENT`.
+    :type from_email: str or None
+
+    :param main_content_fbk: Like **main_content**, but only if the message type is FEEDBACK. If :py:obj:`None`, use :py:attr:`MAIN_CONTENT_FBK`.
+    :type from_email: str or None
+
+    :param closing: Email's closing line (without comma). If :py:obj:`None` and :py:attr:`CLOSING` is :py:obj:`None`, use "Kind regards". If :py:attr:`CLOSING` is not :py:obj:`None`, use :py:attr:`CLOSING`
+    :type from_email: str or None
+
+    :param signature: Email's signature. If :py:obj:`None` and :py:attr:`SIGNATURE` is :py:obj:`None`, use **business_name**. If :py:attr:`SIGNATURE` is not :py:obj:`None`, use :py:attr:`SIGNATURE`.
+    :type from_email: str or None
 
     
