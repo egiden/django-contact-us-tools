@@ -11,11 +11,46 @@ Fields
     :class:`BaseMessage` objects have the following fields.
 
     .. attribute:: BaseMessage._type
-        :type: str
-        :value: Cars
-        :canonical: Elephant
+        :type: :setting:`CharField`
 
-    .. py:property:: Prop
+        The type of message. It could be either feedback, and enquiry or other/miscilleneous.
+
+    .. attribute:: BaseMessage.name
+        :type: :setting:`CharField`
+
+        Name of the sender.
+
+    .. attribute:: BaseMessage.email
+        :type: :setting:`EmailField`
+
+        Email of the sender
+
+    .. attribute:: BaseMessage.message
+        :type: :setting:`TextField`
+
+        The sender's message.
+
+    .. attribute:: BaseMessage.date_created
+        :type: :setting:`DateTimeField`
+        :value: :setting:`timezone.now`
+
+        The date the object was created.
+
+    .. attribute:: BaseMessage.is_closed
+        :type: :setting:`CharField`
+        :value: False
+
+        Indicates if the matter of the message is resolved.
+
+    .. attribute:: BaseMessage.date_closed
+        :type: :setting:`DateTimeField`
+
+        The date the matter of the message was resolved.
+
+    .. attribute:: BaseMessage.closed_by
+        :type: :setting:`User`
+
+        The user that marked the matter of the message as being resolved/closed.
 
 
 .. _base_message_attr:
@@ -43,14 +78,14 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
     The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`~BaseMessage.CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
 
 .. attribute:: BaseMessage.TICKET_NUM_LEN
-
-    *default:* 4
+    :type: int
+    :value: 4
 
     The length of the ticket number assigned to the message.
     
 .. attribute:: BaseMessage.TEXT_FILE
-
-    *default:* "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
+    :type: str
+    :value: "contact_us_tools/email.txt" `source <https://github.com/egiden/django-contact-us-tools/blob/main/contact_us_tools/templates/contact_us_tools/email.txt>`_
     
     The path of the text version of the email template.
 

@@ -53,9 +53,9 @@ class BaseMessage(models.Model):
     name=models.CharField(max_length=50, help_text="Name of sender")
     email=models.EmailField(max_length=50, help_text="Email address of sender")
     message=models.TextField()
-    date_created = models.DateField(default=timezone.now)
+    date_created = models.DateTimeField(default=timezone.now)
     is_closed = models.BooleanField(default=False)
-    date_closed = models.DateField(blank=True, null=True)
+    date_closed = models.DateTimeField(blank=True, null=True)
     closed_by = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL)
 
     @property
