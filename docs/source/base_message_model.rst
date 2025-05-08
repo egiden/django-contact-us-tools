@@ -27,7 +27,7 @@ The ``BaseMessage`` model
 
             Message.send_email(closing="Thank you")
 
-        The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first.*
+        The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input in the :py:meth:`BaseMessage.send_email` method takes precendence over the corressponding :py:attr:`CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section.
 
     .. attribute:: TICKET_NUM_LEN
 
