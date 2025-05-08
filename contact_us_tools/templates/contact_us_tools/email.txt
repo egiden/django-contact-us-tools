@@ -6,7 +6,7 @@
 Thank you for contacting us. This is an automated response to confirm that we have received your message.
 
 Your enquiry has been received and assigned the ticket number #{{ ticket_number }}. We will review your enquiry and respond as soon as we can. For further questions or assistance, or if you wish to add details or comments to your enquiry, please reply to this email.
-{% endig %}
+{% endif %}
 {{ closing }},
 {{ signature }}
 

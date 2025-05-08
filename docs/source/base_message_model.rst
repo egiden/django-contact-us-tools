@@ -167,7 +167,7 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
 
 .. attribute:: BaseMessage.DISP_REVIEW_LINK
     :type: bool
-    :value: True
+    :value: False
     
     Indicates if :py:attr:`~BaseMessage.REVIEW_LINK` should be displayed in the email.
 

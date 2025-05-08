@@ -35,7 +35,7 @@ Attributes
    :type: str
    :value: 'Your form has been successfully submitted. We will be in contact with you as soon as we can.'
 
-   Message to display upon successful submission of form.
+   Message to display upon successful submission of form. Override for custom success message
 
 .. attribute:: BaseContactUsView.disp_success_msg
    :type: bool
@@ -57,7 +57,7 @@ Sending the automatic-reply email
 
    :raises ValueError: If any key in :py:attr:`BaseContactUsView.send_email_kwargs` is not a valid input into :py:func:`BaseMessage.send_email`.
 
-:py:func:`BaseContactUsView.send_email` is called when the form used by :py:class:`BaseContactUsView` is validated. For further understanding, consider the following simplified implementation of :py:class:`BaseContactUsView`.
+:py:func:`BaseContactUsView.send_email` is called when the form used by :py:class:`BaseContactUsView` is validated. For further understanding, consider the following simplified depiction of the source code for :py:class:`BaseContactUsView`.
 
 .. code-block:: python
 
@@ -66,10 +66,13 @@ Sending the automatic-reply email
          def send_email(self, form):
             # 1. Check that the keys in the send_email_kwargs attribute are valid.
             # 2. Send the email
-            form.save()
             form.instance.send_email(**self.send_email_kwargs)
 
          def form_valid(self, form):
             self.send_email(form)
             # display success message
             return super().form_valid(form)
+
+.. attention::
+
+   Again, the above is not the actual source code for :py:class:`BaseContactUsView` but an watered-down version of it for comprehension purposes.

@@ -28,8 +28,14 @@ class BaseMessage(models.Model):
     TICKET_NUM_LENGTH = 4
     TEXT_FILE = "contact_us_tools/email.txt"
     HMTL_FILE = "contact_us_tools/email.html"
+
+    DISP_PRIVACY_POLICY_NOTICE = True
+    DISP_COPYRIGHT_NOTICE = True
+    DISP_REVIEW_LINK = False
+
     BUSINESS_NAME = None
     COPYRIGHT_YEAR = None
+    REVIEW_LINK = None
 
     SUBJECT = None
     SALUTATION = None
@@ -37,12 +43,6 @@ class BaseMessage(models.Model):
     MAIN_CONTENT_FBK = "Thank you very much for your feedback. It is much appreciated."
     CLOSING = None
     SIGNATURE = None
-
-    REVIEW_LINK = None
-
-    DISP_PRIVACY_POLICY_NOTICE = True
-    DISP_COPYRIGHT_NOTICE = True
-    DISP_REVIEW_LINK = True
     
     class Type(models.TextChoices):
         ENQUIRY = 'ENQUIRY', 'Enquiry'
@@ -285,10 +285,11 @@ class BaseMessage(models.Model):
     def save(self, *args, **kwargs):
         self._check_business_name()
         self._check_copyright_year()
+        self._check_review_link()
         return super().save(*args, **kwargs)
     
     def _check_business_name(self):
-        """Raise an error if the BUSINESS_NAME variable has not been set."""
+        """Raise an error if the BUSINESS_NAME attribute has not been set."""
         if self.BUSINESS_NAME is None:
             raise ValueError(
                 "The BUSINESS_NAME variable for {} has not been set.".format(
@@ -297,10 +298,19 @@ class BaseMessage(models.Model):
             )
     
     def _check_copyright_year(self):
-        """Raise an error if the COPYRIGHT_YEAR variable has not been set and DISP_COPYRIGHT_NOTICE is True."""
+        """Raise an error if the COPYRIGHT_YEAR attribute has not been set if DISP_COPYRIGHT_NOTICE is True."""
         if self.COPYRIGHT_YEAR is None and self.DISP_COPYRIGHT_NOTICE == True:
             raise ValueError(
-                "The COPYRIGHT_YEAR variable for {} has not been set.".format(
+                "The COPYRIGHT_YEAR variable for {} has not been set. Either provide a value for the variable or set DISP_COPYRIGHT_NOTICE to False.".format(
+                    self.__class__.__name__
+                )
+            )
+        
+    def _check_review_link(self):
+        """Raise an error if the REVIEW_LINK attribute has not been set if DISP_REVIEW_LINK is True."""
+        if self.REVIEW_LINK is None and self.DISP_REVIEW_LINK == True:
+            raise ValueError(
+                "The REVIEW_LINK variable for {} has not been set. Either provide a value for the variable or set DISP_REVIEW_LINK to False.".format(
                     self.__class__.__name__
                 )
             )
