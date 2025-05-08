@@ -8,6 +8,15 @@ Fields
 
 .. class:: BaseMessage
 
+    :class:`BaseMessage` objects have the following fields::
+
+    .. attribute:: BaseMessage._type
+
+        :type: str
+
+        :value: Cars
+
+
 .. _base_message_attr:
 
 Attributes
@@ -17,7 +26,7 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
 
 .. attention::
 
-    With the exception of :py:attr:`~BaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`~BaseMessage.BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute. Consider, for example, the following case.
+    With the exception of :py:attr:`~BaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. I if any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`~BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute. Consider, for example, the following case.
 
     .. code-block:: python
         
@@ -98,7 +107,7 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
     
     The email's signature.
 
-.. attribute:: BaseMessage. REVIEW_LINK
+.. attribute:: BaseMessage.REVIEW_LINK
 
     *default:* :py:obj:`None`
 
