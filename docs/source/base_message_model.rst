@@ -195,7 +195,7 @@ The ``BaseMessage`` model
 Customising ticket numbers
 --------------------------
 
-If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` property, making sure to include the :py:decorator:`property` decorator.
+If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` property, making sure to include the :py:deco:`property` decorator.
 
 .. code-block:: python
 
