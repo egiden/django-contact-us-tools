@@ -3,7 +3,7 @@ Views
 
 .. class:: contact_us_tools.views.BaseContactUsView
 
-   A basic view which facilitates the rendering of :py:class:`~contact_us_tools.views.BaseContactUsForm` and the sending of the automatic-reply email.
+   A basic view which facilitates the rendering of :class:`~contact_us_tools.views.BaseContactUsForm` and the sending of the automatic-reply email.
 
 Attributes
 ----------
@@ -21,7 +21,7 @@ Attributes
       class ContactUsView(BaseContactUsView):
          send_email_kwargs = {"closing": "Yours sincerely", "subject": "Message Received!"}
 
-   Then, when :py:class:`BaseContactUsView` calls :attr:`AbstractBaseMessage.send_email`, it would be equivalent to the following.
+   Then, when :py:class:`BaseContactUsView` calls :meth:`~contact_us_tools.models.AbstractBaseMessage.send_email`, it would be equivalent to the following.
 
    .. code-block:: python
 
