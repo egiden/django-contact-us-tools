@@ -1,9 +1,9 @@
 Forms
 =====
 
-.. module:: contact_us_tools.forms
+.. py:module:: contact_us_tools.forms
 
-.. class:: BaseContactUstForm
+.. class:: BaseContactUsForm
 
     :class:`BaseContactUsForm` does nothing more than adding ``placeholder`` values to the ``name``, ``email``, and ``message`` fields as detailed below.
 
