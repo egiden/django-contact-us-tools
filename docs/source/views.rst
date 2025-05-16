@@ -3,7 +3,7 @@ Views
 
 .. class:: contact_us_tools.views.BaseContactUsView
 
-   A basic view which facilitates the rendering of :py:class:`~contact_us_tools.views.BaseContactUsForm` and the sending of the automatic-reply email.
+   A basic view which facilitates the rendering of :py:class:`~contact_us_tools.forms.BaseContactUsForm` and the sending of the automatic-reply email.
 
 Attributes
 ----------
