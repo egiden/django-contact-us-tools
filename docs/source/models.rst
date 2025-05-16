@@ -8,10 +8,10 @@ The ``BaseMessage`` model
 
 .. class:: BaseMessage
 
-    :class:`BaseMessage` subclasses the ``contact_us_tools.models.AbstractBaseMessage`` `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_.
+    :class:`BaseMessage` subclasses the ``contact_us_tools.models.AbstractBaseMessage`` `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ with the only differnce being that it is not an abstract model.
 
-Fields
-^^^^^^
+``BaseMessage`` fields
+^^^^^^^^^^^^^^^^^^^^^^
 
 :class:`BaseMessage` objects have the following fields.
 
@@ -43,8 +43,8 @@ Fields
 
 .. _base_message_attr:
 
-Attributes
-^^^^^^^^^^
+``BaseMessage`` attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~BaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be overwritten directly, or the inputs into :py:meth:`BaseMessage.send_email` can be overwritten. It is recommended that they be changed directly.
 
@@ -163,8 +163,8 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
 
     If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
 
-Methods
-^^^^^^^
+``BaseMessage`` methods
+^^^^^^^^^^^^^^^^^^^^^^^
 
 :py:class:`BaseMessage` has one main method of concern.
 
@@ -243,7 +243,7 @@ More functionality with the ``AbstractBaseMessageExt`` model
 
 .. class:: AbstractBaseMessageExt
 
-    :class:`AbstractBaseMessageExt` is an extended version of ``contact_us_tools.models.AbstractBaseMessage`` which provides extra fields and methods which allow the messages to be marked as either closed (the matter is resolved) or open. It is itself an `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ and so will need to be extended if its added functionality desired.
+    :class:`AbstractBaseMessageExt` is an extended version of ``contact_us_tools.models.AbstractBaseMessage`` which provides extra fields and methods which allow the messages to be marked as either closed (the matter is resolved) or open. It is itself an `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ and so will need to be extended if its added functionality desired. See :ref:`extending AbstractBaseMessageExt<extending>`
 
 The extra fields
 ^^^^^^^^^^^^^^^^
@@ -282,9 +282,10 @@ The extra methods
 
     Reopen's the matter of the message.
 
+.. _extending:
 
-Extending :class:`AbstractBaseMessageExt`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Extending ``AbstractBaseMessageExt``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Extend :class:`AbstractBaseMessageExt`:
 
