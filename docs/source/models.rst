@@ -161,7 +161,7 @@ Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~Abs
 
 .. tip::
 
-    If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`AbstractBaseMessage` as seen in the :doc:`usage <usage>` section.
+    If you do not require any extra data fields and only wish to overwrite attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`AbstractBaseMessage` as seen in the :doc:`usage <usage>` section.
 
 ``AbstractBaseMessage`` methods
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -225,7 +225,7 @@ Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~Abs
 Custom ticket numbers
 ^^^^^^^^^^^^^^^^^^^^^
 
-If you desire a custom ticket numbering system, then simply override the ``AbstractBaseMessage.ticket_number`` method, making sure to include the ``@property`` decorator.
+If you desire a custom ticket numbering system, then simply overwrite the ``AbstractBaseMessage.ticket_number`` method, making sure to include the ``@property`` decorator.
 
 .. code-block:: python
 
