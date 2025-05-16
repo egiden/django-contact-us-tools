@@ -15,7 +15,7 @@ The ``AbstractBaseMessage`` model
 
 :class:`AbstractBaseMessage` objects have the following fields.
 
-.. attribute:: AbstractBaseMessage._type
+.. attribute:: AbstractBaseMessage.type
     :type: CharField
 
     The type of message. It could be either feedback, an enquiry or other/miscilleneous.
@@ -46,11 +46,11 @@ The ``AbstractBaseMessage`` model
 ``AbstractBaseMessage`` attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~AbstractBaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~AbstractBaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~AbstractBaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be overwritten directly, or the inputs into :py:meth:`AbstractBaseMessage.send_email` can be overwritten. It is recommended that they be changed directly.
+Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~AbstractBaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, the :py:class:`~AbstractBaseMessage` method offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~AbstractBaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be overwritten directly, or the inputs into :py:meth:`~AbstractBaseMessage.send_email` can be overwritten. It is recommended that they be changed directly.
 
 .. attention::
 
-    With the exception of :py:attr:`~AbstractBaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`AbstractBaseMessage.send_email` method. If any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`~AbstractBaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~AbstractBaseMessage` attribute. Consider, for example, the following case.
+    With the exception of :py:attr:`~AbstractBaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for :py:meth:`~AbstractBaseMessage.send_email`. If any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`~AbstractBaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~AbstractBaseMessage` attribute. Consider, for example, the following case.
 
     .. code-block:: python
         
@@ -63,7 +63,7 @@ Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~Abs
 
         Message.send_email(closing="Thank you")
 
-    The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input passed into the :py:meth:`AbstractBaseMessage.send_email` method takes precendence over the value of the corressponding :py:attr:`~AbstractBaseMessage.CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
+    The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input passed into the :py:meth:`~AbstractBaseMessage.send_email` method takes precendence over the value of the corressponding :py:attr:`~AbstractBaseMessage.CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
 
 .. attribute:: AbstractBaseMessage.TICKET_NUM_LEN
     :type: int
@@ -168,7 +168,7 @@ Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~Abs
 
 :py:class:`AbstractBaseMessage` has one main method of concern.
 
-.. py:function:: AbstractBaseMessage.send_email(text_file=None,html_file=None,extra_context=None,from_email=None,disp_cpr_notice=None,disp_pp_notice=None,disp_review_link=None,copyright_year=None,business_name=None,review_link=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
+.. py:function:: ~AbstractBaseMessage.send_email(text_file=None,html_file=None,extra_context=None,from_email=None,disp_cpr_notice=None,disp_pp_notice=None,disp_review_link=None,copyright_year=None,business_name=None,review_link=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
 
     Sends automatic-reply email to user supplied email.
     
@@ -243,7 +243,7 @@ More functionality with the ``AbstractBaseMessageExt`` model
 
 .. class:: AbstractBaseMessageExt
 
-    An extended version of :class:`AbstractBaseMessage` which provides extra fields and methods which allow the messages to be marked as either closed (the matter is resolved) or open. It is itself an `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ and so will need to be extended if its added functionality desired. See :ref:`extending AbstractBaseMessageExt<extending>`.
+    An extention of :class:`AbstractBaseMessage` which provides extra fields and methods which allow the messages to be marked as either closed (the matter is resolved) or open. It is itself an `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ and so will need to be extended if its added functionality desired. See :ref:`extending AbstractBaseMessageExt<extending>`.
 
 The extra fields
 ^^^^^^^^^^^^^^^^

@@ -14,7 +14,7 @@ Attributes
    :type: dict
    :value: {}
 
-   Keyword arguments to pass into the :attr:`BaseMessage.send_email` method when it is called. See :ref:`sending_email`.
+   Keyword arguments to pass into the :attr:`AbstractBaseMessage.send_email` method when it is called. See :ref:`sending_email`.
 
    How it works is, if one were to extend :py:class:`BaseContactUsView` with a non-empty :py:attr:`BaseContactUsView.send_email_kwargs` like so.
 
@@ -23,11 +23,11 @@ Attributes
       class ContactUsView(BaseContactUsView):
          send_email_kwargs = {"closing": "Yours sincerely", "subject": "Message Received!"}
 
-   Then, when :py:class:`BaseContactUsView` calls :attr:`BaseMessage.send_email`, it would be equivalent to the following.
+   Then, when :py:class:`BaseContactUsView` calls :attr:`AbstractBaseMessage.send_email`, it would be equivalent to the following.
 
    .. code-block:: python
 
-      BaseMessage.send_email(closing="Yours sincerely", subject="Message Received!")
+      AbstractBaseMessage.send_email(closing="Yours sincerely", subject="Message Received!")
 
    For further details, see See :ref:`sending_email`.
 
@@ -50,12 +50,12 @@ Sending the automatic-reply email
 
 .. function:: BaseContactUsView.send_email(form)
 
-   Send automatic-reply email to user by calling :py:func:`BaseMessage.send_email` with :py:attr:`BaseContactUsView.send_email_kwargs` as input arguments.
+   Send automatic-reply email to user by calling :py:func:`AbstractBaseMessage.send_email` with :py:attr:`BaseContactUsView.send_email_kwargs` as input arguments.
 
    :param form: The form.
    :type form: BaseContactUsForm
 
-   :raises ValueError: If any key in :py:attr:`BaseContactUsView.send_email_kwargs` is not a valid input into :py:func:`BaseMessage.send_email`.
+   :raises ValueError: If any key in :py:attr:`BaseContactUsView.send_email_kwargs` is not a valid input into :py:func:`AbstractBaseMessage.send_email`.
 
 :py:func:`BaseContactUsView.send_email` is called when the form used by :py:class:`BaseContactUsView` is validated. For further understanding, consider the following simplified depiction of the source code for :py:class:`BaseContactUsView`.
 

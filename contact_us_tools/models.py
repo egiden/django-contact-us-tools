@@ -51,7 +51,7 @@ class AbstractBaseMessage(models.Model):
         FEEDBACK = 'FEEDBACK', 'Female'
         OTHER = 'OTHER', 'Other/Misc'
 
-    _type = models.CharField("type", max_length=8, choices=Type.choices)
+    type = models.CharField("type", max_length=8, choices=Type.choices)
     name=models.CharField(max_length=50, help_text="Name of sender")
     email=models.EmailField(max_length=50, help_text="Email address of sender")
     message=models.TextField()
@@ -127,7 +127,7 @@ class AbstractBaseMessage(models.Model):
                 If None, use REVIEW_LINK class attribute.
 
             subject (string or None): Email's subject line. If None, use SUBJECT class attribute. But if SUBJECT is None, set
-                to string of the form: "Message Received #<self.ticket_number>: <self._type>".
+                to string of the form: "Message Received #<self.ticket_number>: <self.type>".
 
             salutation (string or None): Email's salutation or greeting. If None, use SALUTATION class attribute. But if
                 SALUTATION is None, set to string of the form: "Dear <self.name>".
@@ -189,7 +189,7 @@ class AbstractBaseMessage(models.Model):
         # Make sure the subject variable is properly set
         if not subject:
             if not self.SUBEJCT:
-                subject = f"Message Received #{self.ticket_number}: {self._type}"
+                subject = f"Message Received #{self.ticket_number}: {self.type}"
             else:
                 subject = self.SUBJECT
         
@@ -217,7 +217,7 @@ class AbstractBaseMessage(models.Model):
         # Initialise the context for rendering the email template
         context = {
             'ticket_number': self.ticket_number,
-            'type': self._type,
+            'type': self.type,
             'name': self.name,
             'message': self.message,
             'date_created': self.date_created,
@@ -245,7 +245,7 @@ class AbstractBaseMessage(models.Model):
 
         if not main_content:
             context.update({'is_main_content_provided': True})
-            if not self.MAIN_CONTENT and self._type == self.Type.FEEDBACK:
+            if not self.MAIN_CONTENT and self.type == self.Type.FEEDBACK:
                 main_content = main_content_fbk
             elif self.MAIN_CONTENT:
                 main_content = self.MAIN_CONTENT

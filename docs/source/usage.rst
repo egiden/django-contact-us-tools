@@ -81,7 +81,7 @@ Example Setup
    
    .. warning::
 
-      ``BUSINESS_NAME`` must be set or else a :py:exc:`ValueError` will be raised. It is the same with ``COPYRIGHT_YEAR`` for the default configuration of :py:class:`~BaseMessage`.
+      ``BUSINESS_NAME`` must be set or else a :py:exc:`ValueError` will be raised. It is the same with ``COPYRIGHT_YEAR`` for the default configuration of :py:class:`~AbstractBaseMessage`.
    
    .. note::
 
@@ -96,7 +96,7 @@ Example Setup
 
             admin.site.register(Message)
 
-#. Create a new form or extend :py:class:`~BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class in your app's ``forms.py`` or where desired:
+#. Create a new form or extend :py:class:`~BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class. Add the form to your app's ``forms.py`` or where desired:
 
    .. code-block:: python
 
