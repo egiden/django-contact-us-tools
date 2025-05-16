@@ -14,8 +14,6 @@ The basic workflow of how a user would use **django-contact-us-tools** is as fol
 
 #. The app sends an automatic-reply email to the user and redirects to a provided page.
 
-#. The user receives the email.
-
 .. _installation:
 
 Installation
@@ -128,7 +126,7 @@ Example Setup
          path('contact-us', BaseContactUsView.as_view(template_name='template_name', success_url='success_url')),
       ]
 
-   Alternatively, supply the name of the 'success url':
+   Alternatively, supply the name of the 'success url' using the ``django.urls.reverse`` function:
 
    .. code-block:: python
 
