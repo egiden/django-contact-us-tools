@@ -71,7 +71,7 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Extend either the :py:class:`~contact_us_tools.models.AbstractBaseMessage` or :py:class:`~AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :attr:`~AbstractBaseMessage.BUSINESS_NAME` and :attr:`~AbstractBaseMessage.COPYRIGHT_YEAR` attributes. :attr:`~AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :attr:`~AbstractBaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email. :py:class:`~AbstractBaseMessage` will be used as an example, but the same process holds for :py:class:`~AbstractBaseMessageExt`:
+#. Extend either the :py:class:`~contact_us_tools.models.AbstractBaseMessage` or :py:class:`~AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` attributes. :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email. :py:class:`~contact_us_tools.models.AbstractBaseMessage` will be used as an example, but the same process holds for :py:class:`~AbstractBaseMessageExt`:
     
    .. code-block:: python
 
@@ -83,7 +83,7 @@ Example Setup
    
    .. warning::
 
-      :attr:`~AbstractBaseMessage.BUSINESS_NAME` must be set or else a :py:exc:`ValueError` will be raised. It is the same with :attr:`~AbstractBaseMessage.COPYRIGHT_YEAR` for the default configuration of :py:class:`~AbstractBaseMessage`.
+      :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` must be set or else a :py:exc:`ValueError` will be raised. It is the same with :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` for the default configuration of :py:class:`~contact_us_tools.models.AbstractBaseMessage`.
    
    .. note::
 
