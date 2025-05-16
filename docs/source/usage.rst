@@ -88,7 +88,7 @@ Example Setup
    
    .. note::
 
-      If you do not wish to display a copyright notice, and for further customisation options, see the section :doc:`BaseMessage Model <base_message_model>`.
+      If you do not wish to display a copyright notice, and for further customisation options, see the section :doc:`BaseMessage Model <models>`.
 
 #. Register the proxy model to the admin site in your app's ``admin.py``:
 
@@ -140,7 +140,7 @@ Example Setup
          
    .. note::
       
-      ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are available in the section :doc:`base_contactus_form`.
+      ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are available in the section :doc:`forms`.
 
 #. Create the models:
 

@@ -17,7 +17,7 @@ Contents
 
    Home <self>
    usage
-   base_message_model
-   base_contactus_form
-   base_contactus_view
+   models
+   forms
+   views
    reply_email

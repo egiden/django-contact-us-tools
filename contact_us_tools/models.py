@@ -24,7 +24,9 @@ send_email_arg_names = [
     "signature",
 ]
 
-class BaseMessage(models.Model):
+class AbstractBaseMessage(models.Model):
+    """An abstract base class to function as the foundation for "message" models."""
+
     TICKET_NUM_LENGTH = 4
     TEXT_FILE = "contact_us_tools/email.txt"
     HMTL_FILE = "contact_us_tools/email.html"
@@ -54,9 +56,6 @@ class BaseMessage(models.Model):
     email=models.EmailField(max_length=50, help_text="Email address of sender")
     message=models.TextField()
     date_created = models.DateTimeField(default=timezone.now)
-    is_closed = models.BooleanField(default=False)
-    date_closed = models.DateTimeField(blank=True, null=True)
-    closed_by = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL)
 
     @property
     def ticket_number(self):
@@ -68,18 +67,6 @@ class BaseMessage(models.Model):
             warnings.warn(f"The {self.__class__.__name__} object with a pk of {self.pk} does not exist.")
             return "".zfill(self.TICKET_NUM_LENGTH)
         return str(self.pk).zfill(self.TICKET_NUM_LENGTH)
-    
-    def mark_closed(self, closed_by):
-        """Close the enquiry."""
-        self.is_closed = True
-        self.date_closed = timezone.now()
-        self.closed_by = closed_by
-    
-    def reopen(self):
-        """Reopen the enquiry."""
-        self.is_closed = False
-        self.date_closed = None
-        self.closed_by = None
 
     def send_email(self,
             text_file=None,
@@ -316,4 +303,29 @@ class BaseMessage(models.Model):
             )
     
     class Meta:
-        verbose_name_plural = "Enquiries"
+        abstract = True
+
+class AbstractBaseMessageExt(AbstractBaseMessage):
+    """An extended version of AbstractBaseMessage with added fields and models."""
+    
+    is_closed = models.BooleanField(default=False)
+    date_closed = models.DateTimeField(blank=True, null=True)
+    closed_by = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL)
+
+    def mark_closed(self, closed_by):
+        """Close the enquiry."""
+        self.is_closed = True
+        self.date_closed = timezone.now()
+        self.closed_by = closed_by
+    
+    def reopen(self):
+        """Reopen the enquiry."""
+        self.is_closed = False
+        self.date_closed = None
+        self.closed_by = None
+
+    class Meta:
+        abstract = True
+
+class BaseMessage(AbstractBaseMessage):
+    pass

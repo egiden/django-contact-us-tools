@@ -1,62 +1,50 @@
-The ``BaseMessage`` model
-=========================
+Models
+======
 
 .. module:: contact_us_tools.models
 
-Fields
-------
+The ``BaseMessage`` model
+-------------------------
 
 .. class:: BaseMessage
 
-    :class:`BaseMessage` objects have the following fields.
+    :class:`BaseMessage` subclasses the ``contact_us_tools.models.AbstractBaseMessage`` `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_.
 
-    .. attribute:: BaseMessage._type
-        :type: CharField
+Fields
+^^^^^^
 
-        The type of message. It could be either feedback, an enquiry or other/miscilleneous.
+:class:`BaseMessage` objects have the following fields.
 
-    .. attribute:: BaseMessage.name
-        :type: CharField
+.. attribute:: BaseMessage._type
+    :type: CharField
 
-        Name of the sender.
+    The type of message. It could be either feedback, an enquiry or other/miscilleneous.
 
-    .. attribute:: BaseMessage.email
-        :type: EmailField
+.. attribute:: BaseMessage.name
+    :type: CharField
 
-        Email of the sender
+    Name of the sender.
 
-    .. attribute:: BaseMessage.message
-        :type: TextField
+.. attribute:: BaseMessage.email
+    :type: EmailField
 
-        The sender's message.
+    Email of the sender
 
-    .. attribute:: BaseMessage.date_created
-        :type: DateTimeField
-        :value: timezone.now
+.. attribute:: BaseMessage.message
+    :type: TextField
 
-        The date the object was created.
+    The sender's message.
 
-    .. attribute:: BaseMessage.is_closed
-        :type: CharField
-        :value: False
+.. attribute:: BaseMessage.date_created
+    :type: DateTimeField
+    :value: timezone.now
 
-        Indicates if the matter of the message is resolved.
-
-    .. attribute:: BaseMessage.date_closed
-        :type: DateTimeField
-
-        The date the matter of the message was resolved.
-
-    .. attribute:: BaseMessage.closed_by
-        :type: User object
-
-        The user that marked the matter of the message as being resolved/closed.
-
+    The date the object was created.
 
 .. _base_message_attr:
 
 Attributes
-----------
+^^^^^^^^^^
 
 Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~BaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be overwritten directly, or the inputs into :py:meth:`BaseMessage.send_email` can be overwritten. It is recommended that they be changed directly.
 
@@ -176,20 +164,9 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
     If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
 
 Methods
--------
+^^^^^^^
 
-:py:class:`BaseMessage` has three main public methods.
-
-.. function:: BaseMessage.mark_closed(closed_by)
-
-    Marks the matter of the message as resolved. i.e., closed.
-
-    :param closed_by:  The user that closed the message/ticket.
-    :type closed_by: a django user object
-
-.. function:: BaseMessage.reopen()
-
-    Reopen's the matter of the message.
+:py:class:`BaseMessage` has one main method of concern.
 
 .. py:function:: BaseMessage.send_email(text_file=None,html_file=None,extra_context=None,from_email=None,disp_cpr_notice=None,disp_pp_notice=None,disp_review_link=None,copyright_year=None,business_name=None,review_link=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
 
@@ -230,7 +207,7 @@ Methods
     :param subject: Email's subject line. If :py:obj:`None`, use :py:attr:`~BaseMessage.SUBJECT`.
     :type subject: str or None
 
-    :param salutation: Email's salutation or greeting. If :py:obj:`None` and :py:attr:`~BaseMessage.SALUTATION` is :py:obj:`None`, use "Dear :py:attr:`~BaseMessage.Name`". If :py:attr:`~BaseMessage.SALUTATION` is not :py:obj:`None`, use :py:attr:`~BaseMessage.SALUTATION`.
+    :param salutation: Email's salutation or greeting. If :py:obj:`None` and :py:attr:`~BaseMessage.SALUTATION` is :py:obj:`None`, use "Dear :py:attr:`~BaseMessage.name`". If :py:attr:`~BaseMessage.SALUTATION` is not :py:obj:`None`, use :py:attr:`~BaseMessage.SALUTATION`.
     :type salutation: str or None
 
     :param main_content: Email's main content or body. i.e., the content between the **salutation** and **closing**. If :py:obj:`None`, use :py:attr:`~BaseMessage.MAIN_CONTENT`.
@@ -246,7 +223,7 @@ Methods
     :type signature: str or None
 
 Custom ticket numbers
----------------------
+^^^^^^^^^^^^^^^^^^^^^
 
 If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` method, making sure to include the ``@property`` decorator.
 
@@ -260,3 +237,99 @@ If you desire a custom ticket numbering system, then simply override the ``BaseM
         def ticket_number(self):
             # my logic
             # return my_ticket_number
+
+More functionality with the ``AbstractBaseMessageExt`` model
+------------------------------------------------------------
+
+.. class:: AbstractBaseMessageExt
+
+    :class:`AbstractBaseMessageExt` is an extended version of ``contact_us_tools.models.AbstractBaseMessage`` which provides extra fields and methods which allow the messages to be marked as either closed (the matter is resolved) or open. It is itself an `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ and so will need to be extended if its added functionality desired.
+
+The extra fields
+^^^^^^^^^^^^^^^^
+
+:class:`AbstractBaseMessageExt` objects have all the fields of :class:`BaseMessage` with three more.
+
+.. attribute:: AbstractBaseMessageExt.is_closed
+    :type: BooleanField
+    :value: False
+
+    Indicates if the matter of the message is closed/resolved or open/unresolved.
+
+.. attribute:: BaseMessage.date_closed
+    :type: DateTimeField
+
+    The date the matter was closed.
+
+.. attribute:: BaseMessage.closed_by
+    :type: ForeignKey
+
+    The user that closed the matter
+
+The extra methods
+^^^^^^^^^^^^^^^^^
+
+:class:`AbstractBaseMessageExt` objects have all the methods of :class:`BaseMessage` with two more.
+
+.. function:: AbstractBaseMessageExt.mark_closed(closed_by)
+
+    Marks the matter of the message as resolved. i.e., closed.
+
+    :param closed_by:  The user that closed the message/ticket.
+    :type closed_by: a django user object
+
+.. function:: AbstractBaseMessageExt.reopen()
+
+    Reopen's the matter of the message.
+
+
+Extending :class:`AbstractBaseMessageExt`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Extend :class:`AbstractBaseMessageExt`:
+
+    .. code-block:: python
+
+        from contact_us_tools.models import AbstractBaseMessageExt
+
+        class BaseMessage(AbstractBaseMessageExt):
+            pass
+
+    .. note::
+
+        It is crucial that :class:`AbstractBaseMessageExt` is extended in order to disable the ``abstract`` attribute of the parent class's ``Meta`` class.
+
+#. Extend :class:`BaseContactUsForm` and override its ``Meta`` class so that it points to your new model:
+
+    .. code-block:: python
+
+        from contact_us_tools.models import AbstractBaseMessageExt
+        from contact_us_tools.forms import BaseContactUsForm
+
+        class BaseMessage(AbstractBaseMessageExt):
+            pass
+
+        class ContactUsForm(BaseContactUsForm):
+            class Meta(BaseContactUsForm.Meta):
+                model = BaseMessage
+
+#. Extend :class:`BaseContactUsView` and override its ``form_class`` attribute  so that it points to your new form:
+
+    .. code-block:: python
+
+        from contact_us_tools.models import AbstractBaseMessageExt
+        from contact_us_tools.forms import BaseContactUsForm
+        from contact_us_tools.views import BaseContactUsView
+
+        class BaseMessage(AbstractBaseMessageExt):
+            pass
+
+        class ContactUsForm(BaseContactUsForm):
+            class Meta(BaseContactUsForm.Meta):
+                model = BaseMessage
+
+        class ContactUsView(BaseContactUsView):
+            form_class = ContactUsForm
+
+
+

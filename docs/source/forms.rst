@@ -1,5 +1,5 @@
-The ``BaseContactUstForm`` form
-===============================
+Forms
+=====
 .. module:: contact_us_tools.forms
 
 About the form

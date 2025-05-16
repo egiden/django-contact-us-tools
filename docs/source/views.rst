@@ -1,5 +1,5 @@
-The ``BaseContactUsView`` view
-==============================
+Views
+=====
 
 .. module:: contact_us_tools.views
 
