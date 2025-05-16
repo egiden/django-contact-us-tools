@@ -3,39 +3,39 @@ Models
 
 .. module:: contact_us_tools.models
 
-The ``BaseMessage`` model
+The ``AbstractBaseMessage`` model
 -------------------------
 
-.. class:: BaseMessage
+.. class:: AbstractBaseMessage
 
-    :class:`BaseMessage` subclasses the ``contact_us_tools.models.AbstractBaseMessage`` `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ with the only differnce being that it is not an abstract model.
+    An `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_.
 
-``BaseMessage`` fields
-^^^^^^^^^^^^^^^^^^^^^^
+``AbstractBaseMessage`` fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:class:`BaseMessage` objects have the following fields.
+:class:`AbstractBaseMessage` objects have the following fields.
 
-.. attribute:: BaseMessage._type
+.. attribute:: AbstractBaseMessage._type
     :type: CharField
 
     The type of message. It could be either feedback, an enquiry or other/miscilleneous.
 
-.. attribute:: BaseMessage.name
+.. attribute:: AbstractBaseMessage.name
     :type: CharField
 
     Name of the sender.
 
-.. attribute:: BaseMessage.email
+.. attribute:: AbstractBaseMessage.email
     :type: EmailField
 
     Email of the sender
 
-.. attribute:: BaseMessage.message
+.. attribute:: AbstractBaseMessage.message
     :type: TextField
 
     The sender's message.
 
-.. attribute:: BaseMessage.date_created
+.. attribute:: AbstractBaseMessage.date_created
     :type: DateTimeField
     :value: timezone.now
 
@@ -43,18 +43,18 @@ The ``BaseMessage`` model
 
 .. _base_message_attr:
 
-``BaseMessage`` attributes
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+``AbstractBaseMessage`` attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~BaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~BaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be overwritten directly, or the inputs into :py:meth:`BaseMessage.send_email` can be overwritten. It is recommended that they be changed directly.
+Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~AbstractBaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~AbstractBaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~AbstractBaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be overwritten directly, or the inputs into :py:meth:`AbstractBaseMessage.send_email` can be overwritten. It is recommended that they be changed directly.
 
 .. attention::
 
-    With the exception of :py:attr:`~BaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`BaseMessage.send_email` method. If any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`~BaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~BaseMessage` attribute. Consider, for example, the following case.
+    With the exception of :py:attr:`~AbstractBaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`AbstractBaseMessage.send_email` method. If any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`~AbstractBaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~AbstractBaseMessage` attribute. Consider, for example, the following case.
 
     .. code-block:: python
         
-        class Message(BaseMessage):
+        class Message(AbstractBaseMessage):
             CLOSING = "Yours sincerely"
             COPYRIGHT_YEAR = 2025
 
@@ -63,15 +63,15 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
 
         Message.send_email(closing="Thank you")
 
-    The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input passed into the :py:meth:`BaseMessage.send_email` method takes precendence over the value of the corressponding :py:attr:`~BaseMessage.CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
+    The email would feature a closing line that says "Thank you" rather than "Yours sincerely" because the input passed into the :py:meth:`AbstractBaseMessage.send_email` method takes precendence over the value of the corressponding :py:attr:`~AbstractBaseMessage.CLOSING` attribute. **Note:** In practice, the above code would not work as a view would have to be set up first as seen in the :doc:`usage <usage>` section. It is purely for explanatory purposes.
 
-.. attribute:: BaseMessage.TICKET_NUM_LEN
+.. attribute:: AbstractBaseMessage.TICKET_NUM_LEN
     :type: int
     :value: 4
 
     The length of the ticket number assigned to the message.
     
-.. attribute:: BaseMessage.TEXT_FILE
+.. attribute:: AbstractBaseMessage.TEXT_FILE
     :type: str
     :value: "contact_us_tools/email.txt"
 
@@ -79,7 +79,7 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
     
     The path of the text version of the email template.
 
-.. attribute:: BaseMessage.HTML_FILE
+.. attribute:: AbstractBaseMessage.HTML_FILE
     :type: str
     :value: "contact_us_tools/email.html"
     
@@ -87,97 +87,97 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
     
     The path of the html version of the email template.
 
-.. attribute:: BaseMessage.BUSINESS_NAME
+.. attribute:: AbstractBaseMessage.BUSINESS_NAME
     :type: str or None
     :value: None
     
     The business or website name to be displayed in the email.
 
-.. attribute:: BaseMessage.COPYRIGHT_YEAR
+.. attribute:: AbstractBaseMessage.COPYRIGHT_YEAR
     :type: str or None
     :value: None
     
     The year displayed in the email's copyright notice.
 
-.. attribute:: BaseMessage.SUBJECT
+.. attribute:: AbstractBaseMessage.SUBJECT
     :type: str or None
     :value: None
     
     The email's subject line.
 
-.. attribute:: BaseMessage.SALUTATION
+.. attribute:: AbstractBaseMessage.SALUTATION
     :type: str or None
     :value: None
     
     The email's salutation.
 
-.. attribute:: BaseMessage.MAIN_CONTENT
+.. attribute:: AbstractBaseMessage.MAIN_CONTENT
     :type: str or None
     :value: None
     
     The email's main content or body. i.e., the content between the salutation and closing.
 
-.. attribute:: BaseMessage.MAIN_CONTENT_FBK
+.. attribute:: AbstractBaseMessage.MAIN_CONTENT_FBK
     :type: str
     :value: "Thank you very much for your feedback. It is much appreciated."
     
     The email's main content or body for the case when the type of message submitted is feedback.
 
-.. attribute:: BaseMessage.CLOSING
+.. attribute:: AbstractBaseMessage.CLOSING
     :type: str or None
     :value: None
     
     The email's closing line (without the comma).
 
-.. attribute:: BaseMessage.SIGNATURE
+.. attribute:: AbstractBaseMessage.SIGNATURE
     :type: str or None
     :value: None
     
     The email's signature.
 
-.. attribute:: BaseMessage.REVIEW_LINK
+.. attribute:: AbstractBaseMessage.REVIEW_LINK
     :type: str or None
     :value: None
 
     Link where user can submit a review.
 
-.. attribute:: BaseMessage.DISP_PRIVACY_POLICY_NOTICE
+.. attribute:: AbstractBaseMessage.DISP_PRIVACY_POLICY_NOTICE
     :type: bool
     :value: True
     
     Indicates if a privacy policy notice should be displayed in the email.
 
-.. attribute:: BaseMessage.DISP_COPYRIGHT_NOTICE
+.. attribute:: AbstractBaseMessage.DISP_COPYRIGHT_NOTICE
     :type: bool
     :value: True
     
     Indicates if a copyright notice should be displayed in the email.
 
-.. attribute:: BaseMessage.DISP_REVIEW_LINK
+.. attribute:: AbstractBaseMessage.DISP_REVIEW_LINK
     :type: bool
     :value: False
     
-    Indicates if :py:attr:`~BaseMessage.REVIEW_LINK` should be displayed in the email.
+    Indicates if :py:attr:`~AbstractBaseMessage.REVIEW_LINK` should be displayed in the email.
 
 .. tip::
 
-    If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`BaseMessage` as seen in the :doc:`usage <usage>` section.
+    If you do not require any extra data fields and only wish to override attributes or methods, then it is highly recommended that you create a `proxy <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ for :py:class:`AbstractBaseMessage` as seen in the :doc:`usage <usage>` section.
 
-``BaseMessage`` methods
-^^^^^^^^^^^^^^^^^^^^^^^
+``AbstractBaseMessage`` methods
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:py:class:`BaseMessage` has one main method of concern.
+:py:class:`AbstractBaseMessage` has one main method of concern.
 
-.. py:function:: BaseMessage.send_email(text_file=None,html_file=None,extra_context=None,from_email=None,disp_cpr_notice=None,disp_pp_notice=None,disp_review_link=None,copyright_year=None,business_name=None,review_link=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
+.. py:function:: AbstractBaseMessage.send_email(text_file=None,html_file=None,extra_context=None,from_email=None,disp_cpr_notice=None,disp_pp_notice=None,disp_review_link=None,copyright_year=None,business_name=None,review_link=None,subject=None,salutation=None,main_content=None,main_content_fbk=None,closing=None,signature=None,)
 
     Sends automatic-reply email to user supplied email.
     
-    With the exception of **extra_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the :py:class:`BaseMessage` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
+    With the exception of **extra_context**, each input argument corresponds to an :ref:`attribute<base_message_attr>` of the :py:class:`AbstractBaseMessage` class. These particular arguments, however, take precedence over those attributes and will therefore be used if given a value either than the default of :py:obj:`None`.
 
-    :param text_file: Directory of the text version of the email template. If :py:obj:`None`, use :py:attr:`~BaseMessage.TEXT_FILE`. 
+    :param text_file: Directory of the text version of the email template. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.TEXT_FILE`. 
     :type text_file: str or None
 
-    :param html_file: Directory of the html version of the email template. If :py:obj:`None`, use :py:attr:`~BaseMessage.HTML_FILE`.
+    :param html_file: Directory of the html version of the email template. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.HTML_FILE`.
     :type html_file: str or None
 
     :param extra_context: Items to add to the context to be used when rendering the email template.
@@ -186,50 +186,50 @@ Asside from the :py:attr:`~BaseMessage.BUSINESS_NAME` and :py:attr:`~BaseMessage
     :param form_email: Sender's email address. If :py:obj:`None`, use :setting:`EMAIL_HOST_USER`.
     :type from_email: str or None
 
-    :param disp_cpr_notice: Indicates if copyright notice should be displayed in email. If :py:obj:`None`, use :py:attr:`~BaseMessage.DISP_COPYRIGHT_NOTICE`.
+    :param disp_cpr_notice: Indicates if copyright notice should be displayed in email. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.DISP_COPYRIGHT_NOTICE`.
     :type disp_cpr_notice: bool or None
 
-    :param disp_pp_notice: Indicates if privacy policy notice should be displayed in email. If :py:obj:`None`, use :py:attr:`~BaseMessage.DISP_PRIVACY_POLICY_NOTICE`.
+    :param disp_pp_notice: Indicates if privacy policy notice should be displayed in email. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.DISP_PRIVACY_POLICY_NOTICE`.
     :type disp_pp_notice: bool or None
 
-    :param disp_review_link: Indicates if **review_link** should be displayed in email. If :py:obj:`None`, use :py:attr:`~BaseMessage.DISP_REVIEW_LINK`.
+    :param disp_review_link: Indicates if **review_link** should be displayed in email. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.DISP_REVIEW_LINK`.
     :type disp_review_link: bool or None
 
-    :param copyright_year: Year to be displayed in email's copyright notice. If :py:obj:`None`, use :py:attr:`~BaseMessage.COPYRIGHT_YEAR`.
+    :param copyright_year: Year to be displayed in email's copyright notice. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.COPYRIGHT_YEAR`.
     :type copyright_year: int or None
 
-    :param business_name: Name of business or website to display in email. If :py:obj:`None`, use :py:attr:`~BaseMessage.BUSINESS_NAME`.
+    :param business_name: Name of business or website to display in email. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.BUSINESS_NAME`.
     :type business_name: str or None
 
-    :param review_link: Link where user can submit a review. If :py:obj:`None`, use :py:attr:`~BaseMessage.REVIEW_LINK`.
+    :param review_link: Link where user can submit a review. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.REVIEW_LINK`.
     :type review_link: str or None
 
-    :param subject: Email's subject line. If :py:obj:`None`, use :py:attr:`~BaseMessage.SUBJECT`.
+    :param subject: Email's subject line. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.SUBJECT`.
     :type subject: str or None
 
-    :param salutation: Email's salutation or greeting. If :py:obj:`None` and :py:attr:`~BaseMessage.SALUTATION` is :py:obj:`None`, use "Dear :py:attr:`~BaseMessage.name`". If :py:attr:`~BaseMessage.SALUTATION` is not :py:obj:`None`, use :py:attr:`~BaseMessage.SALUTATION`.
+    :param salutation: Email's salutation or greeting. If :py:obj:`None` and :py:attr:`~AbstractBaseMessage.SALUTATION` is :py:obj:`None`, use "Dear :py:attr:`~AbstractBaseMessage.name`". If :py:attr:`~AbstractBaseMessage.SALUTATION` is not :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.SALUTATION`.
     :type salutation: str or None
 
-    :param main_content: Email's main content or body. i.e., the content between the **salutation** and **closing**. If :py:obj:`None`, use :py:attr:`~BaseMessage.MAIN_CONTENT`.
+    :param main_content: Email's main content or body. i.e., the content between the **salutation** and **closing**. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.MAIN_CONTENT`.
     :type main_content: str or None
 
-    :param main_content_fbk: Like **main_content**, but only if the message type is FEEDBACK. If :py:obj:`None`, use :py:attr:`~BaseMessage.MAIN_CONTENT_FBK`.
+    :param main_content_fbk: Like **main_content**, but only if the message type is FEEDBACK. If :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.MAIN_CONTENT_FBK`.
     :type main_content_fbk: str or None
 
-    :param closing: Email's closing line (without comma). If :py:obj:`None` and :py:attr:`~BaseMessage.CLOSING` is :py:obj:`None`, use "Kind regards". If :py:attr:`~BaseMessage.CLOSING` is not :py:obj:`None`, use :py:attr:`~BaseMessage.CLOSING`
+    :param closing: Email's closing line (without comma). If :py:obj:`None` and :py:attr:`~AbstractBaseMessage.CLOSING` is :py:obj:`None`, use "Kind regards". If :py:attr:`~AbstractBaseMessage.CLOSING` is not :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.CLOSING`
     :type closing: str or None
 
-    :param signature: Email's signature. If :py:obj:`None` and :py:attr:`~BaseMessage.SIGNATURE` is :py:obj:`None`, use **business_name**. If :py:attr:`~BaseMessage.SIGNATURE` is not :py:obj:`None`, use :py:attr:`~BaseMessage.SIGNATURE`.
+    :param signature: Email's signature. If :py:obj:`None` and :py:attr:`~AbstractBaseMessage.SIGNATURE` is :py:obj:`None`, use **business_name**. If :py:attr:`~AbstractBaseMessage.SIGNATURE` is not :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.SIGNATURE`.
     :type signature: str or None
 
 Custom ticket numbers
 ^^^^^^^^^^^^^^^^^^^^^
 
-If you desire a custom ticket numbering system, then simply override the ``BaseMessage.ticket_number`` method, making sure to include the ``@property`` decorator.
+If you desire a custom ticket numbering system, then simply override the ``AbstractBaseMessage.ticket_number`` method, making sure to include the ``@property`` decorator.
 
 .. code-block:: python
 
-    class Message(BaseMessage):
+    class Message(AbstractBaseMessage):
         class Meta:
             proxy = True
         
@@ -243,12 +243,12 @@ More functionality with the ``AbstractBaseMessageExt`` model
 
 .. class:: AbstractBaseMessageExt
 
-    :class:`AbstractBaseMessageExt` is an extended version of ``contact_us_tools.models.AbstractBaseMessage`` which provides extra fields and methods which allow the messages to be marked as either closed (the matter is resolved) or open. It is itself an `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ and so will need to be extended if its added functionality desired. See :ref:`extending AbstractBaseMessageExt<extending>`
+    An extended version of :class:`AbstractBaseMessage` which provides extra fields and methods which allow the messages to be marked as either closed (the matter is resolved) or open. It is itself an `abstract base class <https://docs.djangoproject.com/en/5.2/topics/db/models/#abstract-base-classes>`_ and so will need to be extended if its added functionality desired. See :ref:`extending AbstractBaseMessageExt<extending>`.
 
 The extra fields
 ^^^^^^^^^^^^^^^^
 
-:class:`AbstractBaseMessageExt` objects have all the fields of :class:`BaseMessage` with three more.
+:class:`AbstractBaseMessageExt` objects have all the fields of :class:`AbstractBaseMessage` with three more.
 
 .. attribute:: AbstractBaseMessageExt.is_closed
     :type: BooleanField
@@ -256,12 +256,12 @@ The extra fields
 
     Indicates if the matter of the message is closed/resolved or open/unresolved.
 
-.. attribute:: BaseMessage.date_closed
+.. attribute:: AbstractBaseMessage.date_closed
     :type: DateTimeField
 
     The date the matter was closed.
 
-.. attribute:: BaseMessage.closed_by
+.. attribute:: AbstractBaseMessage.closed_by
     :type: ForeignKey
 
     The user that closed the matter
@@ -269,7 +269,7 @@ The extra fields
 The extra methods
 ^^^^^^^^^^^^^^^^^
 
-:class:`AbstractBaseMessageExt` objects have all the methods of :class:`BaseMessage` with two more.
+:class:`AbstractBaseMessageExt` objects have all the methods of :class:`AbstractBaseMessage` with two more.
 
 .. function:: AbstractBaseMessageExt.mark_closed(closed_by)
 
@@ -293,7 +293,7 @@ Extending ``AbstractBaseMessageExt``
 
         from contact_us_tools.models import AbstractBaseMessageExt
 
-        class BaseMessage(AbstractBaseMessageExt):
+        class AbstractBaseMessage(AbstractBaseMessageExt):
             pass
 
     .. note::
@@ -307,12 +307,12 @@ Extending ``AbstractBaseMessageExt``
         from contact_us_tools.models import AbstractBaseMessageExt
         from contact_us_tools.forms import BaseContactUsForm
 
-        class BaseMessage(AbstractBaseMessageExt):
+        class AbstractBaseMessage(AbstractBaseMessageExt):
             pass
 
         class ContactUsForm(BaseContactUsForm):
             class Meta(BaseContactUsForm.Meta):
-                model = BaseMessage
+                model = AbstractBaseMessage
 
 #. Extend :class:`BaseContactUsView` and override its ``form_class`` attribute  so that it points to your new form:
 
@@ -322,12 +322,12 @@ Extending ``AbstractBaseMessageExt``
         from contact_us_tools.forms import BaseContactUsForm
         from contact_us_tools.views import BaseContactUsView
 
-        class BaseMessage(AbstractBaseMessageExt):
+        class AbstractBaseMessage(AbstractBaseMessageExt):
             pass
 
         class ContactUsForm(BaseContactUsForm):
             class Meta(BaseContactUsForm.Meta):
-                model = BaseMessage
+                model = AbstractBaseMessage
 
         class ContactUsView(BaseContactUsView):
             form_class = ContactUsForm

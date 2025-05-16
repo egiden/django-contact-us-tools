@@ -69,18 +69,15 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Create a `proxy model <https://docs.djangoproject.com/en/5.2/topics/db/models/#proxy-models>`_ in your app's ``models.py`` for the :py:class:`~BaseMessage` model and override the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes. ``BUSINESS_NAME`` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and ``COPYRIGHT_YEAR`` is the year to be displayed with the copyright notice in the email.
+#. Extend either the :py:class:`~AbstractBaseMessage` or :py:class:`~AbstractBaseMessageExt` models in your app's ``models.py``  and override the ``BUSINESS_NAME`` and ``COPYRIGHT_YEAR`` attributes. ``BUSINESS_NAME`` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and ``COPYRIGHT_YEAR`` is the year to be displayed with the copyright notice in the email.
     
    .. code-block:: python
 
-      from contact_us_tools.models import BaseMessage
+      from contact_us_tools.models import AbstractBaseMessage
 
-      class Message(BaseMessage):
+      class Message(AbstractBaseMessage):
          BUSINESS_NAME = "My Business Name"
          COPYRIGHT_YEAR = 2025
-
-         class Meta:
-            proxy = True
    
    .. warning::
 
@@ -88,9 +85,9 @@ Example Setup
    
    .. note::
 
-      If you do not wish to display a copyright notice, and for further customisation options, see the section :doc:`BaseMessage Model <models>`.
+      If you do not wish to display a copyright notice, and for further customisation options, see the :doc:`models <models>` section.
 
-#. Register the proxy model to the admin site in your app's ``admin.py``:
+#. Register the new model to the admin site in your app's ``admin.py``:
 
     .. code-block:: python
     
@@ -98,6 +95,21 @@ Example Setup
             from .models import Message
 
             admin.site.register(Message)
+
+#. Create a new form or extend :py:class:`~BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class in your app's ``forms.py`` or where desired:
+
+   .. code-block:: python
+
+      from contact_us_tools.forms import BaseContactUsForm
+      from .models import Message
+
+      class ContactUsForm(BaseContactUsForm):
+         class Meta(BaseContactUsForm.Meta):
+            model = Message
+
+   .. note::
+   
+      For an in-depth look at ``BaseContactUsForm``, see the :doc:`forms` section.
 
 #. Create a template for the 'contact us' form and add it to your app's `templates directory <https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_. Here's a minimal example:
 
@@ -114,16 +126,17 @@ Example Setup
          <button type="submit">Submit</button>
       </form>
 
-#. Use the ``BaseContactUsView`` view and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the template's name and a 'success url':
+#. Use the ``BaseContactUsView`` view and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the form, template's name and a 'success url':
 
    .. code-block:: python
 
       from django.urls import path
       from contact_us_tools.view import BaseContactUsView
+      from .forms import ContactUsForm
 
       urlpatterns = [
          # ...,
-         path('contact-us', BaseContactUsView.as_view(template_name='template_name', success_url='success_url')),
+         path('contact-us', BaseContactUsView.as_view(form_class=ContactUsForm, template_name='template_name', success_url='success_url')),
       ]
 
    Alternatively, supply the name of the 'success url' using the ``django.urls.reverse`` function:
@@ -135,12 +148,12 @@ Example Setup
 
       urlpatterns = [
          # ...,
-         path('contact-us', BaseContactUsView.as_view(template_name='template_name', success_url=reverse('success_url_name'))),
+         path('contact-us', BaseContactUsView.as_view(form_class=ContactUsForm, template_name='template_name', success_url=reverse('success_url_name'))),
       ]
          
    .. note::
       
-      ``BaseContactUsView`` utilises the ``BaseContactUsForm`` form, the details of which are available in the section :doc:`forms`.
+      For an in-depth look at ``BaseContactUsView``, see the :doc:`views` section.
 
 #. Create the models:
 

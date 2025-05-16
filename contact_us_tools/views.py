@@ -1,10 +1,8 @@
-from .forms import BaseContactUsForm
 from .models import send_email_arg_names
 from django.contrib import messages
 from django.views.generic import FormView
     
 class BaseContactUsView(FormView):
-    form_class = BaseContactUsForm
     send_email_kwargs = {}
     success_message = 'Your form has been successfully submitted. We will be in contact with you as soon as we can.'
     disp_success_msg = True

@@ -1,5 +1,4 @@
 from django import forms
-from .models import BaseMessage
 
 class BaseContactUsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -9,5 +8,4 @@ class BaseContactUsForm(forms.ModelForm):
         self.fields['message'].widget.attrs["placeholder"] = "enter your message"
 
     class Meta:
-        model = BaseMessage
         fields = ['_type', 'name', 'email', 'message']

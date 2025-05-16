@@ -306,7 +306,10 @@ class AbstractBaseMessage(models.Model):
         abstract = True
 
 class AbstractBaseMessageExt(AbstractBaseMessage):
-    """An extended version of AbstractBaseMessage with added fields and models."""
+    """
+    An extended version of AbstractBaseMessage with added fields and models to allow for funtionality to mark
+    the matter of the message as being closed/resolved or open/unresolved.
+    """
     
     is_closed = models.BooleanField(default=False)
     date_closed = models.DateTimeField(blank=True, null=True)
@@ -326,6 +329,3 @@ class AbstractBaseMessageExt(AbstractBaseMessage):
 
     class Meta:
         abstract = True
-
-class BaseMessage(AbstractBaseMessage):
-    pass
