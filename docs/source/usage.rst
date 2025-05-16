@@ -71,7 +71,7 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Extend either the :py:class:`~contact_us_tools.models.AbstractBaseMessage` or :py:class:`~contact_us_tools.models.AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` attributes. :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email. :py:class:`~contact_us_tools.models.AbstractBaseMessage` will be used as an example, but the same process holds for :py:class:`~contact_us_tools.models.AbstractBaseMessageExt`:
+#. Extend either the :py:class:`~contact_us_tools.models.AbstractBaseMessage` or :py:class:`~contact_us_tools.models.AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` attributes. :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email. :py:class:`~contact_us_tools.models.AbstractBaseMessage` will be used as an example, but the same process holds true for :py:class:`~contact_us_tools.models.AbstractBaseMessageExt`:
     
    .. code-block:: python
 
@@ -98,7 +98,7 @@ Example Setup
 
             admin.site.register(Message)
 
-#. Create a new form or extend :py:class:`~contact_us_tools.forms.BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class. Add the form to your app's ``forms.py`` or where desired:
+#. Create a new form or extend :class:`~contact_us_tools.forms.BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class. Add the form to your app's ``forms.py`` or where desired:
 
    .. code-block:: python
 
