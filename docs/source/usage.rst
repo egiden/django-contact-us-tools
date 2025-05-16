@@ -71,7 +71,7 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Extend either the :py:class:`~AbstractBaseMessage` or :py:class:`~AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :py:attr:`~~AbstractBaseMessage.BUSINESS_NAME` and ``COPYRIGHT_YEAR`` attributes. ``BUSINESS_NAME`` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and ``COPYRIGHT_YEAR`` is the year to be displayed with the copyright notice in the email. :py:class:`~AbstractBaseMessage` will be used as an example, but the same process holds for :py:class:`~AbstractBaseMessageExt`:
+#. Extend either the :py:class:`~AbstractBaseMessage` or :py:class:`~AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :py:attr:`models.AbstractBaseMessage.BUSINESS_NAME` and ``COPYRIGHT_YEAR`` attributes. :attr:`AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and ``COPYRIGHT_YEAR`` is the year to be displayed with the copyright notice in the email. :py:class:`~AbstractBaseMessage` will be used as an example, but the same process holds for :py:class:`~AbstractBaseMessageExt`:
     
    .. code-block:: python
 
