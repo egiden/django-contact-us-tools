@@ -1,13 +1,12 @@
 Forms
 =====
-.. module:: contact_us_tools.forms
 
 About the form
 --------------
 
-.. class:: BaseContactUstForm
+.. class:: contact_us_tools.forms.BaseContactUstForm
 
-    :class:`BaseContactUsForm` does nothing more than adding ``placeholder`` values to the ``name``, ``email``, and ``message`` fields as detailed below.
+    :class:`~contact_us_tools.forms.BaseContactUsForm` does nothing more than adding ``placeholder`` values to the ``name``, ``email``, and ``message`` fields as detailed below.
 
     * **name**: "enter your name"
 
