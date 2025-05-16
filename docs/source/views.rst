@@ -14,7 +14,7 @@ Attributes
 
    Keyword arguments to pass into the :meth:`~contact_us_tools.models.AbstractBaseMessage.send_email` method when it is called. See :ref:`sending_email`.
 
-   How it works is, if one were to extend :py:class:`BaseContactUsView` with a non-empty :py:attr:`BaseContactUsView.send_email_kwargs` like so.
+   How it works is, if one were to extend :py:class:`BaseContactUsView` with a non-empty :attr:`~contact_us_tools.views.BaseContactUsView.send_email_kwargs` like so.
 
    .. code-block:: python
 
