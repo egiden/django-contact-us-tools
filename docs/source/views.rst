@@ -1,11 +1,9 @@
 Views
 =====
 
-.. module:: contact_us_tools.views
+.. class:: contact_us_tools.views.BaseContactUsView
 
-.. class:: BaseContactUsView
-
-   A basic view which facilitates the rendering of :py:class:`BaseContactUsForm` and the sending of the automatic-reply email.
+   A basic view which facilitates the rendering of :py:class:`~contact_us_tools.views.BaseContactUsForm` and the sending of the automatic-reply email.
 
 Attributes
 ----------
@@ -14,7 +12,7 @@ Attributes
    :type: dict
    :value: {}
 
-   Keyword arguments to pass into the :attr:`AbstractBaseMessage.send_email` method when it is called. See :ref:`sending_email`.
+   Keyword arguments to pass into the :meth:`~contact_us_tools.models.AbstractBaseMessage.send_email` method when it is called. See :ref:`sending_email`.
 
    How it works is, if one were to extend :py:class:`BaseContactUsView` with a non-empty :py:attr:`BaseContactUsView.send_email_kwargs` like so.
 

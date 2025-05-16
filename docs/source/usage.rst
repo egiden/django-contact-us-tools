@@ -98,7 +98,7 @@ Example Setup
 
             admin.site.register(Message)
 
-#. Create a new form or extend :class:`~contact_us_tools.forms.BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class. Add the form to your app's ``forms.py`` or where desired:
+#. Create a new form or extend :py:class:`~contact_us_tools.forms.BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class. Add the form to your app's ``forms.py`` or where desired:
 
    .. code-block:: python
 
