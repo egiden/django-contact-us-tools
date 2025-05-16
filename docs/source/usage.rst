@@ -71,7 +71,7 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Extend either the :py:class:`~contact_us_tools.models.AbstractBaseMessage` or :py:class:`~AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` attributes. :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email. :py:class:`~contact_us_tools.models.AbstractBaseMessage` will be used as an example, but the same process holds for :py:class:`~AbstractBaseMessageExt`:
+#. Extend either the :py:class:`~contact_us_tools.models.AbstractBaseMessage` or :py:class:`~contact_us_tools.models.AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` attributes. :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email. :py:class:`~contact_us_tools.models.AbstractBaseMessage` will be used as an example, but the same process holds for :py:class:`~contact_us_tools.models.AbstractBaseMessageExt`:
     
    .. code-block:: python
 
@@ -98,7 +98,7 @@ Example Setup
 
             admin.site.register(Message)
 
-#. Create a new form or extend :py:class:`~BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class. Add the form to your app's ``forms.py`` or where desired:
+#. Create a new form or extend :py:class:`~contact_us_tools.forms.BaseContactUsForm` and add the ``model`` attribute to the ``Meta`` class. Add the form to your app's ``forms.py`` or where desired:
 
    .. code-block:: python
 
@@ -111,7 +111,7 @@ Example Setup
 
    .. note::
    
-      For an in-depth look at ``BaseContactUsForm``, see the :doc:`forms` section.
+      For an in-depth look at :py:class:`~contact_us_tools.forms.BaseContactUsForm`, see the :doc:`forms` section.
 
 #. Create a template for the 'contact us' form and add it to your app's `templates directory <https://docs.djangoproject.com/en/5.2/intro/tutorial03/#writing-your-first-django-app-part-3>`_. Here's a minimal example:
 
@@ -128,7 +128,7 @@ Example Setup
          <button type="submit">Submit</button>
       </form>
 
-#. Use the ``BaseContactUsView`` view and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the form, template's name and a 'success url':
+#. Use the :py:class:`~contact_us_tools.forms.BaseContactUsView` view and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the form, template's name and a 'success url':
 
    .. code-block:: python
 
@@ -155,7 +155,7 @@ Example Setup
          
    .. note::
       
-      For an in-depth look at ``BaseContactUsView``, see the :doc:`views` section.
+      For an in-depth look at :py:class:`~contact_us_tools.forms.BaseContactUsView`, see the :doc:`views` section.
 
 #. Create the models:
 
