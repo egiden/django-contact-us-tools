@@ -46,11 +46,11 @@ The ``AbstractBaseMessage`` model
 ``AbstractBaseMessage`` attributes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~AbstractBaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~AbstractBaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~AbstractBaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be overwritten directly, or the inputs into :py:meth:`~AbstractBaseMessage.send_email` can be overwritten. It is recommended that they be changed directly.
+Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~AbstractBaseMessage.COPYRIGHT_YEAR` attributes discussed in section :doc:`usage`, :py:class:`~AbstractBaseMessage` offers more attributes to permit further customisation of the automatic-reply email. With the exception of :py:attr:`~AbstractBaseMessage.BUSINESS_NAME`, a lot of these attributes can be left as is. If customisation is desired however, they can either be overwritten directly, or the inputs into the :py:meth:`AbstractBaseMessage.send_email` method can be overwritten. It is recommended that they be changed directly.
 
 .. attention::
 
-    With the exception of :py:attr:`~AbstractBaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for the :py:meth:`~AbstractBaseMessage.send_email` method. If any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:attr:`~AbstractBaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~AbstractBaseMessage` attribute. Consider, for example, the following case.
+    With the exception of :py:attr:`~AbstractBaseMessage.TICKET_NUM_LEN`,  all the following attributes have corressponding input arguments for :py:meth:`~AbstractBaseMessage.send_email`. If any of said arguments are given a value either than their default of :py:obj:`None` when calling :py:meth:`~AbstractBaseMessage.send_email`, they will take precedence over their corressponding :py:class:`~AbstractBaseMessage` attribute. Consider, for example, the following case.
 
     .. code-block:: python
         
@@ -284,53 +284,26 @@ The extra methods
 
 .. _extending:
 
-Extending ``AbstractBaseMessageExt``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Extending ``AbstractBaseMessage`` and ``AbstractBaseMessageExt``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Extend :class:`AbstractBaseMessageExt`:
+To extent :class:`AbstractBaseMessage` or :class:`AbstractBaseMessageExt`, see :ref:`example_setup` and follow the steps. Concerning forms, views and models alone, your code should be similar to the following if put in one file:
 
-    .. code-block:: python
+.. code-block:: python
 
-        from contact_us_tools.models import AbstractBaseMessageExt
+    from contact_us_tools.models import AbstractBaseMessageExt
+    from contact_us_tools.forms import BaseContactUsForm
+    from contact_us_tools.views import BaseContactUsView
 
-        class AbstractBaseMessage(AbstractBaseMessageExt):
-            pass
+    class AbstractBaseMessage(AbstractBaseMessageExt):
+        pass
 
-    .. note::
+    class ContactUsForm(BaseContactUsForm):
+        class Meta(BaseContactUsForm.Meta):
+            model = AbstractBaseMessage
 
-        It is crucial that :class:`AbstractBaseMessageExt` is extended in order to disable the ``abstract`` attribute of the parent class's ``Meta`` class.
-
-#. Extend :class:`BaseContactUsForm` and override its ``Meta`` class so that it points to your new model:
-
-    .. code-block:: python
-
-        from contact_us_tools.models import AbstractBaseMessageExt
-        from contact_us_tools.forms import BaseContactUsForm
-
-        class AbstractBaseMessage(AbstractBaseMessageExt):
-            pass
-
-        class ContactUsForm(BaseContactUsForm):
-            class Meta(BaseContactUsForm.Meta):
-                model = AbstractBaseMessage
-
-#. Extend :class:`BaseContactUsView` and override its ``form_class`` attribute  so that it points to your new form:
-
-    .. code-block:: python
-
-        from contact_us_tools.models import AbstractBaseMessageExt
-        from contact_us_tools.forms import BaseContactUsForm
-        from contact_us_tools.views import BaseContactUsView
-
-        class AbstractBaseMessage(AbstractBaseMessageExt):
-            pass
-
-        class ContactUsForm(BaseContactUsForm):
-            class Meta(BaseContactUsForm.Meta):
-                model = AbstractBaseMessage
-
-        class ContactUsView(BaseContactUsView):
-            form_class = ContactUsForm
+    class ContactUsView(BaseContactUsView):
+        form_class = ContactUsForm
 
 
 

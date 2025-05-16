@@ -38,6 +38,8 @@ Then add ``'contact_us_tools'`` to your :setting:`INSTALLED_APPS` setting:
       'contact_us_tools',
    ]
 
+.. _example_setup:
+
 Example Setup
 -------------
 
