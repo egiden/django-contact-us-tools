@@ -50,7 +50,11 @@ The ``AbstractBaseMessage`` model
 
     The ticket number to be displayed in the automatic-reply email.
     
-    By default, each ticket number is the model's primary key expressed as a number whose length is specified by :attr:`~AbstractBaseMessage.TICKET_NUM_LEN`. For example, if the primary key is 3 and :attr:`~AbstractBaseMessage.TICKET_NUM_LEN` is left as its default of 4 then :code:`ticket_number = "0003"`.
+    By default, each ticket number is the model's primary key expressed as a number whose length is specified by :attr:`~AbstractBaseMessage.TICKET_NUM_LEN`. For example, if the primary key is 3 and :attr:`~AbstractBaseMessage.TICKET_NUM_LEN` is left as its default value of 4, then,
+    
+        :code:`ticket_number = "0003"`.
+
+    If custom ticket_number numbers are desired, see :ref:`custom_ticket_numbers`.
 
 .. _base_message_attr:
 
@@ -233,16 +237,16 @@ Asside from the :py:attr:`~AbstractBaseMessage.BUSINESS_NAME` and :py:attr:`~Abs
     :param signature: Email's signature. If :py:obj:`None` and :py:attr:`~AbstractBaseMessage.SIGNATURE` is :py:obj:`None`, use **business_name**. If :py:attr:`~AbstractBaseMessage.SIGNATURE` is not :py:obj:`None`, use :py:attr:`~AbstractBaseMessage.SIGNATURE`.
     :type signature: str or None
 
+.. _custom_ticket_numbers:
+
 Custom ticket numbers
 ^^^^^^^^^^^^^^^^^^^^^
 
-If you desire a custom ticket numbering system, then simply overwrite the ``AbstractBaseMessage.ticket_number`` method, making sure to include the ``@property`` decorator.
+If you desire a custom ticket numbering system, then simply overwrite the :py:obj:`AbstractBaseMessage.ticket_number` property:
 
 .. code-block:: python
 
     class Message(AbstractBaseMessage):
-        class Meta:
-            proxy = True
         
         @property
         def ticket_number(self):
