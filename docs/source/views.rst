@@ -1,7 +1,9 @@
 Views
 =====
 
-.. class:: contact_us_tools.views.BaseContactUsView
+.. module:: contact_us_tools.views
+
+.. class:: BaseContactUsView
 
    A basic view which facilitates the rendering of :py:class:`~contact_us_tools.forms.BaseContactUsForm` and the sending of the automatic-reply email.
 
@@ -12,16 +14,16 @@ Attributes
    :type: dict
    :value: {}
 
-   Keyword arguments to pass into the :meth:`AbstractBaseMessage.send_email()<contact_us_tools.models.AbstractBaseMessage.send_email>` method when it is called. See :ref:`sending_email`.
+   Keyword arguments to pass into :meth:`AbstractBaseMessage.send_email()<contact_us_tools.models.AbstractBaseMessage.send_email>` when it is called. See :ref:`sending_email`.
 
-   How it works is, if one were to extend :py:class:`~contact_us_tools.views.BaseContactUsView` with a non-empty :py:attr:`~BaseContactUsView.send_email_kwargs` like so.
+   How it works is, if one were to extend :py:class:`BaseContactUsView` with a non-empty :py:attr:`~BaseContactUsView.send_email_kwargs` attribute like so.
 
    .. code-block:: python
 
       class ContactUsView(BaseContactUsView):
          send_email_kwargs = {"closing": "Yours sincerely", "subject": "Message Received!"}
 
-   Then, when :py:class:`~contact_us_tools.views.BaseContactUsView` calls :meth:`~contact_us_tools.models.AbstractBaseMessage.send_email`, it would be equivalent to the following.
+   Then, when :py:class:`BaseContactUsView` calls :meth:`AbstractBaseMessage.send_email()<contact_us_tools.models.AbstractBaseMessage.send_email>`, it would be equivalent to the following.
 
    .. code-block:: python
 
@@ -48,14 +50,14 @@ Sending the automatic-reply email
 
 .. function:: BaseContactUsView.send_email(form)
 
-   Send automatic-reply email to user by calling :py:meth:`contact_us_tools.models.AbstractBaseMessage.send_email` with :py:attr:`~BaseContactUsView.send_email_kwargs` as input arguments.
+   Send automatic-reply email to user by calling :meth:`AbstractBaseMessage.send_email()<contact_us_tools.models.AbstractBaseMessage.send_email>` with input arguments indicated by :py:attr:`~BaseContactUsView.send_email_kwargs`.
 
    :param form: The form.
    :type form: BaseContactUsForm
 
-   :raises ValueError: If any key in :py:attr:`~BaseContactUsView.send_email_kwargs` is not a valid input into :py:meth:`contact_us_tools.models.AbstractBaseMessage.send_email`.
+   :raises ValueError: If any key in :py:attr:`~BaseContactUsView.send_email_kwargs` is not a valid input into :meth:`AbstractBaseMessage.send_email()<contact_us_tools.models.AbstractBaseMessage.send_email>`.
 
-:py:func:`BaseContactUsView.send_email` is called when the form used by :py:class:`BaseContactUsView` is validated. For further understanding, consider the following simplified depiction of the source code for :py:class:`BaseContactUsView`.
+:py:meth:`BaseContactUsView.send_email` is called when the form used by :py:class:`BaseContactUsView` is validated. For further understanding, consider the following simplified depiction of the source code for :py:class:`BaseContactUsView`.
 
 .. code-block:: python
 
