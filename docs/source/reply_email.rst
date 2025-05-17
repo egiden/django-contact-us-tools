@@ -34,8 +34,8 @@ The ``text`` version of the email is of the form:
     -------------------------------------------------
     [name], [date_created]
 
-    Your Message:
     Type: [type]
+
     [message]
     -------------------------------------------------
 
@@ -63,8 +63,8 @@ An example would then look like.
     -------------------------------------------------
     Arthur, May 5, 2025, 12:33 a.m
 
-    Your Message:
     Type: Enquiry
+    
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed metus libero. Nullam vehicula eros eu felis vulputate consequat. Vivamus sodales mauris eu consequat finibus. Etiam vel tortor vel metus suscipit luctus sed gravida sem. Duis ac vestibulum lectus. Curabitur eget finibus lacus, eget sollicitudin urna. Sed rutrum sapien vitae ex fermentum, ut tristique purus pharetra. Aliquam imperdiet condimentum dictum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam lobortis neque turpis, in dignissim nibh iaculis quis. Aliquam lacinia pulvinar leo eget egestas.
     -------------------------------------------------
 
