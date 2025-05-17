@@ -17,9 +17,9 @@ We will explore both versions, but with the following example scenario.
         DISP_REVIEW_LINK = True
         REVIEW_LINK = "www.pseudoindustries.com/review"
 
-The text version
-----------------
-The ``text`` version of the email is of the form:
+The general format
+------------------
+Each version of the email is of the form:
 
 .. code-block:: text
     :linenos:
@@ -47,7 +47,8 @@ The ``text`` version of the email is of the form:
 
     copyright [copyright_year] [business_name]
 
-An example would then look like.
+The text version
+----------------
 
 .. code-block:: text
     :linenos:
@@ -103,8 +104,8 @@ The html version
         <hr>
         <div style="font-style: italic;">
             <p style="font-weight: bold;">Arthur, May 5, 2025, 12:33 a.m</p>
-            <br>
             Type: Enquiry
+            <br>
             <br>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed metus libero. Nullam vehicula eros eu felis vulputate consequat. Vivamus sodales mauris eu consequat finibus. Etiam vel tortor vel metus suscipit luctus sed gravida sem. Duis ac vestibulum lectus. Curabitur eget finibus lacus, eget sollicitudin urna. Sed rutrum sapien vitae ex fermentum, ut tristique purus pharetra. Aliquam imperdiet condimentum dictum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam lobortis neque turpis, in dignissim nibh iaculis quis. Aliquam lacinia pulvinar leo eget egestas.
         </div>
