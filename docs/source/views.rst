@@ -21,7 +21,7 @@ Attributes
       class ContactUsView(BaseContactUsView):
          send_email_kwargs = {"closing": "Yours sincerely", "subject": "Message Received!"}
 
-   Then, when :py:class:`BaseContactUsView` calls :meth:`~contact_us_tools.models.AbstractBaseMessage.send_email`, it would be equivalent to the following.
+   Then, when :py:class:`~contact_us_tools.views.BaseContactUsView` calls :meth:`~contact_us_tools.models.AbstractBaseMessage.send_email`, it would be equivalent to the following.
 
    .. code-block:: python
 
@@ -46,14 +46,18 @@ Attributes
 Sending the automatic-reply email
 ---------------------------------
 
+:py:meth:`cars<contact_us_tools.models.AbstractBaseMessage.send_email>`
+
+:py:meth:`cars <contact_us_tools.models.AbstractBaseMessage.send_email>`
+
 .. function:: BaseContactUsView.send_email(form)
 
-   Send automatic-reply email to user by calling :py:func:`AbstractBaseMessage.send_email` with :py:attr:`BaseContactUsView.send_email_kwargs` as input arguments.
+   Send automatic-reply email to user by calling :py:meth:`contact_us_tools.models.AbstractBaseMessage.send_email` with :py:attr:`~BaseContactUsView.send_email_kwargs` as input arguments.
 
    :param form: The form.
    :type form: BaseContactUsForm
 
-   :raises ValueError: If any key in :py:attr:`BaseContactUsView.send_email_kwargs` is not a valid input into :py:func:`AbstractBaseMessage.send_email`.
+   :raises ValueError: If any key in :py:attr:`~BaseContactUsView.send_email_kwargs` is not a valid input into :py:meth:`contact_us_tools.models.AbstractBaseMessage.send_email`.
 
 :py:func:`BaseContactUsView.send_email` is called when the form used by :py:class:`BaseContactUsView` is validated. For further understanding, consider the following simplified depiction of the source code for :py:class:`BaseContactUsView`.
 
