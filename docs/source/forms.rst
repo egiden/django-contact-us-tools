@@ -5,10 +5,22 @@ Forms
 
 .. class:: BaseContactUsForm
 
-    :class:`BaseContactUsForm` does nothing more than adding ``placeholder`` values to the ``name``, ``email``, and ``message`` fields as detailed below.
+    A subclass of ``django.forms.ModelForm`` that does only two simple things.
 
-    * **name**: "enter your name"
+    #. Sets the ``Meta`` class's ``fields`` attribute:
 
-    * **email**: "enter your email address"
+        .. code-block:: python
 
-    * **message**: "enter your message"
+            fields = ['type', 'name', 'email', 'message']
+
+        .. note::
+
+            This form can be used for :class:`~contact_us_tools.models.AbstractBaseMessage` subclasses, but also :class:`~contact_us_tools.models.AbstractBaseMessage` subclasses because those are the only fields that concern the user who submitts the form.
+    
+    #. Adds ``placeholder`` values to the ``name``, ``email``, and ``message`` fields:
+
+        * **name**: "enter your name"
+
+        * **email**: "enter your email address"
+
+        * **message**: "enter your message"

@@ -8,4 +8,4 @@ class BaseContactUsForm(forms.ModelForm):
         self.fields['message'].widget.attrs["placeholder"] = "enter your message"
 
     class Meta:
-        fields = ['_type', 'name', 'email', 'message']
+        fields = ['type', 'name', 'email', 'message']
