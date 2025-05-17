@@ -4,7 +4,7 @@ Models
 .. module:: contact_us_tools.models
 
 The ``AbstractBaseMessage`` model
--------------------------
+---------------------------------
 
 .. class:: AbstractBaseMessage
 
