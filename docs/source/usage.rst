@@ -128,7 +128,7 @@ Example Setup
          <button type="submit">Submit</button>
       </form>
 
-#. Use the :py:class:`~contact_us_tools.forms.BaseContactUsView` view and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the form, template's name and a 'success url':
+#. Use the :py:class:`~contact_us_tools.views.BaseContactUsView` view and create a `URL pattern <https://docs.djangoproject.com/en/5.1/topics/http/urls/#url-dispatcher>`_ to handle the rendering of the form and add it to your project's ``urls.py``, making sure to supply the form, template's name and a 'success url':
 
    .. code-block:: python
 
@@ -155,7 +155,7 @@ Example Setup
          
    .. note::
       
-      For an in-depth look at :py:class:`~contact_us_tools.forms.BaseContactUsView`, see the :doc:`views` section.
+      For an in-depth look at :py:class:`~contact_us_tools.views.BaseContactUsView`, see the :doc:`views` section.
 
 #. Create the models:
 

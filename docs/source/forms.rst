@@ -15,7 +15,7 @@ Forms
 
         .. note::
 
-            This form can be used for subclasses of :class:`~contact_us_tools.models.AbstractBaseMessage`, but also :class:`~contact_us_tools.models.AbstractBaseMessage` because those are the only fields that concern the user who submitts the form.
+            This form can be used for subclasses of :class:`~contact_us_tools.models.AbstractBaseMessage`, but also :class:`~contact_us_tools.models.AbstractBaseMessageExt` because those are the only fields that concern the user who submitts the form.
     
     #. Adds ``placeholder`` values to the ``name``, ``email``, and ``message`` fields:
 
