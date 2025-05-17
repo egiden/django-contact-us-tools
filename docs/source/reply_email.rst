@@ -21,7 +21,7 @@ The text version
 ----------------
 The ``text`` version of the email is of the form:
 
-.. block::
+.. code-block:: text
     :linenos:
 
     [salutation]
@@ -49,8 +49,7 @@ The ``text`` version of the email is of the form:
 
 An example would then look like.
 
-.. code-block::
-
+.. code-block
 
 The html version
 ----------------
