@@ -45,13 +45,12 @@ The ``AbstractBaseMessage`` model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. py:property:: AbstractBaseMessage.ticket_number
+    :classmethod:
+    :type: str
 
-    A method that is decorated by the :py:dec:`property` decorator. It returns the ticket number to be displayed in the automatic-reply email.
+    The ticket number to be displayed in the automatic-reply email.
     
-    By default, each ticket number is the model's primary key expressed as a number whose length is specified by :attr:`AbstractBaseMessage.TICKET_NUM_LEN`. For example, if the primary key is 3 and :attr:`AbstractBaseMessage.TICKET_NUM_LEN` is left as its default of 4 then :meth:`AbstractBaseMessage.TICKET_NUM_LEN`
-    
-    :return: The ticket number. 
-    :rtype: str
+    By default, each ticket number is the model's primary key expressed as a number whose length is specified by :attr:`~AbstractBaseMessage.TICKET_NUM_LEN`. For example, if the primary key is 3 and :attr:`~AbstractBaseMessage.TICKET_NUM_LEN` is left as its default of 4 then :code:`ticket_number = "0003"`.
 
 .. _base_message_attr:
 
