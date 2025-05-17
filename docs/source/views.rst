@@ -12,7 +12,7 @@ Attributes
    :type: dict
    :value: {}
 
-   Keyword arguments to pass into the :meth:`~contact_us_tools.models.AbstractBaseMessage.send_email` method when it is called. See :ref:`sending_email`.
+   Keyword arguments to pass into the :meth:`AbstractBaseMessage.send_email()<contact_us_tools.models.AbstractBaseMessage.send_email>` method when it is called. See :ref:`sending_email`.
 
    How it works is, if one were to extend :py:class:`~contact_us_tools.views.BaseContactUsView` with a non-empty :py:attr:`~BaseContactUsView.send_email_kwargs` like so.
 
@@ -45,10 +45,6 @@ Attributes
 
 Sending the automatic-reply email
 ---------------------------------
-
-:py:meth:`cars<contact_us_tools.models.AbstractBaseMessage.send_email>`
-
-:py:meth:`cars <contact_us_tools.models.AbstractBaseMessage.send_email>`
 
 .. function:: BaseContactUsView.send_email(form)
 
