@@ -52,7 +52,7 @@ The ``AbstractBaseMessage`` model
     
     By default, each ticket number is the model's primary key expressed as a number whose length is specified by :attr:`~AbstractBaseMessage.TICKET_NUM_LEN`. For example, if the primary key is 3 and :attr:`~AbstractBaseMessage.TICKET_NUM_LEN` is left as its default value of 4, then,
     
-        :code:`ticket_number = "0003"`.
+        :code:`ticket_number = "0003"`
 
     If custom ticket_number numbers are desired, see :ref:`custom_ticket_numbers`.
 

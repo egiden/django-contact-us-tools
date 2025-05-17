@@ -11,11 +11,11 @@ We will explore both versions, but with the following example scenario.
 .. code-block:: python
 
     class Message(AbstractBaseMessage):
-        BUSINESS_NAME = "Stark Industries"
+        BUSINESS_NAME = "Pseudo Industries"
         COPYRIGHT_YEAR = 2025
-        SIGNATURE = "Social Media Team"
+        SIGNATURE = "Communications Team"
         DISP_REVIEW_LINK = True
-        REVIEW_LINK = "www.starkindustries.com/review"
+        REVIEW_LINK = "www.pseudoindustries.com/review"
 
 The text version
 ----------------
@@ -49,7 +49,32 @@ The ``text`` version of the email is of the form:
 
 An example would then look like.
 
-.. code-block
+.. code-block:: text
+
+    Dear Arthur
+
+    Thank you for contacting us. This is an automated response to confirm that we have received your message.
+
+    Your enquiry has been received and assigned the ticket number #0003. We will review your enquiry and respond as soon as we can. For further questions or assistance, or if you wish to add details or comments to your enquiry, please reply to this email.
+
+    Kind regards,
+    Communications Team
+
+    -------------------------------------------------
+    Arthur, May 5, 2025, 12:33 a.m
+
+    Your Message:
+    Type: Enquiry
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed metus libero. Nullam vehicula eros eu felis vulputate consequat. Vivamus sodales mauris eu consequat finibus. Etiam vel tortor vel metus suscipit luctus sed gravida sem. Duis ac vestibulum lectus. Curabitur eget finibus lacus, eget sollicitudin urna. Sed rutrum sapien vitae ex fermentum, ut tristique purus pharetra. Aliquam imperdiet condimentum dictum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam lobortis neque turpis, in dignissim nibh iaculis quis. Aliquam lacinia pulvinar leo eget egestas.
+    -------------------------------------------------
+
+    E: help@pseudoindustries.com
+
+    We would love to hear your feedback. Please leave us a review at www.pseudoindustries.com/review.
+
+    This email has been sent in accordance with the Pseudo Industries Privacy Policy
+
+    copyright 2025 Pseudo Industries
 
 The html version
 ----------------
