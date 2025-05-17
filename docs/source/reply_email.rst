@@ -50,6 +50,7 @@ The ``text`` version of the email is of the form:
 An example would then look like.
 
 .. code-block:: text
+    :linenos:
 
     Dear Arthur
 
@@ -64,7 +65,7 @@ An example would then look like.
     Arthur, May 5, 2025, 12:33 a.m
 
     Type: Enquiry
-    
+
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed metus libero. Nullam vehicula eros eu felis vulputate consequat. Vivamus sodales mauris eu consequat finibus. Etiam vel tortor vel metus suscipit luctus sed gravida sem. Duis ac vestibulum lectus. Curabitur eget finibus lacus, eget sollicitudin urna. Sed rutrum sapien vitae ex fermentum, ut tristique purus pharetra. Aliquam imperdiet condimentum dictum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam lobortis neque turpis, in dignissim nibh iaculis quis. Aliquam lacinia pulvinar leo eget egestas.
     -------------------------------------------------
 
@@ -78,3 +79,46 @@ An example would then look like.
 
 The html version
 ----------------
+
+.. raw:: html
+
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>Dear Arthur</header>
+        <main>
+            <p>Thank you for contacting us. This is an automated response to confirm that we have received your message.</p>
+            <p>
+                Your enquiry has been received and assigned the ticket number #0003. We will review your enquiry and respond as soon as we can.
+            </p>
+            <p>For further questions or assistance, or if you wish to add details or comments to your enquiry, please reply to this email.</p>
+            <p>
+            Kind regards,
+            <br>
+            Communications Team
+            </p>
+        </main>
+        <hr>
+        <div style="font-style: italic;">
+            <p style="font-weight: bold;">Arthur, May 5, 2025, 12:33 a.m</p>
+            <br>
+            Type: Enquiry
+            <br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed metus libero. Nullam vehicula eros eu felis vulputate consequat. Vivamus sodales mauris eu consequat finibus. Etiam vel tortor vel metus suscipit luctus sed gravida sem. Duis ac vestibulum lectus. Curabitur eget finibus lacus, eget sollicitudin urna. Sed rutrum sapien vitae ex fermentum, ut tristique purus pharetra. Aliquam imperdiet condimentum dictum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam lobortis neque turpis, in dignissim nibh iaculis quis. Aliquam lacinia pulvinar leo eget egestas.
+        </div>
+        <hr>
+        <footer>
+            E: help@pseudoindustries.com
+            <br>
+            <br>
+            We would love to hear your feedback. Please leave us a review at www.pseudoindustries.com/review.
+            <br>
+            <br>
+            This email has been sent in accordance with the Pseudo Industries Privacy Policy
+            <br>
+            <br>
+            &copy2025, Pseudo Industries
+        </footer>
+    </body>
