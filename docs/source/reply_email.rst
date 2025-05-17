@@ -21,7 +21,7 @@ The text version
 ----------------
 The ``text`` version of the email is of the form:
 
-.. code-block::
+.. block::
     :linenos:
 
     [salutation]
@@ -46,6 +46,11 @@ The ``text`` version of the email is of the form:
     This email has been sent in accordance with the [business_name] Privacy Policy
 
     copyright [copyright_year] [business_name]
+
+An example would then look like.
+
+.. code-block::
+
 
 The html version
 ----------------

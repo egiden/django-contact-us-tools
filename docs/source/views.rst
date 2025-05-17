@@ -5,7 +5,7 @@ Views
 
 .. class:: BaseContactUsView
 
-   A basic view which facilitates the rendering of :py:class:`~contact_us_tools.forms.BaseContactUsForm` and the sending of the automatic-reply email.
+   A subclass of ``django.views.generic.FormView`` which facilitates the rendering of :py:class:`~contact_us_tools.forms.BaseContactUsForm` and the sending of the automatic-reply email.
 
 Attributes
 ----------
