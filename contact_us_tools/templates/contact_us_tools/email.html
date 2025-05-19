@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <header>{{ salutation }}</header>
+    <header>{{ salutation }},</header>
     <main>
-        {% if is_main_content_provided %}
-            {{ main_content }}
+        {% if is_feedback %}
+            <p>{{ main_content_fbk }}</p>
+        {% elif not is_feedback and is_main_content_provided %}
+            <p>{{ main_content }}</p>
         {% else %}
             <p>Thank you for contacting us. This is an automated response to confirm that we have received your message.</p>
             <p>
@@ -25,9 +27,6 @@
     <hr>
     <div style="font-style: italic;">
         <p style="font-weight: bold;">{{ name }}, {{ date_created }}</p>
-        <br>
-        Type: {{ type }}
-        <br>
         {{ message }}
     </div>
     <hr>

@@ -71,7 +71,7 @@ Example Setup
 
       This step is necessary for the automatic-reply email to be sent.
 
-#. Extend either the :py:class:`~contact_us_tools.models.AbstractBaseMessage` or :py:class:`~contact_us_tools.models.AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` attributes. :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email. :py:class:`~contact_us_tools.models.AbstractBaseMessage` will be used as an example, but the same process holds true for :py:class:`~contact_us_tools.models.AbstractBaseMessageExt`:
+#. Extend either the :py:class:`~contact_us_tools.models.AbstractBaseMessage` or :py:class:`~contact_us_tools.models.AbstractBaseMessageExt` model in your app's ``models.py``  and overwrite the :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` attributes:
     
    .. code-block:: python
 
@@ -80,7 +80,13 @@ Example Setup
       class Message(AbstractBaseMessage):
          BUSINESS_NAME = "My Business Name"
          COPYRIGHT_YEAR = 2025
+
+   :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` is your business or website name to be displayed in the :doc:`automatic-reply email <reply_email>` and :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` is the year to be displayed with the copyright notice in the email.
    
+   .. note::
+
+      Although :py:class:`~contact_us_tools.models.AbstractBaseMessage` is used in the above example, the same process holds true for :py:class:`~contact_us_tools.models.AbstractBaseMessageExt`.
+
    .. warning::
 
       :attr:`~contact_us_tools.models.AbstractBaseMessage.BUSINESS_NAME` must be set or else a :py:exc:`ValueError` will be raised. It is the same with :attr:`~contact_us_tools.models.AbstractBaseMessage.COPYRIGHT_YEAR` for the default configuration of :py:class:`~contact_us_tools.models.AbstractBaseMessage`.
@@ -133,13 +139,18 @@ Example Setup
    .. code-block:: python
 
       from django.urls import path
-      from contact_us_tools.view import BaseContactUsView
+      from contact_us_tools.views import BaseContactUsView
       from .forms import ContactUsForm
 
       urlpatterns = [
          # ...,
-         path('contact-us', BaseContactUsView.as_view(form_class=ContactUsForm, template_name='template_name', success_url='success_url')),
-      ]
+         path('contact-us', 
+               BaseContactUsView.as_view(
+                  form_class=ContactUsForm,
+                  template_name='template_name',
+                  success_url='success_url'),
+               name='contact-us'
+      )]
 
    Alternatively, supply the name of the 'success url' using the ``django.urls.reverse`` function:
 
@@ -148,9 +159,16 @@ Example Setup
       # ...
       from django.urls import reverse
 
+      class ContactUsView(BaseContactUsView):
+         form_class=ContactUsForm
+         template_name='template_name'
+         
+         def get_success_url(self):
+            return reverse('success_url_name')
+
       urlpatterns = [
          # ...,
-         path('contact-us', BaseContactUsView.as_view(form_class=ContactUsForm, template_name='template_name', success_url=reverse('success_url_name'))),
+         path('contact-us', ContactUsView.as_view(), name='contact-us'),
       ]
          
    .. note::
