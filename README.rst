@@ -43,7 +43,7 @@ Quick start
     
     ``BUSINESS_NAME`` is your business or website name to be displayed in the automatic-reply email and ``COPYRIGHT_YEAR`` is the year to be displayed with the copyright notice in the email.
 
-    For further configuration of the ``BaseMessage`` model, consult the docs.
+    For further configuration of the ``BaseMessage`` model, consult the docs https://django-contact-us-tools.readthedocs.io/en/latest/index.html.
 
 4. Register the new model to your admit site:
 
@@ -91,7 +91,7 @@ Quick start
             def get_success_url(self):
                 return reverse('success_url_name')
 
-    For further configuration of ``BaseContactUsView``, consult the docs.
+    For further configuration of ``BaseContactUsView``, consult the docs https://django-contact-us-tools.readthedocs.io/en/latest/index.html.
 
 8. Add a URL pattern to handle the rendering of the form:
 
